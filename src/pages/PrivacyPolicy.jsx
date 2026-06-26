@@ -2,9 +2,10 @@ import React from "react";
 import { Link } from "wouter";
 import { ArrowRight, Shield } from "lucide-react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation.js";
-import { PRIVACY_POLICY } from "../data/content.js";
+import { useContent } from "../context/ContentContext.jsx";
 
 export default function PrivacyPolicy() {
+  const { PRIVACY_POLICY } = useContent();
   useScrollAnimation();
 
   return (
@@ -12,7 +13,7 @@ export default function PrivacyPolicy() {
       <section className="relative py-20 bg-[#1A1A1A] overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <img
-            src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1920&q=60"
+            src="/images/heroes/privacy.jpg"
             alt=""
             className="w-full h-full object-cover"
           />

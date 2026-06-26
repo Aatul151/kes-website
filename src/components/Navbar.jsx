@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { Menu, X } from "lucide-react";
-import { COMPANY } from "../data/content";
+import { useContent } from "../context/ContentContext.jsx";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -14,6 +14,7 @@ const NAV_LINKS = [
 ];
 
 export default function Navbar() {
+  const { COMPANY } = useContent();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [location] = useLocation();

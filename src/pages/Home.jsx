@@ -38,18 +38,7 @@ import {
 } from "lucide-react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation.js";
 import AnimatedCounter from "../components/AnimatedCounter.jsx";
-import {
-  STATS,
-  SERVICES,
-  WHY_KES,
-  PROJECTS,
-  INDUSTRIES,
-  PROCESS_STEPS,
-  TESTIMONIALS,
-  CERTIFICATIONS,
-  SERVICE_AREAS,
-  COMPANY,
-} from "../data/content.js";
+import { useContent } from "../context/ContentContext.jsx";
 
 const ICON_MAP = {
   Building2,
@@ -96,7 +85,21 @@ const PROJECT_FILTERS = [
 ];
 
 export default function Home() {
+  const {
+    STATS,
+    SERVICES,
+    WHY_KES,
+    PROJECTS,
+    INDUSTRIES,
+    PROCESS_STEPS,
+    TESTIMONIALS,
+    CERTIFICATIONS,
+    SERVICE_AREAS,
+    COMPANY,
+    HOME_HERO,
+  } = useContent();
   const [activeFilter, setActiveFilter] = useState("All");
+  const [heroVideoFailed, setHeroVideoFailed] = useState(false);
   const [activeStep, setActiveStep] = useState(1);
   const [testimonialIdx, setTestimonialIdx] = useState(0);
   const [formData, setFormData] = useState({
@@ -153,11 +156,27 @@ export default function Home() {
       <section className="relative min-h-screen flex items-center overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0 z-0">
-          <img
-            src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=85"
-            alt="Industrial steel structure"
-            className="w-full h-full object-cover"
-          />
+          {!heroVideoFailed && HOME_HERO.video ? (
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              poster={HOME_HERO.poster}
+              onError={() => setHeroVideoFailed(true)}
+              className="w-full h-full object-cover"
+              aria-hidden="true"
+            >
+              <source src={HOME_HERO.video} type="video/mp4" />
+            </video>
+          ) : (
+            <img
+              src={HOME_HERO.poster}
+              alt=""
+              className="w-full h-full object-cover"
+            />
+          )}
           <div className="hero-overlay absolute inset-0" />
         </div>
 
@@ -165,15 +184,15 @@ export default function Home() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
           <div className="max-w-3xl">
             <span className="inline-block bg-[#C8102E]/20 border border-[#C8102E]/40 text-[#ff6b7a] text-xs font-semibold tracking-[3px] uppercase px-4 py-1.5 rounded-full mb-6">
-              India's Premier Industrial Construction Partner
+              {HOME_HERO.badge}
             </span>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-5">
-              Engineering Tomorrow's
+              {HOME_HERO.title}
               <br />
-              <span className="text-[#C8102E]">Industrial Landmarks</span>
+              <span className="text-[#C8102E]">{HOME_HERO.titleHighlight}</span>
             </h1>
             <p className="text-lg sm:text-xl text-gray-300 font-light mb-8 leading-relaxed">
-            Your Engineering Partner
+              {HOME_HERO.subtitle || COMPANY.tagline}
             </p>
             <div className="flex flex-wrap gap-4 mb-14">
               <Link href="/contact">
@@ -304,7 +323,7 @@ export default function Home() {
             <div className="animate-on-scroll-right">
               <div className="relative">
                 <img
-                  src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=700&q=80"
+                  src="/images/heroes/home-about.jpg"
                   alt="KES Engineering facility"
                   className="rounded-xl w-full h-80 object-cover shadow-lg"
                 />

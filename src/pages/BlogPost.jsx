@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useParams } from "wouter";
 import { Calendar, Clock, ArrowLeft, ArrowRight, Tag, Share2, Linkedin, Twitter, Facebook } from "lucide-react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation.js";
-import { BLOG_POSTS } from "../data/content.js";
+import { useContent } from "../context/ContentContext.jsx";
 
 function renderContent(content) {
   const lines = content.split("\n");
@@ -54,6 +54,7 @@ function renderContent(content) {
 }
 
 export default function BlogPost() {
+  const { BLOG_POSTS } = useContent();
   useScrollAnimation();
   const { slug } = useParams();
   const post = BLOG_POSTS.find((p) => p.slug === slug);

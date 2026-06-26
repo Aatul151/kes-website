@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation, Link } from "wouter";
 import { MapPin, Phone, Mail, Clock, CheckCircle, ArrowRight } from "lucide-react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation.js";
-import { SERVICES, COMPANY, SOCIAL_LINKS } from "../data/content.js";
+import { useContent } from "../context/ContentContext.jsx";
 import { SOCIAL_ICON_MAP } from "../utils/socialIcons.js";
 
 const OFFICES = [
@@ -23,6 +23,7 @@ const OFFICES = [
 ];
 
 export default function Contact() {
+  const { SERVICES, COMPANY, SOCIAL_LINKS } = useContent();
   useScrollAnimation();
   const [location] = useLocation();
   const [formData, setFormData] = useState({
@@ -56,7 +57,7 @@ export default function Contact() {
       {/* Hero */}
       <section className="relative py-20 bg-[#1A1A1A] overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=60" alt="" className="w-full h-full object-cover" />
+          <img src="/images/heroes/contact.jpg" alt="" className="w-full h-full object-cover" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="section-label" style={{ color: "#ff6b7a" }}>Get In Touch</span>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "wouter";
 import { MapPin, Phone, Mail, ArrowRight, Heart } from "lucide-react";
-import { COMPANY, SOCIAL_LINKS } from "../data/content.js";
+import { useContent } from "../context/ContentContext.jsx";
 import { SOCIAL_ICON_MAP } from "../utils/socialIcons.js";
 
 const SERVICES = [
@@ -25,6 +25,7 @@ const QUICK_LINKS = [
 ];
 
 export default function Footer() {
+  const { COMPANY, SOCIAL_LINKS } = useContent();
   return (
     <footer className="bg-[#1A1A1A] text-white">
       {/* Main Footer */}

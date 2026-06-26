@@ -3,9 +3,10 @@ import { Link } from "wouter";
 import { ArrowRight, CheckCircle, Target, Eye, Heart } from "lucide-react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation.js";
 import AnimatedCounter from "../components/AnimatedCounter.jsx";
-import { ABOUT, STATS } from "../data/content.js";
+import { useContent } from "../context/ContentContext.jsx";
 
 export default function About() {
+  const { ABOUT, STATS } = useContent();
   useScrollAnimation();
 
   return (
@@ -13,7 +14,7 @@ export default function About() {
       {/* Hero */}
       <section className="relative py-20 bg-[#1A1A1A] overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=60" alt="" className="w-full h-full object-cover" />
+          <img src="/images/heroes/about.jpg" alt="" className="w-full h-full object-cover" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="section-label" style={{ color: "#ff6b7a" }}>Our Story</span>
@@ -59,7 +60,7 @@ export default function About() {
             </div>
             <div className="animate-on-scroll-right">
               <img
-                src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=700&q=80"
+                src="/images/heroes/about-story.jpg"
                 alt="KES Engineering facility"
                 className="rounded-xl w-full h-96 object-cover shadow-lg"
               />

@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { Link } from "wouter";
 import { Calendar, Clock, ArrowRight, Search, Tag } from "lucide-react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation.js";
-import { BLOG_POSTS } from "../data/content.js";
+import { useContent } from "../context/ContentContext.jsx";
 
 const CATEGORIES = ["All", "PEB", "Warehousing", "Steel Structures", "Project Management", "Industry News"];
 
 export default function Blog() {
+  const { BLOG_POSTS } = useContent();
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -27,7 +28,7 @@ export default function Blog() {
       {/* Hero */}
       <section className="relative py-20 bg-[#1A1A1A] overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=60" alt="" className="w-full h-full object-cover" />
+          <img src="/images/heroes/blog.jpg" alt="" className="w-full h-full object-cover" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="section-label" style={{ color: "#ff6b7a" }}>Knowledge Hub</span>

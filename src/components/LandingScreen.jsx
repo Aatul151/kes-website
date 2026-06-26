@@ -9,7 +9,7 @@ import {
   Droplets,
   ArrowRight,
 } from "lucide-react";
-import { COMPANY, LANDING_SCREEN } from "../data/content.js";
+import { useContent } from "../context/ContentContext.jsx";
 
 const ICONS = [Building2, Factory, HardHat, Layers, Wrench, Cog, Droplets];
 const PHASE_SCHEDULE = [
@@ -21,6 +21,7 @@ const PHASE_SCHEDULE = [
 ];
 
 export default function LandingScreen({ onComplete }) {
+  const { COMPANY, LANDING_SCREEN } = useContent();
   const [phase, setPhase] = useState(0);
   const [progress, setProgress] = useState(0);
   const [exiting, setExiting] = useState(false);

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { z } from "zod";
 import { Send, CheckCircle, AlertCircle, Loader } from "lucide-react";
-import { PROJECT_TYPES, BUDGET_RANGES, TIMELINES } from "../data/content.js";
+import { useContent } from "../context/ContentContext.jsx";
 
 const API_URL = import.meta.env.VITE_API_URL || "/api";
 
@@ -17,6 +17,7 @@ const schema = z.object({
 });
 
 export default function InquiryForm({ prefilledProjectType = "" }) {
+  const { PROJECT_TYPES, BUDGET_RANGES, TIMELINES } = useContent();
   const [form, setForm] = useState({
     name: "",
     company: "",

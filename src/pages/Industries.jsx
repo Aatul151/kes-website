@@ -5,11 +5,12 @@ import {
   Car, UtensilsCrossed, Scissors, Sun
 } from "lucide-react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation.js";
-import { INDUSTRIES } from "../data/content.js";
+import { useContent } from "../context/ContentContext.jsx";
 
 const ICON_MAP = { Cog, Truck, Package, Pill, Car, UtensilsCrossed, Scissors, Sun };
 
 export default function Industries() {
+  const { INDUSTRIES } = useContent();
   useScrollAnimation();
 
   return (
@@ -17,7 +18,7 @@ export default function Industries() {
       {/* Hero */}
       <section className="relative py-20 bg-[#1A1A1A] overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-          <img src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1920&q=60" alt="" className="w-full h-full object-cover" />
+          <img src="/images/heroes/industries.jpg" alt="" className="w-full h-full object-cover" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="section-label" style={{ color: "#ff6b7a" }}>Sectors We Serve</span>

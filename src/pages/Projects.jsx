@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { Link } from "wouter";
 import { MapPin, Maximize2, ArrowRight, Calendar } from "lucide-react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation.js";
-import { PROJECTS } from "../data/content.js";
+import { useContent } from "../context/ContentContext.jsx";
 
 const FILTERS = ["All", "Manufacturing", "Logistics", "Warehousing", "Pharmaceutical", "Automobile", "Food Processing", "Textile", "Renewable Energy"];
 
 export default function Projects() {
+  const { PROJECTS } = useContent();
   const [activeFilter, setActiveFilter] = useState("All");
   const [selected, setSelected] = useState(null);
   useScrollAnimation([activeFilter]);
@@ -19,7 +20,7 @@ export default function Projects() {
       {/* Hero */}
       <section className="relative py-20 bg-[#1A1A1A] overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-          <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=1920&q=60" alt="" className="w-full h-full object-cover" />
+          <img src="/images/heroes/projects.jpg" alt="" className="w-full h-full object-cover" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="section-label" style={{ color: "#ff6b7a" }}>Our Portfolio</span>
