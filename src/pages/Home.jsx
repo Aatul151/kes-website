@@ -100,12 +100,7 @@ export default function Home() {
     HOME_HERO,
   } = useContent();
   const [activeFilter, setActiveFilter] = useState("All");
-  const heroVideos =
-    HOME_HERO.videos?.length > 0
-      ? HOME_HERO.videos
-      : HOME_HERO.video
-        ? [HOME_HERO.video]
-        : [];
+  const heroVideos = HOME_HERO.videos || [];
   const [heroVideoIdx, setHeroVideoIdx] = useState(0);
   const [heroVideosFailed, setHeroVideosFailed] = useState(() => new Set());
   const heroVideoRef = useRef(null);

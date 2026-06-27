@@ -1,30 +1,12 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import {
-  Building2,
-  Factory,
-  HardHat,
-  Layers,
-  Wrench,
-  Cog,
-  Droplets,
-  ArrowRight,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useContent } from "../context/ContentContext.jsx";
-
-const ICONS = [Building2, Factory, HardHat, Layers, Wrench, Cog, Droplets];
-const PHASE_SCHEDULE = [
-  { at: 200, phase: 1 },
-  { at: 500, phase: 2 },
-  { at: 1000, phase: 3 },
-  { at: 1500, phase: 4 },
-  { at: 2000, phase: 5 },
-];
 
 export default function LandingScreen({ onComplete }) {
   const { COMPANY, LANDING_SCREEN } = useContent();
-  const [phase, setPhase] = useState(0);
   const [progress, setProgress] = useState(0);
   const [exiting, setExiting] = useState(false);
+  const [visible, setVisible] = useState(false);
   const [timerKey, setTimerKey] = useState(0);
   const exitingRef = useRef(false);
   const lastRestartRef = useRef(0);
@@ -35,7 +17,7 @@ export default function LandingScreen({ onComplete }) {
     if (exitingRef.current) return;
     exitingRef.current = true;
     setExiting(true);
-    setTimeout(onComplete, 700);
+    setTimeout(onComplete, 600);
   }, [onComplete]);
 
   const restartTimer = useCallback(() => {
@@ -49,8 +31,10 @@ export default function LandingScreen({ onComplete }) {
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
+    const reveal = setTimeout(() => setVisible(true), 80);
     return () => {
       document.body.style.overflow = "";
+      clearTimeout(reveal);
     };
   }, []);
 
@@ -59,13 +43,6 @@ export default function LandingScreen({ onComplete }) {
     if (!video || bgVideoFailed || !LANDING_SCREEN.backgroundVideo) return;
     video.play().catch(() => setBgVideoFailed(true));
   }, [bgVideoFailed, LANDING_SCREEN.backgroundVideo]);
-
-  useEffect(() => {
-    const timers = PHASE_SCHEDULE.map(({ at, phase: p }) =>
-      setTimeout(() => setPhase(p), at)
-    );
-    return () => timers.forEach(clearTimeout);
-  }, []);
 
   useEffect(() => {
     if (exitingRef.current) return;
@@ -84,11 +61,15 @@ export default function LandingScreen({ onComplete }) {
       clearInterval(progressInterval);
       clearTimeout(autoClose);
     };
-  }, [timerKey, finish]);
+  }, [timerKey, finish, LANDING_SCREEN.durationMs]);
 
   return (
     <div
-      className={`landing-screen ${exiting ? "landing-screen--exit" : ""}`}
+      className={`landing-screen${exiting ? " landing-screen--exit" : ""}${
+        !bgVideoFailed && LANDING_SCREEN.backgroundVideo
+          ? " landing-screen--video"
+          : ""
+      }`}
       role="dialog"
       aria-label="Welcome to KES Engineering"
       onClick={restartTimer}
@@ -97,7 +78,6 @@ export default function LandingScreen({ onComplete }) {
       onKeyDown={restartTimer}
       onMouseMove={restartTimer}
     >
-      {/* Background layers */}
       <div
         className={`landing-screen__bg${
           !bgVideoFailed && LANDING_SCREEN.backgroundVideo
@@ -126,34 +106,7 @@ export default function LandingScreen({ onComplete }) {
             className="landing-screen__bg-img"
           />
         )}
-        <div className="landing-screen__bg-overlay" />
-        <div className="landing-screen__grid" />
-        <div className="landing-screen__scanline" />
-      </div>
-
-      {/* Floating industrial icons */}
-      <div className="landing-screen__particles" aria-hidden="true">
-        {ICONS.map((Icon, i) => (
-          <div
-            key={i}
-            className="landing-screen__particle"
-            style={{
-              left: `${8 + i * 13}%`,
-              animationDelay: `${i * 0.6}s`,
-              animationDuration: `${4 + (i % 3)}s`,
-            }}
-          >
-            <Icon size={18} />
-          </div>
-        ))}
-      </div>
-
-      {/* Steel frame accent */}
-      <div className="landing-screen__frame" aria-hidden="true">
-        <div className="landing-screen__beam landing-screen__beam--h landing-screen__beam--top" />
-        <div className="landing-screen__beam landing-screen__beam--v landing-screen__beam--left" />
-        <div className="landing-screen__beam landing-screen__beam--h landing-screen__beam--bottom" />
-        <div className="landing-screen__beam landing-screen__beam--v landing-screen__beam--right" />
+        <div className="landing-screen__bg-overlay" aria-hidden="true" />
       </div>
 
       <button
@@ -167,72 +120,75 @@ export default function LandingScreen({ onComplete }) {
         Skip <ArrowRight size={13} />
       </button>
 
-      <div className="landing-screen__content" onScroll={restartTimer}>
-        {/* Phase 0+: Logo & brand */}
-        <div className={`landing-screen__block ${phase >= 0 ? "is-visible" : ""}`}>
-          <img
-            src="/kes_logo.png"
-            alt={COMPANY.name}
-            className="landing-screen__logo"
-          />
-          <p className="landing-screen__brand">{COMPANY.name}</p>
-          <p className="landing-screen__tagline">{COMPANY.tagline}</p>
-        </div>
+      <div
+        className={`landing-screen__content ${visible ? "is-visible" : ""}`}
+        onScroll={restartTimer}
+      >
+        <div className="landing-screen__shed">
+          <div className="landing-screen__shed-backdrop" aria-hidden="true" />
 
-        {/* Phase 1+: Mission */}
-        <div className={`landing-screen__block landing-screen__mission ${phase >= 1 ? "is-visible" : ""}`}>
-          <span className="landing-screen__label">Our Mission</span>
-          <p>{LANDING_SCREEN.mission}</p>
-        </div>
+          <div className="landing-screen__eaves" aria-hidden="true">
+            <span className="landing-screen__eave landing-screen__eave--left" />
+            <span className="landing-screen__eave landing-screen__eave--right" />
+          </div>
 
-        {/* Phase 2+: One stop */}
-        <div className={`landing-screen__block landing-screen__onestop ${phase >= 2 ? "is-visible" : ""}`}>
-          <p className="landing-screen__highlight">{LANDING_SCREEN.oneStop}</p>
-        </div>
+          <div className="landing-screen__dome" aria-hidden="true">
+            <div className="landing-screen__dome-cap" />
+            <div className="landing-screen__dome-purlins">
+              <span /><span /><span /><span /><span />
+            </div>
+            <div className="landing-screen__dome-ribs">
+              <span /><span /><span /><span /><span /><span /><span />
+            </div>
+            <span className="landing-screen__dome-ridge" />
+          </div>
 
-        {/* Phase 3+: Turnkey services */}
-        <div className={`landing-screen__block landing-screen__services landing-screen__highlight ${phase >= 3 ? "is-visible" : ""}`}>
-          <span className="landing-screen__label">{LANDING_SCREEN.turnkeyTitle}</span>
-          <ul>
-            {LANDING_SCREEN.turnkeyServices.map((item, i) => (
-              <li
-                key={item}
-                className={phase >= 3 ? "is-visible" : ""}
-                style={{ transitionDelay: `${i * 120}ms` }}
-              >
-                <Wrench size={12} />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+          <div className="landing-screen__side-wall landing-screen__side-wall--left" aria-hidden="true" />
+          <div className="landing-screen__side-wall landing-screen__side-wall--right" aria-hidden="true" />
 
-        {/* Phase 4+: Value added */}
-        <div className={`landing-screen__block landing-screen__services landing-screen__highlight landing-screen__services--alt ${phase >= 4 ? "is-visible" : ""}`}>
-          <span className="landing-screen__label">{LANDING_SCREEN.valueAddedTitle}</span>
-          <ul>
-            {LANDING_SCREEN.valueAddedServices.map((item, i) => (
-              <li
-                key={item}
-                className={phase >= 4 ? "is-visible" : ""}
-                style={{ transitionDelay: `${i * 120}ms` }}
-              >
-                <Cog size={12} />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+          <div className="landing-screen__panel-inner">
+            <div className="landing-screen__corrugation" aria-hidden="true" />
+            <div className="landing-screen__truss landing-screen__truss--left" aria-hidden="true">
+              <span className="landing-screen__truss-brace" />
+            </div>
+            <div className="landing-screen__truss landing-screen__truss--right" aria-hidden="true">
+              <span className="landing-screen__truss-brace" />
+            </div>
 
-        {/* Phase 5: Entering site */}
-        <div className={`landing-screen__entering ${phase >= 5 ? "is-visible" : ""}`}>
-          <Factory size={16} className="landing-screen__entering-icon" />
-          <span>Entering KES Engineering</span>
+            <div className="landing-screen__panel-body">
+              <img
+                src="/kes_logo.png"
+                alt={COMPANY.name}
+                className="landing-screen__logo"
+              />
+              <h1 className="landing-screen__brand">{COMPANY.name}</h1>
+              <p className="landing-screen__tagline">{COMPANY.tagline}</p>
+              {COMPANY.subTagline && (
+                <p className="landing-screen__subtitle">{COMPANY.subTagline}</p>
+              )}
+              {LANDING_SCREEN.highlights?.length > 0 && (
+                <ul className="landing-screen__highlights">
+                  {LANDING_SCREEN.highlights.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
+
+          <div className="landing-screen__foundation" aria-hidden="true">
+            <span className="landing-screen__foundation-plate landing-screen__foundation-plate--left" />
+            <span className="landing-screen__foundation-plate landing-screen__foundation-plate--right" />
+          </div>
+          <div className="landing-screen__ground-shadow" aria-hidden="true" />
         </div>
       </div>
 
       <div className="landing-screen__progress-wrap">
-        <div className="landing-screen__progress-bar" style={{ width: `${progress}%` }} />
+        <div
+          className="landing-screen__progress-bar"
+          style={{ width: `${progress}%` }}
+        />
       </div>
     </div>
   );

@@ -83,9 +83,14 @@ export const SOCIAL_LINKS = [
 
 export const LANDING_SCREEN = {
   durationMs: 8000,
-  backgroundVideo: "/videos/hero/home_bg_v_1.mp4",
+  backgroundVideo: "/videos/hero/home_bg_v_3.mp4",
   backgroundImage:
     "/images/landing/background.jpg",
+  highlights: [
+    "Pre-Engineered Buildings & Steel Structures",
+    "Turnkey Industrial Construction Solutions",
+    "STP / WTP & Specialized Engineering Services",
+  ],
   mission:
     "To promote excellence in industrial Engineering Solutions with Technological Innovation on the foundation of distinct quality and corporate values.",
   oneStop:
