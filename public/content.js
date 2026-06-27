@@ -3,7 +3,7 @@
 // All website data is sourced from this single file.
 //
 // After editing: upload/replace this file and images in public/images/ on the server.
-// Folder guide: landing/ | heroes/ | services/ | projects/ | industries/ | blog/ | team/ | videos/
+// Folder guide: landing/ | heroes/ | services/ | projects/ | industries/ | blog/ | process/ | team/ | videos/
 // No app rebuild required. Hard-refresh (Ctrl+Shift+R) if cached.
 // ============================================================
 
@@ -34,6 +34,20 @@ export const COMPANY = {
         "Focused on turnkey infrastructure development, including STP projects, EPC services, and complete engineering solutions from concept to commissioning.",
     },
   ]
+};
+
+export const FLOATING_ACTIONS = {
+  brochure: {
+    label: "Download Brochure",
+    url: "/downloads/kes_broucher.pdf",
+    filename: "KES-Brochure.pdf",
+  },
+  whatsapp: {
+    label: "WhatsApp",
+    phone: "919099910579",
+    message:
+      "Hello, I would like to know more about KES Engineering services.",
+  },
 };
 
 export const SOCIAL_LINKS = [
@@ -495,36 +509,42 @@ export const PROCESS_STEPS = [
     title: "Consultation",
     desc: "Initial site visit, requirement analysis, and feasibility study to understand your project goals.",
     icon: "MessageSquare",
+    image: "/images/process/consultation.jpg",
   },
   {
     step: 2,
     title: "Engineering Design",
     desc: "Structural analysis, 3D modeling, and detailed engineering drawings using STAAD.Pro and AutoCAD.",
     icon: "PenTool",
+    image: "/images/process/engineering-design.jpg",
   },
   {
     step: 3,
     title: "Manufacturing",
     desc: "Precision fabrication in our ISO-certified factory with CNC cutting, welding, and surface treatment.",
     icon: "Settings",
+    image: "/images/process/manufacturing.png",
   },
   {
     step: 4,
     title: "Fabrication",
     desc: "Component assembly, quality inspection, and protective coating application before dispatch.",
     icon: "Wrench",
+    image: "/images/process/fabrication.jpg",
   },
   {
     step: 5,
     title: "Erection",
     desc: "Skilled erection teams mobilize on-site with all equipment for safe and efficient structural assembly.",
     icon: "HardHat",
+    image: "/images/process/erection.jpg",
   },
   {
     step: 6,
     title: "Project Handover",
     desc: "Final inspection, documentation, as-built drawings, and formal handover with warranty certificate.",
     icon: "CheckCircle",
+    image: "/images/process/project-handover.png",
   },
 ];
 

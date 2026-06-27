@@ -3,6 +3,7 @@ import { Route, Switch, useLocation } from "wouter";
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
 import LandingScreen from "./components/LandingScreen.jsx";
+import FloatingActions from "./components/FloatingActions.jsx";
 import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
 import Services from "./pages/Services.jsx";
@@ -31,6 +32,7 @@ export default function App() {
       )}
       <div className={`min-h-screen flex flex-col font-poppins transition-opacity duration-500 ${showLanding ? "invisible opacity-0" : "opacity-100"}`}>
         <ScrollToTop />
+        {!showLanding && <FloatingActions />}
         <Navbar />
         <main className="flex-1">
           <Switch>

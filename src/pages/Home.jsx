@@ -564,25 +564,31 @@ export default function Home() {
           </div>
 
           {/* Active Step Detail */}
-          <div className="bg-white/5 border border-white/10 rounded-xl p-6 max-w-xl mx-auto text-center animate-on-scroll">
-            {(() => {
-              const step = PROCESS_STEPS.find((s) => s.step === activeStep);
-              const Icon = ICON_MAP[step.icon] || CheckCircle;
-              return (
-                <>
-                  <div className="w-12 h-12 bg-[#C8102E] rounded-full flex items-center justify-center mx-auto mb-4">
+          {(() => {
+            const step = PROCESS_STEPS.find((s) => s.step === activeStep);
+            const Icon = ICON_MAP[step.icon] || CheckCircle;
+            return (
+              <div
+                className="relative overflow-hidden border border-white-500 rounded-xl p-6 max-w-xl mx-auto text-center animate-on-scroll min-h-[220px] flex items-center justify-center bg-cover bg-center transition-[background-image] duration-500"
+                style={{
+                  backgroundImage: step.image ? `url(${step.image})` : undefined,
+                }}
+              >
+                <div className="absolute inset-0 bg-black/60" aria-hidden="true" />
+                <div className="relative z-10 px-2">
+                  <div className="w-12 h-12 bg-[#C8102E] rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
                     <Icon size={20} className="text-white" />
                   </div>
-                  <h3 className="text-white font-semibold mb-2">
+                  <h3 className="text-white font-semibold mb-2 drop-shadow-sm">
                     Step {step.step}: {step.title}
                   </h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">
+                  <p className="text-gray-200 text-sm leading-relaxed drop-shadow-sm">
                     {step.desc}
                   </p>
-                </>
-              );
-            })()}
-          </div>
+                </div>
+              </div>
+            );
+          })()}
 
           {/* Mobile Steps */}
           <div className="md:hidden mt-8 space-y-3">

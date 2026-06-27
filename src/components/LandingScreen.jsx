@@ -13,11 +13,11 @@ import { useContent } from "../context/ContentContext.jsx";
 
 const ICONS = [Building2, Factory, HardHat, Layers, Wrench, Cog, Droplets];
 const PHASE_SCHEDULE = [
-  { at: 400, phase: 1 },
-  { at: 1400, phase: 2 },
-  { at: 2800, phase: 3 },
-  { at: 4200, phase: 4 },
-  { at: 5600, phase: 5 },
+  { at: 200, phase: 1 },
+  { at: 500, phase: 2 },
+  { at: 1000, phase: 3 },
+  { at: 1500, phase: 4 },
+  { at: 2000, phase: 5 },
 ];
 
 export default function LandingScreen({ onComplete }) {
