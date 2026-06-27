@@ -315,7 +315,13 @@ export const PROJECTS = [
     image: "/images/projects/mahindra-logistics-hub.jpg",
     year: "2023",
     tag: "Logistics",
-    subimages: []
+    images: [
+      '/images/projects/mahindra-logistics-hub.jpg',
+      '/images/projects/tata-motors-assembly-plant.jpg',
+      '/images/projects/amazon-fulfillment-center.jpg',
+      '/images/projects/amazon-fulfillment-center.jpg',
+      '/images/projects/adani-solar-power-plant.jpg',
+    ]
   },
   {
     id: 2,
@@ -327,6 +333,13 @@ export const PROJECTS = [
     image: "/images/projects/tata-motors-assembly-plant.jpg",
     year: "2023",
     tag: "Automobile",
+    images: [
+      '/images/projects/mahindra-logistics-hub.jpg',
+      '/images/projects/tata-motors-assembly-plant.jpg',
+      '/images/projects/amazon-fulfillment-center.jpg',
+      '/images/projects/amazon-fulfillment-center.jpg',
+      '/images/projects/adani-solar-power-plant.jpg',
+    ]
   },
   {
     id: 3,
@@ -338,6 +351,13 @@ export const PROJECTS = [
     image: "/images/projects/sun-pharma-manufacturing.jpg",
     year: "2022",
     tag: "Pharmaceutical",
+    images: [
+      '/images/projects/mahindra-logistics-hub.jpg',
+      '/images/projects/tata-motors-assembly-plant.jpg',
+      '/images/projects/amazon-fulfillment-center.jpg',
+      '/images/projects/amazon-fulfillment-center.jpg',
+      '/images/projects/adani-solar-power-plant.jpg',
+    ]
   },
   {
     id: 4,
@@ -349,6 +369,13 @@ export const PROJECTS = [
     image: "/images/projects/amazon-fulfillment-center.jpg",
     year: "2023",
     tag: "Warehousing",
+    images: [
+      '/images/projects/mahindra-logistics-hub.jpg',
+      '/images/projects/tata-motors-assembly-plant.jpg',
+      '/images/projects/amazon-fulfillment-center.jpg',
+      '/images/projects/amazon-fulfillment-center.jpg',
+      '/images/projects/adani-solar-power-plant.jpg',
+    ]
   },
   {
     id: 5,
@@ -360,6 +387,13 @@ export const PROJECTS = [
     image: "/images/projects/adani-solar-power-plant.jpg",
     year: "2022",
     tag: "Renewable Energy",
+    images: [
+      '/images/projects/mahindra-logistics-hub.jpg',
+      '/images/projects/tata-motors-assembly-plant.jpg',
+      '/images/projects/amazon-fulfillment-center.jpg',
+      '/images/projects/amazon-fulfillment-center.jpg',
+      '/images/projects/adani-solar-power-plant.jpg',
+    ]
   },
   {
     id: 6,
@@ -371,6 +405,13 @@ export const PROJECTS = [
     image: "/images/projects/itc-foods-processing.jpg",
     year: "2022",
     tag: "Food Processing",
+    images: [
+      '/images/projects/mahindra-logistics-hub.jpg',
+      '/images/projects/tata-motors-assembly-plant.jpg',
+      '/images/projects/amazon-fulfillment-center.jpg',
+      '/images/projects/amazon-fulfillment-center.jpg',
+      '/images/projects/adani-solar-power-plant.jpg',
+    ]
   },
   {
     id: 7,
@@ -382,6 +423,13 @@ export const PROJECTS = [
     image: "/images/projects/raymond-textile-mill.jpg",
     year: "2021",
     tag: "Textile",
+    images: [
+      '/images/projects/mahindra-logistics-hub.jpg',
+      '/images/projects/tata-motors-assembly-plant.jpg',
+      '/images/projects/amazon-fulfillment-center.jpg',
+      '/images/projects/amazon-fulfillment-center.jpg',
+      '/images/projects/adani-solar-power-plant.jpg',
+    ]
   },
   {
     id: 8,
@@ -393,6 +441,13 @@ export const PROJECTS = [
     image: "/images/projects/bharat-forge-heavy-plant.jpg",
     year: "2021",
     tag: "Manufacturing",
+    images: [
+      '/images/projects/mahindra-logistics-hub.jpg',
+      '/images/projects/tata-motors-assembly-plant.jpg',
+      '/images/projects/amazon-fulfillment-center.jpg',
+      '/images/projects/amazon-fulfillment-center.jpg',
+      '/images/projects/adani-solar-power-plant.jpg',
+    ]
   },
 ];
 
