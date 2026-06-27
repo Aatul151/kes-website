@@ -59,8 +59,8 @@ export default function Navbar() {
           <Link href="/">
             <div className="flex items-center gap-2 cursor-pointer group">
               <img
-                src="/kes_logo.png"
-                alt="KES Engineering - Your Engineering Partner"
+                src="/kes_logo.gif"
+                alt="KES Groups - Your Engineering Partner"
                 className="h-14 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
               />
               <span className="text-[25px] font-semibold text-[#C8102E] transition-colors duration-200 font-poppins group-hover:text-[#a50d25]">
