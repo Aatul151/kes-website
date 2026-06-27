@@ -51,6 +51,7 @@ export const SOCIAL_LINKS = [
 
 export const LANDING_SCREEN = {
   durationMs: 8000,
+  backgroundVideo: "/videos/hero/home_bg_v_1.mp4",
   backgroundImage:
     "/images/landing/background.jpg",
   mission:
@@ -74,8 +75,11 @@ export const LANDING_SCREEN = {
 };
 
 export const HOME_HERO = {
-  video: "/videos/hero/home.mp4",
-  poster: "/images/heroes/home.jpg",
+  videos: [
+    "/videos/hero/home_bg_v_1.mp4",
+    "/videos/hero/home_bg_v_2.mp4",
+    "/videos/hero/home_bg_v_3.mp4",
+  ],
   badge: "India's Premier Industrial Construction Partner",
   title: "Engineering Tomorrow's",
   titleHighlight: "Industrial Landmarks",
@@ -345,6 +349,7 @@ export const PROJECTS = [
     image: "/images/projects/mahindra-logistics-hub.jpg",
     year: "2023",
     tag: "Logistics",
+    subimages:[]
   },
   {
     id: 2,

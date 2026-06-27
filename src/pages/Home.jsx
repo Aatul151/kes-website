@@ -100,7 +100,15 @@ export default function Home() {
     HOME_HERO,
   } = useContent();
   const [activeFilter, setActiveFilter] = useState("All");
-  const [heroVideoFailed, setHeroVideoFailed] = useState(false);
+  const heroVideos =
+    HOME_HERO.videos?.length > 0
+      ? HOME_HERO.videos
+      : HOME_HERO.video
+        ? [HOME_HERO.video]
+        : [];
+  const [heroVideoIdx, setHeroVideoIdx] = useState(0);
+  const [heroVideosFailed, setHeroVideosFailed] = useState(() => new Set());
+  const heroVideoRef = useRef(null);
   const [activeStep, setActiveStep] = useState(1);
   const [testimonialIdx, setTestimonialIdx] = useState(0);
   const [formStatus, setFormStatus] = useState("");
@@ -112,6 +120,72 @@ export default function Home() {
     activeFilter === "All"
       ? PROJECTS
       : PROJECTS.filter((p) => p.tag === activeFilter);
+
+  const heroVideoAvailable = heroVideos
+    .map((_, i) => i)
+    .filter((i) => !heroVideosFailed.has(i));
+  const allHeroVideosFailed =
+    heroVideos.length > 0 && heroVideoAvailable.length === 0;
+
+  const advanceHeroVideo = () => {
+    setHeroVideoIdx((current) => {
+      const available = heroVideos
+        .map((_, i) => i)
+        .filter((i) => !heroVideosFailed.has(i));
+      if (available.length <= 1) return current;
+      const pos = available.indexOf(current);
+      const nextPos = pos === -1 ? 0 : (pos + 1) % available.length;
+      return available[nextPos];
+    });
+  };
+
+  const handleHeroVideoError = (index) => {
+    setHeroVideosFailed((prev) => {
+      const next = new Set(prev).add(index);
+      setHeroVideoIdx((current) => {
+        if (current !== index) return current;
+        const remaining = heroVideos
+          .map((_, i) => i)
+          .filter((i) => !next.has(i));
+        return remaining[0] ?? current;
+      });
+      return next;
+    });
+  };
+
+  useEffect(() => {
+    const video = heroVideoRef.current;
+    if (!video || allHeroVideosFailed || heroVideosFailed.has(heroVideoIdx))
+      return;
+
+    const src = heroVideos[heroVideoIdx];
+    if (!src) return;
+
+    let cancelled = false;
+
+    const playVideo = () => {
+      if (cancelled) return;
+      video.currentTime = 0;
+      video.play().catch(() => {});
+    };
+
+    const onCanPlay = () => playVideo();
+
+    video.pause();
+    video.src = src;
+    video.load();
+
+    if (video.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA) {
+      playVideo();
+    } else {
+      video.addEventListener("canplay", onCanPlay, { once: true });
+    }
+
+    return () => {
+      cancelled = true;
+      video.removeEventListener("canplay", onCanPlay);
+    };
+  }, [heroVideoIdx, heroVideosFailed, allHeroVideosFailed, heroVideos]);
 
   // Auto-advance testimonials
   useEffect(() => {
@@ -128,26 +202,20 @@ export default function Home() {
       <section className="relative min-h-screen flex items-center overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0 z-0">
-          {!heroVideoFailed && HOME_HERO.video ? (
+          {!allHeroVideosFailed && heroVideos.length > 0 ? (
             <video
-              autoPlay
+              ref={heroVideoRef}
               muted
-              loop
+              loop={false}
               playsInline
               preload="auto"
-              poster={HOME_HERO.poster}
-              onError={() => setHeroVideoFailed(true)}
+              onError={() => handleHeroVideoError(heroVideoIdx)}
+              onEnded={advanceHeroVideo}
               className="w-full h-full object-cover"
               aria-hidden="true"
-            >
-              <source src={HOME_HERO.video} type="video/mp4" />
-            </video>
-          ) : (
-            <img
-              src={HOME_HERO.poster}
-              alt=""
-              className="w-full h-full object-cover"
             />
+          ) : (
+            <div className="w-full h-full bg-[#1A1A1A]" aria-hidden="true" />
           )}
           <div className="hero-overlay absolute inset-0" />
         </div>
@@ -195,13 +263,25 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1.5 animate-bounce">
-          <div className="w-px h-10 bg-white/30" />
-          <span className="text-white/50 text-[10px] tracking-widest uppercase">
-            Scroll
-          </span>
-        </div>
+        {/* Carousel indicators */}
+        {heroVideoAvailable.length > 1 && (
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2">
+            {heroVideoAvailable.map((videoIdx) => (
+              <button
+                key={videoIdx}
+                type="button"
+                onClick={() => setHeroVideoIdx(videoIdx)}
+                aria-label={`Show hero background ${videoIdx + 1} of ${heroVideoAvailable.length}`}
+                aria-current={videoIdx === heroVideoIdx ? "true" : undefined}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  videoIdx === heroVideoIdx
+                    ? "w-8 bg-[#C8102E]"
+                    : "w-2 bg-white/40 hover:bg-white/70"
+                }`}
+              />
+            ))}
+          </div>
+        )}
       </section>
 
       {/* ===== SERVICES ===== */}

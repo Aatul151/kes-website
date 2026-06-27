@@ -504,11 +504,24 @@ input, textarea, select {
 .landing-screen__bg-overlay {
   position: absolute;
   inset: 0;
+  /* background: linear-gradient(
+    160deg,
+    rgba(244, 74, 74, 0.92) 0%,
+    rgba(200, 64, 64, 0.88) 45%,
+    rgba(200, 16, 46, 0.25) 100%
+  ); */
+}
+
+.landing-screen__bg--video .landing-screen__bg-img {
+  filter: brightness(0.60);
+}
+
+.landing-screen__bg--video .landing-screen__bg-overlay {
   background: linear-gradient(
     160deg,
-    rgba(10, 10, 10, 0.92) 0%,
-    rgba(26, 26, 26, 0.88) 45%,
-    rgba(200, 16, 46, 0.25) 100%
+    rgba(214, 6, 6, 0.266) 0%,
+    rgba(13, 13, 13, 0.82) 50%,
+    rgba(128, 3, 3, 0.363) 100%
   );
 }
 
@@ -747,7 +760,7 @@ input, textarea, select {
   align-items: flex-start;
   gap: 8px;
   padding: 10px 12px;
-  font-size: 11px;
+  font-size: 15px;
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.45;
   background: rgba(255, 255, 255, 0.05);

@@ -28,6 +28,8 @@ export default function LandingScreen({ onComplete }) {
   const [timerKey, setTimerKey] = useState(0);
   const exitingRef = useRef(false);
   const lastRestartRef = useRef(0);
+  const bgVideoRef = useRef(null);
+  const [bgVideoFailed, setBgVideoFailed] = useState(false);
 
   const finish = useCallback(() => {
     if (exitingRef.current) return;
@@ -51,6 +53,12 @@ export default function LandingScreen({ onComplete }) {
       document.body.style.overflow = "";
     };
   }, []);
+
+  useEffect(() => {
+    const video = bgVideoRef.current;
+    if (!video || bgVideoFailed || !LANDING_SCREEN.backgroundVideo) return;
+    video.play().catch(() => setBgVideoFailed(true));
+  }, [bgVideoFailed, LANDING_SCREEN.backgroundVideo]);
 
   useEffect(() => {
     const timers = PHASE_SCHEDULE.map(({ at, phase: p }) =>
@@ -90,12 +98,34 @@ export default function LandingScreen({ onComplete }) {
       onMouseMove={restartTimer}
     >
       {/* Background layers */}
-      <div className="landing-screen__bg">
-        <img
-          src={LANDING_SCREEN.backgroundImage}
-          alt=""
-          className="landing-screen__bg-img"
-        />
+      <div
+        className={`landing-screen__bg${
+          !bgVideoFailed && LANDING_SCREEN.backgroundVideo
+            ? " landing-screen__bg--video"
+            : ""
+        }`}
+      >
+        {!bgVideoFailed && LANDING_SCREEN.backgroundVideo ? (
+          <video
+            ref={bgVideoRef}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            onError={() => setBgVideoFailed(true)}
+            className="landing-screen__bg-img"
+            aria-hidden="true"
+          >
+            <source src={LANDING_SCREEN.backgroundVideo} type="video/mp4" />
+          </video>
+        ) : (
+          <img
+            src={LANDING_SCREEN.backgroundImage}
+            alt=""
+            className="landing-screen__bg-img"
+          />
+        )}
         <div className="landing-screen__bg-overlay" />
         <div className="landing-screen__grid" />
         <div className="landing-screen__scanline" />
@@ -161,7 +191,7 @@ export default function LandingScreen({ onComplete }) {
         </div>
 
         {/* Phase 3+: Turnkey services */}
-        <div className={`landing-screen__block landing-screen__services ${phase >= 3 ? "is-visible" : ""}`}>
+        <div className={`landing-screen__block landing-screen__services landing-screen__highlight ${phase >= 3 ? "is-visible" : ""}`}>
           <span className="landing-screen__label">{LANDING_SCREEN.turnkeyTitle}</span>
           <ul>
             {LANDING_SCREEN.turnkeyServices.map((item, i) => (
@@ -178,7 +208,7 @@ export default function LandingScreen({ onComplete }) {
         </div>
 
         {/* Phase 4+: Value added */}
-        <div className={`landing-screen__block landing-screen__services landing-screen__services--alt ${phase >= 4 ? "is-visible" : ""}`}>
+        <div className={`landing-screen__block landing-screen__services landing-screen__highlight landing-screen__services--alt ${phase >= 4 ? "is-visible" : ""}`}>
           <span className="landing-screen__label">{LANDING_SCREEN.valueAddedTitle}</span>
           <ul>
             {LANDING_SCREEN.valueAddedServices.map((item, i) => (
