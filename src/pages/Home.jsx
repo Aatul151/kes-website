@@ -436,7 +436,7 @@ export default function Home() {
             <div>
               <span className="section-label">Our Work</span>
               <div className="accent-line" />
-              <h2 className="section-title mb-0">Featured Projects</h2>
+              <h2 className="section-title mb-0">Our Projects</h2>
             </div>
             <Link href="/projects">
               <button className="btn-outline text-xs shrink-0">

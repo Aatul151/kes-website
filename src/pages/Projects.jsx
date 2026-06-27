@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "wouter";
-import { MapPin, Maximize2, ArrowRight, Calendar, ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";import { useScrollAnimation } from "../hooks/useScrollAnimation.js";
+import { MapPin, Maximize2, ArrowRight, Calendar, ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
+import { useScrollAnimation } from "../hooks/useScrollAnimation.js";
 import { useContent } from "../context/ContentContext.jsx";
+import ImagePreview from "../components/ImagePreview.jsx";
 
 const FILTERS = ["All", "Manufacturing", "Logistics", "Warehousing", "Pharmaceutical", "Automobile", "Food Processing", "Textile", "Renewable Energy"];
 
@@ -10,14 +12,30 @@ export default function Projects() {
   const [activeFilter, setActiveFilter] = useState("All");
   const [selected, setSelected] = useState(null);
   const [imageIdx, setImageIdx] = useState(0);
+  const [allImages, setAllImages] = useState([]);
   useScrollAnimation([activeFilter, selected]);
 
   useEffect(() => {
     setImageIdx(0);
   }, [selected?.id]);
 
-  const filtered = activeFilter === "All"    ? PROJECTS
+  const filtered = activeFilter === "All" ? PROJECTS
     : PROJECTS.filter((p) => p.tag === activeFilter);
+
+  const openImagePreview = () => {
+    const combineImages = filtered?.flatMap(project =>
+      project.images.map(image => ({
+        title: project.title,
+        location: project.location,
+        image,
+      })));
+    setAllImages(combineImages)
+  }
+
+  const closeImagePreview = () => {
+    setAllImages([]);
+  }
+
   return (
     <div className="page-transition pt-20">
       {/* Hero */}
@@ -27,7 +45,7 @@ export default function Projects() {
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="section-label" style={{ color: "#ff6b7a" }}>Our Portfolio</span>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">Featured Projects</h1>
+          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">Our Projects</h1>
           <p className="text-gray-400 text-base max-w-2xl mx-auto leading-relaxed">
             500+ projects delivered across India's most demanding industrial sectors. Here are some of our landmark achievements.
           </p>
@@ -54,10 +72,15 @@ export default function Projects() {
       {/* Grid */}
       {!selected && <section className="py-14 bg-[#F8F8F8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-gray-500 text-sm mb-6">
-            Showing <span className="font-semibold text-[#1A1A1A]">{filtered.length}</span> projects
-            {activeFilter !== "All" && <> in <span className="font-semibold text-[#C8102E]">{activeFilter}</span></>}
-          </p>
+          <div className="flex justify-between pb-3">
+            <p className="text-gray-500 text-sm mb-6">
+              Showing <span className="font-semibold text-[#1A1A1A]">{filtered.length}</span> projects
+              {activeFilter !== "All" && <> in <span className="font-semibold text-[#C8102E]">{activeFilter}</span></>}
+            </p>
+            <button className="btn-outline px-2 text-xs shrink-0" onClick={() => openImagePreview()}>
+              View Gallery
+            </button>
+          </div>
 
           {filtered.length === 0 ? (
             <div className="text-center py-20">
@@ -178,11 +201,10 @@ export default function Projects() {
                           key={`${img}-${i}`}
                           type="button"
                           onClick={() => setImageIdx(i)}
-                          className={`shrink-0 w-20 h-14 rounded-lg overflow-hidden border-2 transition-all ${
-                            i === imageIdx
+                          className={`shrink-0 w-20 h-14 rounded-lg overflow-hidden border-2 transition-all ${i === imageIdx
                               ? "border-[#C8102E] ring-2 ring-[#C8102E]/30"
                               : "border-transparent opacity-70 hover:opacity-100"
-                          }`}
+                            }`}
                           aria-label={`View image ${i + 1}`}
                           aria-current={i === imageIdx ? "true" : undefined}
                         >
@@ -248,6 +270,25 @@ export default function Projects() {
         );
       })()}
 
+      {/* All Image Preview Modal*/}
+      {
+        allImages && allImages?.length > 0 &&
+        <div
+          onClick={closeImagePreview}
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-start p-6 pt-[150px] justify-center w-[100vw]"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="w-full max-w-7xl"
+          >
+            <ImagePreview
+              images={allImages}
+              onClose={() => closeImagePreview()}
+            />
+          </div>
+        </div>
+      }
+
       {/* CTA */}
       <section className="py-16 bg-[#C8102E]">
         <div className="max-w-4xl mx-auto px-4 text-center animate-on-scroll">
@@ -260,6 +301,6 @@ export default function Projects() {
           </Link>
         </div>
       </section>
-    </div>
+    </div >
   );
 }

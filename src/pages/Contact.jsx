@@ -9,14 +9,14 @@ import ContactForm from "../components/ContactForm.jsx";
 const OFFICES = [
   {
     city: "Gandhinagar (HQ)",
-    address: "KES Engineering Pvt. Ltd., 514,Shree Ugti Corporate Park , Kudasan, Gandhinagar, Gujarat 382421, IN",
+    address: "KES Group, 514,Shree Ugti Corporate Park , Kudasan, Gandhinagar, Gujarat 382421, IN",
     phone: "+91 90999 10579",
     email: "info@kesengineering.in",
     hours: "Mon-Sat: 9:00 AM - 6:00 PM",
   },
   {
     city: "Navsari",
-    address: "KES Engineering Pvt. Ltd., 314,Uma darshan arcade, Navsari, Gujarat 396424, IN",
+    address: "KES Group, 314,Uma darshan arcade, Navsari, Gujarat 396424, IN",
     phone: "+91 90999 10579",
     email: "info@kesengg.com",
     hours: "Mon-Sat: 9:00 AM - 6:00 PM",
@@ -36,7 +36,7 @@ export default function Contact() {
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="section-label" style={{ color: "#ff6b7a" }}>Get In Touch</span>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">Contact KES Engineering</h1>
+          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">Contact KES Group</h1>
           <p className="text-gray-400 text-base max-w-2xl mx-auto leading-relaxed">
             Ready to start your project? Our engineering team will respond within 24 hours with a detailed proposal.
           </p>
