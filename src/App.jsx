@@ -32,7 +32,7 @@ export default function App() {
       )}
       <div className={`min-h-screen flex flex-col font-poppins transition-opacity duration-500 ${showLanding ? "invisible opacity-0" : "opacity-100"}`}>
         <ScrollToTop />
-        {!showLanding && <FloatingActions />}
+        {!showLanding && <FloatingActions position="bottom-left" />}
         <Navbar />
         <main className="flex-1">
           <Switch>

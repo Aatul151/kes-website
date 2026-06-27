@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "wouter";
-import { MapPin, Maximize2, ArrowRight, Calendar, ArrowLeft } from "lucide-react";
-import { useScrollAnimation } from "../hooks/useScrollAnimation.js";
+import { MapPin, Maximize2, ArrowRight, Calendar, ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";import { useScrollAnimation } from "../hooks/useScrollAnimation.js";
 import { useContent } from "../context/ContentContext.jsx";
 
 const FILTERS = ["All", "Manufacturing", "Logistics", "Warehousing", "Pharmaceutical", "Automobile", "Food Processing", "Textile", "Renewable Energy"];
@@ -10,10 +9,14 @@ export default function Projects() {
   const { PROJECTS } = useContent();
   const [activeFilter, setActiveFilter] = useState("All");
   const [selected, setSelected] = useState(null);
+  const [imageIdx, setImageIdx] = useState(0);
   useScrollAnimation([activeFilter, selected]);
 
-  const filtered = activeFilter === "All"
-    ? PROJECTS
+  useEffect(() => {
+    setImageIdx(0);
+  }, [selected?.id]);
+
+  const filtered = activeFilter === "All"    ? PROJECTS
     : PROJECTS.filter((p) => p.tag === activeFilter);
   return (
     <div className="page-transition pt-20">
@@ -98,109 +101,152 @@ export default function Projects() {
         </div>
       </section>}
 
-      {/* Project Modal */}
-      {selected && (
-        <section className="py-14 bg-[#F8F8F8]">
-          <div
-            className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 animate-on-scroll"
-            onClick={() => setSelected(null)}
-          >
-            <div
-              className="bg-white rounded-2xl w-full max-w-6xl h-[70vh] overflow-auto shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="h-full flex flex-col p-8">
-                {/* Header */}
-                <div className="flex items-start justify-between mb-6">
-                  <div>
-                    <h2 className="text-3xl font-bold text-[#1A1A1A]">
-                      {selected.title}
-                    </h2>
-                    <div className="flex items-center gap-1 text-gray-500 text-sm mt-1">
-                      <MapPin size={14} />
-                      {selected.location}
-                    </div>
+      {/* Project Detail */}
+      {selected && (() => {
+        const galleryImages =
+          selected.images?.length > 0
+            ? selected.images
+            : [selected.image];
+        const goPrev = () =>
+          setImageIdx(
+            (i) => (i - 1 + galleryImages.length) % galleryImages.length,
+          );
+        const goNext = () =>
+          setImageIdx((i) => (i + 1) % galleryImages.length);
+
+        return (
+          <section className="py-10 bg-[#F8F8F8]">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 animate-on-scroll">
+              <div className="flex items-start justify-between gap-4 mb-6">
+                <div className="min-w-0 flex-1">
+                  <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#1A1A1A] leading-tight">
+                    {selected.title}
+                  </h2>
+                  <div className="flex items-center gap-1 text-gray-500 text-xs sm:text-sm mt-1">
+                    <MapPin size={13} className="sm:w-3.5 sm:h-3.5 shrink-0" />
+                    {selected.location}
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setSelected(null)}
+                  className="shrink-0 inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-[#C8102E] transition-colors"
+                >
+                  <ArrowLeft size={16} />
+                  Back
+                </button>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                {/* Gallery */}
+                <div className="lg:col-span-9">
+                  <div className="relative rounded-xl overflow-hidden bg-[#1A1A1A]/5 aspect-[16/10]">
+                    <img
+                      src={galleryImages[imageIdx]}
+                      alt={`${selected.title} — image ${imageIdx + 1}`}
+                      className="w-full h-full object-cover transition-opacity duration-300"
+                    />
+                    {galleryImages.length > 1 && (
+                      <>
+                        <button
+                          type="button"
+                          onClick={goPrev}
+                          className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/45 text-white flex items-center justify-center hover:bg-[#C8102E] transition-colors"
+                          aria-label="Previous image"
+                        >
+                          <ChevronLeft size={20} />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={goNext}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/45 text-white flex items-center justify-center hover:bg-[#C8102E] transition-colors"
+                          aria-label="Next image"
+                        >
+                          <ChevronRight size={20} />
+                        </button>
+                        <span className="absolute bottom-3 right-3 text-xs text-white bg-black/50 px-2.5 py-1 rounded-full">
+                          {imageIdx + 1} / {galleryImages.length}
+                        </span>
+                      </>
+                    )}
                   </div>
 
-                  <button
-                    onClick={() => setSelected(null)}
-                    className="px-1 py-1 border border-[#C8102E] text-[#C8102E] rounded-lg hover:bg-[#C8102E] hover:text-white transition flex gap-1 justify-center items-center"
-                  >
-                    <ArrowLeft size={18} /> Back
-                  </button>
+                  {galleryImages.length > 1 && (
+                    <div className="flex justify-center gap-2 mt-3 overflow-x-auto pb-1">
+                      {galleryImages.map((img, i) => (
+                        <button
+                          key={`${img}-${i}`}
+                          type="button"
+                          onClick={() => setImageIdx(i)}
+                          className={`shrink-0 w-20 h-14 rounded-lg overflow-hidden border-2 transition-all ${
+                            i === imageIdx
+                              ? "border-[#C8102E] ring-2 ring-[#C8102E]/30"
+                              : "border-transparent opacity-70 hover:opacity-100"
+                          }`}
+                          aria-label={`View image ${i + 1}`}
+                          aria-current={i === imageIdx ? "true" : undefined}
+                        >
+                          <img
+                            src={img}
+                            alt=""
+                            className="w-full h-full object-cover"
+                          />
+                        </button>
+                      ))}
+                    </div>
+                  )}
                 </div>
 
-                {/* Main Layout */}
-                <div className="flex-1 grid grid-cols-12 gap-8 overflow-hidden">
+                {/* Details */}
+                <div className="lg:col-span-3 bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                  <span className="bg-[#C8102E] text-white text-[10px] font-bold px-2.5 py-1 rounded-full">
+                    {selected.tag}
+                  </span>
 
-                  {/* Image */}
-                  <div className="col-span-8">
-                    <div className="rounded-xl overflow-hidden bg-[#F8F8F8]">
-                      <img
-                        src={selected.image}
-                        alt={selected.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Right Panel */}
-                  <div className="col-span-4 flex flex-col">
-                    {/* Scrollable Content */}
-                    <div className="bg-[#F8F8F8] rounded-xl p-6 overflow-y-auto">
-
-                      <span className="bg-[#C8102E] text-white text-[10px] font-bold px-2.5 py-1 rounded-full">
-                        {selected.tag}
-                      </span>
-
-                      <div className="grid grid-cols-1 gap-3 mt-6">
-                        {[
-                          { label: "Industry", value: selected.industry },
-                          { label: "Area", value: selected.area },
-                          { label: "Year", value: selected.year },
-                        ].map((item, i) => (
-                          <div
-                            key={i}
-                            className="bg-white rounded-lg p-4 border border-gray-100"
-                          >
-                            <p className="text-[10px] text-gray-500 uppercase mb-1">
-                              {item.label}
-                            </p>
-
-                            <p className="text-sm font-semibold text-[#1A1A1A]">
-                              {item.value}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-
-                      <div className="mt-6">
-                        <p className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider mb-2">
-                          Scope of Work
+                  <div className="grid grid-cols-1 gap-3 mt-6">
+                    {[
+                      { label: "Industry", value: selected.industry },
+                      { label: "Area", value: selected.area },
+                      { label: "Year", value: selected.year },
+                    ].map((item, i) => (
+                      <div
+                        key={i}
+                        className="rounded-lg p-4 border border-gray-100 bg-[#F8F8F8]"
+                      >
+                        <p className="text-[10px] text-gray-500 uppercase mb-1">
+                          {item.label}
                         </p>
-
-                        <p className="text-sm text-gray-700 leading-7">
-                          {selected.scope}
+                        <p className="text-sm font-semibold text-[#1A1A1A]">
+                          {item.value}
                         </p>
                       </div>
-
-                      <Link href="/contact">
-                        <button
-                          className="btn-primary w-full justify-center text-xs mt-8"
-                          onClick={() => setSelected(null)}
-                        >
-                          Start a Similar Project
-                          <ArrowRight size={13} />
-                        </button>
-                      </Link>
-                    </div>
+                    ))}
                   </div>
+
+                  <div className="mt-6">
+                    <p className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                      Scope of Work
+                    </p>
+                    <p className="text-sm text-gray-700 leading-7">
+                      {selected.scope}
+                    </p>
+                  </div>
+
+                  <Link href="/contact">
+                    <button
+                      className="btn-primary w-full justify-center text-xs mt-8"
+                      onClick={() => setSelected(null)}
+                    >
+                      Start a Similar Project
+                      <ArrowRight size={13} />
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-      )}
+          </section>
+        );
+      })()}
 
       {/* CTA */}
       <section className="py-16 bg-[#C8102E]">
