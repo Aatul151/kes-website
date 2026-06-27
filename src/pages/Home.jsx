@@ -39,6 +39,7 @@ import {
 import { useScrollAnimation } from "../hooks/useScrollAnimation.js";
 import AnimatedCounter from "../components/AnimatedCounter.jsx";
 import { useContent } from "../context/ContentContext.jsx";
+import ContactForm from "../components/ContactForm.jsx";
 
 const ICON_MAP = {
   Building2,
@@ -102,16 +103,6 @@ export default function Home() {
   const [heroVideoFailed, setHeroVideoFailed] = useState(false);
   const [activeStep, setActiveStep] = useState(1);
   const [testimonialIdx, setTestimonialIdx] = useState(0);
-  const [formData, setFormData] = useState({
-    name: "",
-    company: "",
-    email: "",
-    phone: "",
-    projectType: "",
-    budget: "",
-    timeline: "",
-    message: "",
-  });
   const [formStatus, setFormStatus] = useState("");
   const sliderRef = useRef(null);
 
@@ -130,25 +121,6 @@ export default function Home() {
     return () => clearInterval(t);
   }, []);
 
-  const handleFormChange = (e) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    setFormStatus("success");
-    setFormData({
-      name: "",
-      company: "",
-      email: "",
-      phone: "",
-      projectType: "",
-      budget: "",
-      timeline: "",
-      message: "",
-    });
-    setTimeout(() => setFormStatus(""), 4000);
-  };
 
   return (
     <div className="page-transition">
@@ -540,17 +512,15 @@ export default function Home() {
               return (
                 <div
                   key={step.step}
-                  className={`flex gap-4 p-4 rounded-xl border cursor-pointer transition-all ${
-                    activeStep === step.step
-                      ? "border-[#C8102E] bg-[#C8102E]/10"
-                      : "border-white/10 bg-white/5"
-                  }`}
+                  className={`flex gap-4 p-4 rounded-xl border cursor-pointer transition-all ${activeStep === step.step
+                    ? "border-[#C8102E] bg-[#C8102E]/10"
+                    : "border-white/10 bg-white/5"
+                    }`}
                   onClick={() => setActiveStep(step.step)}
                 >
                   <div
-                    className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 ${
-                      activeStep === step.step ? "bg-[#C8102E]" : "bg-white/10"
-                    }`}
+                    className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 ${activeStep === step.step ? "bg-[#C8102E]" : "bg-white/10"
+                      }`}
                   >
                     <Icon size={16} className="text-white" />
                   </div>
@@ -741,135 +711,8 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="animate-on-scroll-right">
-              <div className="bg-white rounded-2xl p-7 shadow-xl">
-                <h3 className="font-semibold text-[#1A1A1A] text-base mb-5">
-                  Request a Quote
-                </h3>
-                {formStatus === "success" && (
-                  <div className="bg-green-50 border border-green-200 text-green-700 rounded-lg p-3 text-sm mb-4 flex items-center gap-2">
-                    <CheckCircle size={16} /> Thank you! We'll contact you
-                    within 24 hours.
-                  </div>
-                )}
-                <form onSubmit={handleFormSubmit} className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="form-label">Name *</label>
-                      <input
-                        name="name"
-                        value={formData.name}
-                        onChange={handleFormChange}
-                        required
-                        className="form-input"
-                        placeholder="Your name"
-                      />
-                    </div>
-                    <div>
-                      <label className="form-label">Company</label>
-                      <input
-                        name="company"
-                        value={formData.company}
-                        onChange={handleFormChange}
-                        className="form-input"
-                        placeholder="Company name"
-                      />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="form-label">Email *</label>
-                      <input
-                        name="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleFormChange}
-                        required
-                        className="form-input"
-                        placeholder="your@email.com"
-                      />
-                    </div>
-                    <div>
-                      <label className="form-label">Phone *</label>
-                      <input
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleFormChange}
-                        required
-                        className="form-input"
-                        placeholder="+91 XXXXX XXXXX"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <label className="form-label">Project Type</label>
-                    <select
-                      name="projectType"
-                      value={formData.projectType}
-                      onChange={handleFormChange}
-                      className="form-input"
-                    >
-                      <option value="">Select project type</option>
-                      {SERVICES.map((s) => (
-                        <option key={s.id} value={s.title}>
-                          {s.title}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="form-label">Budget Range</label>
-                      <select
-                        name="budget"
-                        value={formData.budget}
-                        onChange={handleFormChange}
-                        className="form-input"
-                      >
-                        <option value="">Select budget</option>
-                        <option>Below Rs. 50 Lakhs</option>
-                        <option>Rs. 50L - 1 Crore</option>
-                        <option>Rs. 1Cr - 5 Crore</option>
-                        <option>Rs. 5Cr - 20 Crore</option>
-                        <option>Above Rs. 20 Crore</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label className="form-label">Timeline</label>
-                      <select
-                        name="timeline"
-                        value={formData.timeline}
-                        onChange={handleFormChange}
-                        className="form-input"
-                      >
-                        <option value="">Select timeline</option>
-                        <option>Immediate (0-3 months)</option>
-                        <option>Short-term (3-6 months)</option>
-                        <option>Medium-term (6-12 months)</option>
-                        <option>Long-term (12+ months)</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div>
-                    <label className="form-label">Message</label>
-                    <textarea
-                      name="message"
-                      value={formData.message}
-                      onChange={handleFormChange}
-                      rows={3}
-                      className="form-input resize-none"
-                      placeholder="Brief description of your project..."
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    className="btn-primary w-full justify-center"
-                  >
-                    Send Inquiry <ArrowRight size={15} />
-                  </button>
-                </form>
-              </div>
-            </div>
+            {/* Contact form */}
+            <ContactForm />
           </div>
         </div>
       </section>

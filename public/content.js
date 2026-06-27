@@ -1087,3 +1087,11 @@ export const TIMELINES = [
   "12+ months",
   "Planning stage only",
 ];
+
+export const EMAIL_SERVICES = {
+  PUBLIC_KEY: "IHQvOnAup4ofVt6xA",
+  SERVICE_ID: "service_vj8lvqg",
+  TEMPLATE_ID: "template_b6prpox",
+  TO_EMAIL: "nikhilmprajapti1999@gmail.com"
+  // TO_EMAIL : "aatul.work@gmail.com"
+}
