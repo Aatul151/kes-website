@@ -8,7 +8,7 @@ import { useContent } from "../context/ContentContext.jsx";
 const ICON_MAP = { Building2 }
 
 export default function About() {
-  const { ABOUT, STATS } = useContent();
+  const { ABOUT, STATS, COMPANY } = useContent();
   useScrollAnimation();
 
   return (
