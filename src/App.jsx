@@ -7,11 +7,11 @@ import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
 import Services from "./pages/Services.jsx";
 import Projects from "./pages/Projects.jsx";
-import Industries from "./pages/Industries.jsx";
 import Blog from "./pages/Blog.jsx";
 import BlogPost from "./pages/BlogPost.jsx";
 import Contact from "./pages/Contact.jsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy.jsx";
+import Clients from "./pages/Clients.jsx";
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -38,7 +38,7 @@ export default function App() {
             <Route path="/about" component={About} />
             <Route path="/services" component={Services} />
             <Route path="/projects" component={Projects} />
-            <Route path="/industries" component={Industries} />
+            <Route path="/clients" component={Clients} />
             <Route path="/blog/:slug" component={BlogPost} />
             <Route path="/blog" component={Blog} />
             <Route path="/contact" component={Contact} />

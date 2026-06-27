@@ -348,7 +348,6 @@ export default function Home() {
               </p>
               <div className="grid grid-cols-2 gap-4 mb-7">
                 {[
-                  { label: "States Covered", value: "18+" },
                   { label: "Satisfied Clients", value: "350+" },
                   { label: "Sq.Ft Delivered", value: "50M+" },
                   { label: "Erection Teams", value: "25+" },
@@ -731,7 +730,7 @@ export default function Home() {
             <div className="accent-line-center" />
             <h2 className="section-title">Service Areas</h2>
             <p className="section-subtitle mx-auto text-center">
-              Executing projects across 18 states with dedicated regional teams.
+              Executing projects across 4 states with dedicated regional teams.
             </p>
           </div>
           <div className="flex flex-wrap justify-center gap-2.5 animate-on-scroll">

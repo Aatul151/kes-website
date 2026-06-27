@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "wouter";
-import { MapPin, Maximize2, ArrowRight, Calendar } from "lucide-react";
+import { MapPin, Maximize2, ArrowRight, Calendar, ArrowLeft } from "lucide-react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation.js";
 import { useContent } from "../context/ContentContext.jsx";
 
@@ -10,7 +10,7 @@ export default function Projects() {
   const { PROJECTS } = useContent();
   const [activeFilter, setActiveFilter] = useState("All");
   const [selected, setSelected] = useState(null);
-  useScrollAnimation([activeFilter]);
+  useScrollAnimation([activeFilter, selected]);
 
   const filtered = activeFilter === "All"
     ? PROJECTS
@@ -49,7 +49,7 @@ export default function Projects() {
       </section>
 
       {/* Grid */}
-      <section className="py-14 bg-[#F8F8F8]">
+      {!selected && <section className="py-14 bg-[#F8F8F8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-gray-500 text-sm mb-6">
             Showing <span className="font-semibold text-[#1A1A1A]">{filtered.length}</span> projects
@@ -96,60 +96,110 @@ export default function Projects() {
             </div>
           )}
         </div>
-      </section>
+      </section>}
 
       {/* Project Modal */}
       {selected && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
-          onClick={() => setSelected(null)}
-        >
+        <section className="py-14 bg-[#F8F8F8]">
           <div
-            className="bg-white rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
+            className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 animate-on-scroll"
+            onClick={() => setSelected(null)}
           >
-            <div className="relative h-56">
-              <img src={selected.image} alt={selected.title} className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              <button
-                onClick={() => setSelected(null)}
-                className="absolute top-4 right-4 w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/40 transition-all text-lg font-bold"
-              >
-                x
-              </button>
-              <div className="absolute bottom-4 left-5">
-                <span className="bg-[#C8102E] text-white text-[10px] font-bold px-2.5 py-1 rounded-full">{selected.tag}</span>
-              </div>
-            </div>
-            <div className="p-6">
-              <h2 className="text-xl font-bold text-[#1A1A1A] mb-1">{selected.title}</h2>
-              <div className="flex items-center gap-1 text-gray-500 text-sm mb-5">
-                <MapPin size={13} /> {selected.location}
-              </div>
-              <div className="grid grid-cols-3 gap-4 mb-5">
-                {[
-                  { label: "Industry", value: selected.industry },
-                  { label: "Area", value: selected.area },
-                  { label: "Year", value: selected.year },
-                ].map((item, i) => (
-                  <div key={i} className="bg-[#F8F8F8] rounded-lg p-3 text-center">
-                    <p className="text-[10px] text-gray-500 mb-1">{item.label}</p>
-                    <p className="text-sm font-semibold text-[#1A1A1A]">{item.value}</p>
+            <div
+              className="bg-white rounded-2xl w-full max-w-6xl h-[70vh] overflow-auto shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="h-full flex flex-col p-8">
+                {/* Header */}
+                <div className="flex items-start justify-between mb-6">
+                  <div>
+                    <h2 className="text-3xl font-bold text-[#1A1A1A]">
+                      {selected.title}
+                    </h2>
+                    <div className="flex items-center gap-1 text-gray-500 text-sm mt-1">
+                      <MapPin size={14} />
+                      {selected.location}
+                    </div>
                   </div>
-                ))}
+
+                  <button
+                    onClick={() => setSelected(null)}
+                    className="px-1 py-1 border border-[#C8102E] text-[#C8102E] rounded-lg hover:bg-[#C8102E] hover:text-white transition flex gap-1 justify-center items-center"
+                  >
+                    <ArrowLeft size={18} /> Back
+                  </button>
+                </div>
+
+                {/* Main Layout */}
+                <div className="flex-1 grid grid-cols-12 gap-8 overflow-hidden">
+
+                  {/* Image */}
+                  <div className="col-span-8">
+                    <div className="rounded-xl overflow-hidden bg-[#F8F8F8]">
+                      <img
+                        src={selected.image}
+                        alt={selected.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Right Panel */}
+                  <div className="col-span-4 flex flex-col">
+                    {/* Scrollable Content */}
+                    <div className="bg-[#F8F8F8] rounded-xl p-6 overflow-y-auto">
+
+                      <span className="bg-[#C8102E] text-white text-[10px] font-bold px-2.5 py-1 rounded-full">
+                        {selected.tag}
+                      </span>
+
+                      <div className="grid grid-cols-1 gap-3 mt-6">
+                        {[
+                          { label: "Industry", value: selected.industry },
+                          { label: "Area", value: selected.area },
+                          { label: "Year", value: selected.year },
+                        ].map((item, i) => (
+                          <div
+                            key={i}
+                            className="bg-white rounded-lg p-4 border border-gray-100"
+                          >
+                            <p className="text-[10px] text-gray-500 uppercase mb-1">
+                              {item.label}
+                            </p>
+
+                            <p className="text-sm font-semibold text-[#1A1A1A]">
+                              {item.value}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="mt-6">
+                        <p className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                          Scope of Work
+                        </p>
+
+                        <p className="text-sm text-gray-700 leading-7">
+                          {selected.scope}
+                        </p>
+                      </div>
+
+                      <Link href="/contact">
+                        <button
+                          className="btn-primary w-full justify-center text-xs mt-8"
+                          onClick={() => setSelected(null)}
+                        >
+                          Start a Similar Project
+                          <ArrowRight size={13} />
+                        </button>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="mb-5">
-                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Scope of Work</p>
-                <p className="text-sm text-gray-700">{selected.scope}</p>
-              </div>
-              <Link href="/contact">
-                <button className="btn-primary w-full justify-center text-xs" onClick={() => setSelected(null)}>
-                  Start a Similar Project <ArrowRight size={13} />
-                </button>
-              </Link>
             </div>
           </div>
-        </div>
+        </section>
       )}
 
       {/* CTA */}

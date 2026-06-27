@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "wouter";
-import { ArrowRight, CheckCircle, Target, Eye, Heart } from "lucide-react";
+import { ArrowRight, CheckCircle, Target, Eye, Heart, Building2 } from "lucide-react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation.js";
 import AnimatedCounter from "../components/AnimatedCounter.jsx";
 import { useContent } from "../context/ContentContext.jsx";
+
+const ICON_MAP = { Building2 }
 
 export default function About() {
   const { ABOUT, STATS } = useContent();
@@ -69,8 +71,61 @@ export default function About() {
         </div>
       </section>
 
+      {/* Sub Compony*/}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Heading */}
+          <div className="text-center mb-14 animate-on-scroll">
+            <span className="section-label">Business Verticals</span>
+            <div className="accent-line-center" />
+            <h2 className="section-title">Our Subsidiary Companies</h2>
+            <p className="section-subtitle mx-auto text-center">
+              Through our specialized subsidiaries, we provide end-to-end engineering,
+              construction, and infrastructure solutions across multiple industries.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {COMPANY.subCompanys.map((company, index) => {
+              const Icon = ICON_MAP[company.icon] || Building2;
+              return (
+                <>
+                  <div
+                    key={company.id}
+                    className="animate-on-scroll group bg-white rounded-2xl border border-gray-100 p-8 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+                    style={{ transitionDelay: `${index * 120}ms` }}
+                  >
+                    {/* Icon */}
+                    <div className="w-16 h-16 rounded-2xl bg-[#C8102E]/10 flex items-center justify-center mb-6 group-hover:bg-[#C8102E] transition-all duration-300">
+                      <Icon
+                        size={30}
+                        className="text-[#C8102E] group-hover:text-white transition-colors"
+                      />
+                    </div>
+
+                    {/* Company Name */}
+                    <h3 className="text-2xl font-bold text-[#1A1A1A] mb-4">
+                      {company.name}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-gray-600 leading-relaxed">
+                      {company.description}
+                    </p>
+
+                    {/* Bottom Accent */}
+                    <div className="mt-8 h-1 w-16 bg-[#C8102E] rounded-full group-hover:w-28 transition-all duration-300" />
+                  </div>
+                </>
+              );
+            })}
+          </div>
+
+        </div>
+      </section>
+
       {/* Vision, Mission, Values */}
-      <section className="py-20 bg-[#F8F8F8]">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 animate-on-scroll">
             <span className="section-label">Our Foundation</span>
@@ -118,7 +173,7 @@ export default function About() {
       </section>
 
       {/* Leadership */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-[#F8F8F8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 animate-on-scroll">
             <span className="section-label">Leadership</span>

@@ -7,19 +7,15 @@ import { SOCIAL_ICON_MAP } from "../utils/socialIcons.js";
 const SERVICES = [
   "Pre Engineered Buildings",
   "Steel Structures",
-  "Warehouse Construction",
-  "Factory Buildings",
-  "Commercial Buildings",
-  "Roofing Systems",
-  "Industrial Sheds",
+  "Stp Projects",
   "Turnkey Projects",
 ];
 
 const QUICK_LINKS = [
   { label: "About KES", href: "/about" },
-  { label: "Our Services", href: "/services" },
+  { label: "Services", href: "/services" },
   { label: "Projects", href: "/projects" },
-  { label: "Industries", href: "/industries" },
+  { label: "Clients", href: "/clients" },
   // { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ];
@@ -48,16 +44,18 @@ export default function Footer() {
                 const Icon = SOCIAL_ICON_MAP[social.icon];
                 if (!Icon) return null;
                 return (
-                  <a
-                    key={social.id}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={social.label}
-                    className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-gray-400 hover:bg-[#C8102E] hover:text-white transition-all duration-200"
-                  >
-                    <Icon size={14} />
-                  </a>
+                  <>
+                    {social.url && <a
+                      key={social.id}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.label}
+                      className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-gray-400 hover:bg-[#C8102E] hover:text-white transition-all duration-200"
+                    >
+                      <Icon size={14} />
+                    </a>}
+                  </>
                 );
               })}
             </div>

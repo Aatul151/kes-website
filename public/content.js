@@ -8,14 +8,32 @@
 // ============================================================
 
 export const COMPANY = {
-  name: "KES Projects Pvt. Ltd.",
+  name: "KES Group",
   tagline: "Your Engineering Partner",
   subTagline: "Design. Fabrication. Erection. Turnkey Delivery.",
   founded: "2009",
   phone: "+91 90999 10579",
   email: "info@kesengg.com",
-  address: "KES Engineering Pvt. Ltd., 514,Shree Ugti Corporate Park , Kudasan, Gandhinagar, Gujarat 382421, IN",
-  mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.2!2d78.4867!3d17.3850!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDIzJzA2LjAiTiA3OMKwMjknMTIuMiJF!5e0!3m2!1sen!2sin!4v1234567890",
+  address:
+    "KES Group, 514,Shree Ugti Corporate Park , Kudasan, Gandhinagar, Gujarat 382421, IN",
+  mapEmbed:
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.2!2d78.4867!3d17.3850!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDIzJzA2LjAiTiA3OMKwMjknMTIuMiJF!5e0!3m2!1sen!2sin!4v1234567890",
+  subCompanys: [
+    {
+      id: 1,
+      name: "KES Compony-1",
+      icon: "Building2",
+      description:
+        "Specialized in the design, fabrication, and installation of pre-engineered buildings and structural steel solutions for industrial and commercial projects.",
+    },
+    {
+      id: 2,
+      name: "KES Compony-2",
+      icon: "Building2",
+      description:
+        "Focused on turnkey infrastructure development, including STP projects, EPC services, and complete engineering solutions from concept to commissioning.",
+    },
+  ]
 };
 
 export const SOCIAL_LINKS = [
@@ -202,89 +220,23 @@ export const SERVICES = [
     color: "#1A1A1A",
   },
   {
-    id: "warehouse",
-    icon: "Warehouse",
-    title: "Warehouse Construction",
-    shortDesc: "Large-span, high-clearance warehouses built for logistics and storage efficiency.",
-    description: "We design and build modern warehouses optimized for logistics operations, e-commerce fulfillment, cold storage, and bulk material handling with clear spans up to 100m and heights up to 20m.",
-    features: [
-      "Clear spans up to 100 meters without intermediate columns",
-      "Dock levelers, loading bays, and mezzanine floors",
-      "Fire suppression and sprinkler system integration",
-      "LED lighting and energy-efficient roofing",
-      "Automated storage and retrieval system compatibility",
-      "LEED-compliant green warehouse options",
-    ],
-    image: "/images/services/warehouse.jpg",
-    color: "#C8102E",
-  },
-  {
-    id: "factory",
+    id: "stp",
     icon: "Factory",
-    title: "Factory Buildings",
-    shortDesc: "Purpose-built manufacturing facilities designed for operational excellence.",
-    description: "KES constructs state-of-the-art factory buildings tailored to specific manufacturing processes, incorporating overhead crane systems, utility corridors, and process-specific structural requirements.",
+    title: "Stp Projects",
+    shortDesc:
+      "End-to-end sewage treatment plant solutions for industrial, commercial, and municipal applications.",
+    description:
+      "KES provides comprehensive STP solutions, including design, engineering, fabrication, installation, commissioning, and maintenance of sewage treatment plants. Our systems are designed to meet environmental regulations while ensuring efficient wastewater treatment, water recycling, and sustainable operations.",
     features: [
-      "Overhead crane girder integration up to 100T capacity",
-      "Vibration-isolated foundations for precision machinery",
-      "Utility trenches and cable management systems",
-      "Explosion-proof and hazardous area construction",
-      "Clean room and controlled environment options",
-      "Phased construction to minimize production downtime",
+      "Customized STP design based on wastewater characteristics",
+      "Design, fabrication, installation, and commissioning services",
+      "MBBR, SBR, and Activated Sludge Process (ASP) technologies",
+      "Treated water recycling and reuse solutions",
+      "Automation with PLC and SCADA-based control systems",
+      "Compliance with CPCB/SPCB environmental standards",
     ],
-    image: "/images/services/factory.jpg",
-    color: "#1A1A1A",
-  },
-  {
-    id: "commercial",
-    icon: "Store",
-    title: "Commercial Buildings",
-    shortDesc: "Modern commercial spaces combining structural strength with architectural elegance.",
-    description: "From retail complexes and office parks to showrooms and mixed-use developments, KES delivers commercial structures that balance aesthetic appeal with structural integrity and long-term durability.",
-    features: [
-      "Architectural facade systems and cladding",
-      "Open-plan floor layouts with minimal columns",
-      "Integrated MEP coordination",
-      "Acoustic and thermal insulation systems",
-      "Parking structures and multi-level construction",
-      "Fast-track delivery for commercial timelines",
-    ],
-    image: "/images/services/commercial.jpg",
-    color: "#C8102E",
-  },
-  {
-    id: "sheds",
-    icon: "Home",
-    title: "Industrial Sheds",
-    shortDesc: "Economical and durable industrial sheds for storage, workshops, and utilities.",
-    description: "Our industrial sheds provide cost-effective covered space solutions for equipment storage, maintenance workshops, material yards, and ancillary industrial facilities with rapid deployment timelines.",
-    features: [
-      "Rapid deployment in 4-8 weeks",
-      "Modular and relocatable options available",
-      "Ventilation and natural lighting optimization",
-      "Concrete, brick, or steel wall panel options",
-      "Customizable door and window configurations",
-      "Suitable for temporary or permanent use",
-    ],
-    image: "/images/services/sheds.jpg",
-    color: "#1A1A1A",
-  },
-  {
-    id: "roofing",
-    icon: "Umbrella",
-    title: "Roofing Systems",
-    shortDesc: "Advanced roofing solutions for industrial, commercial, and institutional buildings.",
-    description: "KES supplies and installs a comprehensive range of roofing systems including standing seam metal roofs, insulated sandwich panels, polycarbonate skylights, and waterproofing systems for all building types.",
-    features: [
-      "Standing seam and concealed fix metal roofing",
-      "Insulated sandwich panels (50mm to 150mm)",
-      "Polycarbonate and GRP skylight integration",
-      "Roof waterproofing and re-roofing services",
-      "Solar panel mounting structure integration",
-      "Wind and seismic load-rated systems",
-    ],
-    image: "/images/services/roofing.jpg",
-    color: "#C8102E",
+    image: "/images/services/stp.jpg",
+    color: "#0EA5E9",
   },
   {
     id: "turnkey",
@@ -349,7 +301,7 @@ export const PROJECTS = [
     image: "/images/projects/mahindra-logistics-hub.jpg",
     year: "2023",
     tag: "Logistics",
-    subimages:[]
+    subimages: []
   },
   {
     id: 2,
@@ -582,7 +534,8 @@ export const TESTIMONIALS = [
     name: "Rajesh Kumar",
     designation: "VP - Infrastructure",
     company: "Mahindra Logistics",
-    quote: "KES delivered our 85,000 sq.ft warehouse in just 14 weeks — 3 weeks ahead of schedule. The quality of fabrication and the professionalism of their erection team was outstanding. Highly recommended for any large-scale industrial project.",
+    quote:
+      "KES delivered our 85,000 sq.ft warehouse in just 14 weeks — 3 weeks ahead of schedule. The quality of fabrication and the professionalism of their erection team was outstanding. Highly recommended for any large-scale industrial project.",
     rating: 5,
     industry: "Logistics",
   },
@@ -634,11 +587,10 @@ export const CERTIFICATIONS = [
 ];
 
 export const SERVICE_AREAS = [
-  "Telangana", "Andhra Pradesh", "Maharashtra", "Gujarat",
-  "Karnataka", "Tamil Nadu", "Rajasthan", "Madhya Pradesh",
-  "Uttar Pradesh", "Punjab", "Haryana", "West Bengal",
-  "Odisha", "Jharkhand", "Bihar", "Chhattisgarh",
-  "Kerala", "Goa",
+  "Maharashtra",
+  "Gujarat",
+  "Rajasthan",
+  "Madhya Pradesh",
 ];
 
 export const BLOG_POSTS = [
@@ -1097,6 +1049,44 @@ export const EMAIL_SERVICES = {
   PUBLIC_KEY: "IHQvOnAup4ofVt6xA",
   SERVICE_ID: "service_vj8lvqg",
   TEMPLATE_ID: "template_b6prpox",
-  TO_EMAIL: "nikhilmprajapti1999@gmail.com"
+  TO_EMAIL: "nikhilmprajapti1999@gmail.com",
   // TO_EMAIL : "aatul.work@gmail.com"
-}
+};
+
+export const CLIENTS = [
+  {
+    id: 1,
+    image: "/images/clients/reliance.jpg",
+    title: "Reliance Industries",
+    description:
+      "Delivered structural steel fabrication and EPC solutions for large-scale industrial infrastructure projects.",
+  },
+  {
+    id: 2,
+    image: "/images/clients/tata-steel.jpg",
+    title: "Tata Steel",
+    description:
+      "Executed heavy structural steel fabrication and installation for manufacturing facilities.",
+  },
+  {
+    id: 3,
+    image: "/images/clients/adani.jpg",
+    title: "Adani Group",
+    description:
+      "Provided engineering and fabrication services for industrial and infrastructure developments.",
+  },
+  {
+    id: 4,
+    image: "/images/clients/larsen-toubro.jpg",
+    title: "Larsen & Toubro",
+    description:
+      "Supported EPC projects with precision structural steel components and fabrication services.",
+  },
+  {
+    id: 5,
+    image: "/images/clients/ultratech.jpg",
+    title: "UltraTech Cement",
+    description:
+      "Supplied structural solutions for cement plant expansion and modernization projects.",
+  },
+];
