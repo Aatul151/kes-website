@@ -24,6 +24,7 @@ function ScrollToTop() {
       return () => clearTimeout(timer);
     }
     window.scrollTo({ top: 0, behavior: "instant" });
+    document.body.style.overflow = "auto";
   }, [location]);
   return null;
 }

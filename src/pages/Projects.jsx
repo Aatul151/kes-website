@@ -23,17 +23,20 @@ export default function Projects() {
     : PROJECTS.filter((p) => p.tag === activeFilter);
 
   const openImagePreview = () => {
-    const combineImages = filtered?.flatMap(project =>
+    const combineImages = PROJECTS?.flatMap(project =>
       project.images.map(image => ({
         title: project.title,
         location: project.location,
         image,
       })));
-    setAllImages(combineImages)
+    setAllImages(combineImages);
+    window.scrollTo({ top: 0, behavior: "instant" });// Scroll To Top
+    document.body.style.overflow = "hidden";// Disable background scrolling
   }
 
   const closeImagePreview = () => {
     setAllImages([]);
+    document.body.style.overflow = "auto"; // Restore scrolling when modal closes;
   }
 
   return (
@@ -78,7 +81,7 @@ export default function Projects() {
               {activeFilter !== "All" && <> in <span className="font-semibold text-[#C8102E]">{activeFilter}</span></>}
             </p>
             <button className="btn-outline px-2 text-xs shrink-0" onClick={() => openImagePreview()}>
-              View Gallery
+              View All
             </button>
           </div>
 
@@ -202,8 +205,8 @@ export default function Projects() {
                           type="button"
                           onClick={() => setImageIdx(i)}
                           className={`shrink-0 w-20 h-14 rounded-lg overflow-hidden border-2 transition-all ${i === imageIdx
-                              ? "border-[#C8102E] ring-2 ring-[#C8102E]/30"
-                              : "border-transparent opacity-70 hover:opacity-100"
+                            ? "border-[#C8102E] ring-2 ring-[#C8102E]/30"
+                            : "border-transparent opacity-70 hover:opacity-100"
                             }`}
                           aria-label={`View image ${i + 1}`}
                           aria-current={i === imageIdx ? "true" : undefined}
@@ -274,7 +277,6 @@ export default function Projects() {
       {
         allImages && allImages?.length > 0 &&
         <div
-          onClick={closeImagePreview}
           className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-start p-6 pt-[150px] justify-center w-[100vw]"
         >
           <div
