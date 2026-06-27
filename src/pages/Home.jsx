@@ -40,6 +40,7 @@ import { useScrollAnimation } from "../hooks/useScrollAnimation.js";
 import AnimatedCounter from "../components/AnimatedCounter.jsx";
 import { useContent } from "../context/ContentContext.jsx";
 import ContactForm from "../components/ContactForm.jsx";
+import ClientsCarousel from "../components/ClientsCarousel.jsx";
 
 const ICON_MAP = {
   Building2,
@@ -98,6 +99,7 @@ export default function Home() {
     SERVICE_AREAS,
     COMPANY,
     HOME_HERO,
+    CLIENTS,
   } = useContent();
   const [activeFilter, setActiveFilter] = useState("All");
   const heroVideos = HOME_HERO.videos || [];
@@ -115,6 +117,8 @@ export default function Home() {
     activeFilter === "All"
       ? PROJECTS
       : PROJECTS.filter((p) => p.tag === activeFilter);
+
+  const homeClients = CLIENTS.filter((client) => client.isShowOnHome);
 
   const heroVideoAvailable = heroVideos
     .map((_, i) => i)
@@ -278,6 +282,8 @@ export default function Home() {
           </div>
         )}
       </section>
+
+      <ClientsCarousel clients={homeClients} />
 
       {/* ===== SERVICES ===== */}
       <section className="py-20 bg-white">

@@ -13,10 +13,16 @@ import BlogPost from "./pages/BlogPost.jsx";
 import Contact from "./pages/Contact.jsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy.jsx";
 import Clients from "./pages/Clients.jsx";
+import { scrollToServiceFromHash } from "./utils/scrollToService.js";
 
 function ScrollToTop() {
   const [location] = useLocation();
   useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const timer = setTimeout(() => scrollToServiceFromHash(), 150);
+      return () => clearTimeout(timer);
+    }
     window.scrollTo({ top: 0, behavior: "instant" });
   }, [location]);
   return null;

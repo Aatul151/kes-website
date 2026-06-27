@@ -1,15 +1,9 @@
 import React from "react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { MapPin, Phone, Mail, ArrowRight, Heart } from "lucide-react";
 import { useContent } from "../context/ContentContext.jsx";
 import { SOCIAL_ICON_MAP } from "../utils/socialIcons.js";
-
-const SERVICES = [
-  "Pre Engineered Buildings",
-  "Steel Structures",
-  "Stp Projects",
-  "Turnkey Projects",
-];
+import { scrollToServiceSection } from "../utils/scrollToService.js";
 
 const QUICK_LINKS = [
   { label: "About KES", href: "/about" },
@@ -21,7 +15,19 @@ const QUICK_LINKS = [
 ];
 
 export default function Footer() {
-  const { COMPANY, SOCIAL_LINKS } = useContent();
+  const { COMPANY, SOCIAL_LINKS, SERVICES } = useContent();
+  const [location, navigate] = useLocation();
+
+  const handleServiceLink = (id, e) => {
+    e.preventDefault();
+    if (location === "/services") {
+      window.history.replaceState(null, "", `/services#${id}`);
+      scrollToServiceSection(id);
+      return;
+    }
+    navigate("/services");
+    window.history.replaceState(null, "", `/services#${id}`);
+  };
   return (
     <footer className="bg-[#1A1A1A] text-white">
       {/* Main Footer */}
@@ -42,20 +48,18 @@ export default function Footer() {
             <div className="flex gap-3">
               {SOCIAL_LINKS.map((social) => {
                 const Icon = SOCIAL_ICON_MAP[social.icon];
-                if (!Icon) return null;
+                if (!Icon || !social.url) return null;
                 return (
-                  <>
-                    {social.url && <a
-                      key={social.id}
-                      href={social.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={social.label}
-                      className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-gray-400 hover:bg-[#C8102E] hover:text-white transition-all duration-200"
-                    >
-                      <Icon size={14} />
-                    </a>}
-                  </>
+                  <a
+                    key={social.id}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-gray-400 hover:bg-[#C8102E] hover:text-white transition-all duration-200"
+                  >
+                    <Icon size={14} />
+                  </a>
                 );
               })}
             </div>
@@ -83,13 +87,15 @@ export default function Footer() {
             <h4 className="text-white font-semibold text-sm mb-5 uppercase tracking-widest">Services</h4>
             <ul className="space-y-2.5">
               {SERVICES.map((s) => (
-                <li key={s}>
-                  <Link href="/services">
-                    <span className="text-gray-400 text-sm hover:text-[#C8102E] transition-colors cursor-pointer flex items-center gap-1.5 group">
-                      <ArrowRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-                      {s}
-                    </span>
-                  </Link>
+                <li key={s.id}>
+                  <a
+                    href={`/services#${s.id}`}
+                    onClick={(e) => handleServiceLink(s.id, e)}
+                    className="text-gray-400 text-sm hover:text-[#C8102E] transition-colors cursor-pointer flex items-center gap-1.5 group"
+                  >
+                    <ArrowRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                    {s.title}
+                  </a>
                 </li>
               ))}
             </ul>

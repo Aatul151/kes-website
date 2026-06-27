@@ -89,34 +89,32 @@ export default function About() {
             {COMPANY.subCompanys.map((company, index) => {
               const Icon = ICON_MAP[company.icon] || Building2;
               return (
-                <>
-                  <div
-                    key={company.id}
-                    className="animate-on-scroll group bg-white rounded-2xl border border-gray-100 p-8 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
-                    style={{ transitionDelay: `${index * 120}ms` }}
-                  >
-                    {/* Icon */}
-                    <div className="w-16 h-16 rounded-2xl bg-[#C8102E]/10 flex items-center justify-center mb-6 group-hover:bg-[#C8102E] transition-all duration-300">
-                      <Icon
-                        size={30}
-                        className="text-[#C8102E] group-hover:text-white transition-colors"
-                      />
-                    </div>
-
-                    {/* Company Name */}
-                    <h3 className="text-2xl font-bold text-[#1A1A1A] mb-4">
-                      {company.name}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="text-gray-600 leading-relaxed">
-                      {company.description}
-                    </p>
-
-                    {/* Bottom Accent */}
-                    <div className="mt-8 h-1 w-16 bg-[#C8102E] rounded-full group-hover:w-28 transition-all duration-300" />
+                <div
+                  key={company.id}
+                  className="animate-on-scroll group bg-white rounded-2xl border border-gray-100 p-8 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+                  style={{ transitionDelay: `${index * 120}ms` }}
+                >
+                  {/* Icon */}
+                  <div className="w-16 h-16 rounded-2xl bg-[#C8102E]/10 flex items-center justify-center mb-6 group-hover:bg-[#C8102E] transition-all duration-300">
+                    <Icon
+                      size={30}
+                      className="text-[#C8102E] group-hover:text-white transition-colors"
+                    />
                   </div>
-                </>
+
+                  {/* Company Name */}
+                  <h3 className="text-2xl font-bold text-[#1A1A1A] mb-4">
+                    {company.name}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-gray-600 leading-relaxed">
+                    {company.description}
+                  </p>
+
+                  {/* Bottom Accent */}
+                  <div className="mt-8 h-1 w-16 bg-[#C8102E] rounded-full group-hover:w-28 transition-all duration-300" />
+                </div>
               );
             })}
           </div>

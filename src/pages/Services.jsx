@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import {
   ArrowRight, CheckCircle, Building2, Layers, Warehouse, Factory,
@@ -6,6 +6,7 @@ import {
 } from "lucide-react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation.js";
 import { useContent } from "../context/ContentContext.jsx";
+import { scrollToServiceFromHash, scrollToServiceSection } from "../utils/scrollToService.js";
 
 const ICON_MAP = {
   Building2, Layers, Warehouse, Factory, Store, Home: HomeIcon, Umbrella, Key,
@@ -15,6 +16,21 @@ export default function Services() {
   const { SERVICES } = useContent();
   useScrollAnimation();
   const [, navigate] = useLocation();
+
+  useEffect(() => {
+    const handleHash = () => {
+      setTimeout(() => scrollToServiceFromHash(), 50);
+    };
+    handleHash();
+    window.addEventListener("hashchange", handleHash);
+    return () => window.removeEventListener("hashchange", handleHash);
+  }, []);
+
+  const handleServiceNav = (id, e) => {
+    e.preventDefault();
+    window.history.replaceState(null, "", `/services#${id}`);
+    scrollToServiceSection(id);
+  };
 
   const handleQuote = (serviceTitle) => {
     navigate(`/contact?service=${encodeURIComponent(serviceTitle)}`);
@@ -44,6 +60,7 @@ export default function Services() {
               <a
                 key={svc.id}
                 href={`#${svc.id}`}
+                onClick={(e) => handleServiceNav(svc.id, e)}
                 className="shrink-0 px-4 py-2 rounded-lg text-xs font-medium text-gray-600 hover:bg-red-50 hover:text-[#C8102E] transition-all whitespace-nowrap"
               >
                 {svc.title}

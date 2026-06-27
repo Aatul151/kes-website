@@ -268,6 +268,120 @@ input, textarea, select {
 
 .project-card:hover .overlay { opacity: 1; }
 
+/* ---- CLIENT CARD ---- */
+.client-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 4px;
+  transition: transform 0.2s ease;
+}
+
+.client-card:hover {
+  transform: translateY(-3px);
+}
+
+.client-card__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 96px;
+  margin-bottom: 12px;
+}
+
+@media (min-width: 640px) {
+  .client-card__logo {
+    height: 112px;
+  }
+}
+
+.client-card__name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #1a1a1a;
+  transition: color 0.2s ease;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.client-card:hover .client-card__name {
+  color: #C8102E;
+}
+
+/* ---- CLIENT MARQUEE ---- */
+.client-marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 6%,
+    black 94%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 6%,
+    black 94%,
+    transparent
+  );
+}
+
+.client-marquee__track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: clientMarquee linear infinite;
+}
+
+.client-marquee:hover .client-marquee__track {
+  animation-play-state: paused;
+}
+
+.client-marquee__item {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 160px;
+  padding: 0 28px;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+.client-marquee__item:hover {
+  opacity: 1;
+}
+
+@keyframes clientMarquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .client-marquee__track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    gap: 24px;
+    padding: 0 24px;
+  }
+
+  .client-marquee {
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+}
+
 /* ---- INDUSTRY TILE ---- */
 .industry-tile {
   background: #fff;
