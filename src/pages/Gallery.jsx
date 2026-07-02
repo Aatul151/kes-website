@@ -16,12 +16,13 @@ const SIZE_PATTERN = ["tall", "wide", "square", "square", "wide", "tall"];
 const GALLERY_AUDIO_SRC = "/downloads/bg-gallery.mp3";
 
 export default function Gallery() {
-  const { PRODUCT_IMAGES } = useContent();
+  const { COMPANY, PRODUCT_IMAGES } = useContent();
   const [activeIdx, setActiveIdx] = useState(null);
   const [entered, setEntered] = useState(false);
   const [musicEnabled, setMusicEnabled] = useState(true);
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const [musicError, setMusicError] = useState(false);
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
   const thumbsRef = useRef(null);
   const audioRef = useRef(null);
 
@@ -35,11 +36,11 @@ export default function Gallery() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "auto";
+    document.body.style.overflow = isOpen || isVideoOpen ? "hidden" : "auto";
     return () => {
       document.body.style.overflow = "auto";
     };
-  }, [isOpen]);
+  }, [isOpen, isVideoOpen]);
 
   const closeLightbox = useCallback(() => setActiveIdx(null), []);
 
@@ -60,6 +61,7 @@ export default function Gallery() {
 
     const onKeyDown = (e) => {
       if (e.key === "Escape") closeLightbox();
+      if (e.key === "Escape") setIsVideoOpen(false);
       if (e.key === "ArrowLeft") goPrev();
       if (e.key === "ArrowRight") goNext();
     };
@@ -112,6 +114,18 @@ export default function Gallery() {
   const toggleMusic = useCallback(() => {
     if (musicError) return;
     setMusicEnabled((value) => !value);
+  }, [musicError]);
+
+  const openGalleryVideo = useCallback(() => {
+    setIsVideoOpen(true);
+    setMusicEnabled(false);
+  }, []);
+
+  const closeGalleryVideo = useCallback(() => {
+    setIsVideoOpen(false);
+    if (!musicError) {
+      setMusicEnabled(true);
+    }
   }, [musicError]);
 
   return (
@@ -182,7 +196,20 @@ export default function Gallery() {
         {PRODUCT_IMAGES.length > 0 && (
           <section className="gallery-immersive__hero">
             <div className="gallery-immersive__hero-copy">
-              <span className="gallery-immersive__eyebrow">Project Gallery</span>
+              <div className="gallery-immersive__eyebrow-row">
+                <span className="gallery-immersive__eyebrow">Project Gallery</span>
+                {COMPANY.corporateVideoEmbed && (
+                  <button
+                    type="button"
+                    className="gallery-immersive__video-trigger"
+                    onClick={openGalleryVideo}
+                    aria-label="Open corporate video"
+                  >
+                    <Play size={12} />
+                    <span>Corporate Video</span>
+                  </button>
+                )}
+              </div>
               <h1>Industrial Spaces, Captured Beautifully</h1>
               <p>
                 A curated visual collection of KES project execution across manufacturing,
@@ -245,6 +272,34 @@ export default function Gallery() {
           </div>
         )}
       </main>
+
+      {isVideoOpen && COMPANY.corporateVideoEmbed && (
+        <div
+          className="gallery-video-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-label="KES corporate video"
+        >
+          <div className="gallery-video-modal__backdrop" onClick={closeGalleryVideo} />
+          <div className="gallery-video-modal__dialog">
+            <button
+              type="button"
+              className="gallery-video-modal__close"
+              onClick={closeGalleryVideo}
+              aria-label="Close corporate video"
+            >
+              <X size={20} />
+            </button>
+            <iframe
+              src={`${COMPANY.corporateVideoEmbed}?autoplay=1`}
+              title="KES Corporate Video"
+              className="gallery-video-modal__frame"
+              allow="autoplay; fullscreen"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      )}
 
       {isOpen && current && (
         <div

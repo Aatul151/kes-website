@@ -53,15 +53,15 @@ export default function Services() {
       </section>
 
       {/* Service Nav */}
-      <section className="bg-white border-b border-gray-100 sticky top-[65px] z-40">
+      <section className="services-category-bar sticky top-[65px] z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex gap-1 overflow-x-auto py-3 scrollbar-hide">
+          <div className="services-category-bar__track">
             {SERVICES.map((svc) => (
               <a
                 key={svc.id}
                 href={`#${svc.id}`}
                 onClick={(e) => handleServiceNav(svc.id, e)}
-                className="shrink-0 px-4 py-2 rounded-lg text-xs font-medium text-gray-600 hover:bg-red-50 hover:text-[#C8102E] transition-all whitespace-nowrap"
+                className="services-category-pill"
               >
                 {svc.title}
               </a>
@@ -78,7 +78,7 @@ export default function Services() {
           <section
             key={svc.id}
             id={svc.id}
-            className={`py-20 ${isEven ? "bg-white" : "bg-[#F8F8F8]"}`}
+            className={`py-20 ${isEven ? "bg-[#F8F8F8]":"bg-white"}`}
           >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className={`grid grid-cols-1 lg:grid-cols-2 gap-14 items-center ${!isEven ? "lg:flex-row-reverse" : ""}`}>

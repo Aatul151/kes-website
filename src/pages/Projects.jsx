@@ -58,7 +58,7 @@ export default function Projects() {
       {/* Filters */}
       <section className="bg-white border-b border-gray-100 sticky top-[65px] z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap justify-center gap-2">
             {FILTERS.map((f) => (
               <button
                 key={f}

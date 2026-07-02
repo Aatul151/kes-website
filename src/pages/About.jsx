@@ -209,9 +209,9 @@ export default function About() {
       <section className="py-20 bg-[#1A1A1A]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14 animate-on-scroll">
-            <span className="section-label" style={{ color: "#ff6b7a" }}>Our Journey</span>
+            <span className="section-label" style={{ color: "#ff6b7a" }}>Our Journey </span>
             <div className="accent-line-center" />
-            <h2 className="section-title text-white">Key Milestones</h2>
+            <h2 className="section-title" style={{ color: "#ffffff" }}>Key Milestones</h2>
           </div>
 
           <div className="relative">
