@@ -208,7 +208,7 @@ export const PRIVACY_POLICY = {
 
 export const STATS = [
     { value: 500, suffix: "+", label: "Projects Delivered" },
-    { value: 15, suffix: "+", label: "Years Experience" },
+    { value: 9, suffix: "+", label: "Years Experience" },
     { value: 50, suffix: "+", label: "Expert Engineers" },
     { value: 100, suffix: "%", label: "Quality Commitment" },
 ];
@@ -218,15 +218,15 @@ export const SERVICES = [
         id: "peb",
         icon: "Building2",
         title: "Pre Engineered Buildings",
-        shortDesc: "Factory-fabricated steel buildings engineered for speed, precision, and cost efficiency.",
-        description: "Our Pre-Engineered Buildings (PEB) are designed and fabricated in a controlled factory environment, ensuring superior quality and faster on-site erection. Ideal for industrial, commercial, and institutional applications.",
+        shortDesc: "cost-effective, durable steel structures designed for faster construction and flexible applications.",
+        description: "Pre-engineered steel buildings (PEB) are structures manufactured off-site and assembled on-site, utilizing standardized components. They offer cost-effective, time-efficient solutions for various applications, such as warehouses, factories, and commercial spaces, due to their design flexibility and durability. PEBs are characterized by their steel framing systems, which contribute to quick construction, energy efficiency and long-term structural reliability.",
         features: [
-            "Custom design to suit any span and load requirement",
-            "Up to 40% faster construction vs conventional methods",
-            "Optimized steel usage reducing material waste",
-            "Flexible expansion and modification options",
-            "Integrated insulation and roofing systems",
-            "Compliant with IS, AISC, and MBMA standards",
+            "Industrial: Ideal for factories, warehouses, workshops, cold storage, and industrial utility structures.",
+            "Commercial: Suitable for malls, offices, showrooms, shopping centers, and business facilities.",
+            "Institutional: Used for schools, hospitals, exhibition halls, and auditoriums.",
+            "Recreational: Supports sports and leisure facilities such as gymnasiums and indoor courts.",
+            "Aviation & Military: Designed for aircraft hangars, barracks, and operational support facilities.",
+            "Agricultural: Perfect for dairy farms, poultry buildings, grain storage, and greenhouses.",
         ],
         image: "/images/services/peb.jpg",
         color: "#C8102E",
@@ -253,9 +253,9 @@ export const SERVICES = [
         icon: "Factory",
         title: "Stp Projects",
         shortDesc:
-            "End-to-end sewage treatment plant solutions for industrial, commercial, and municipal applications.",
+            "End-to-end solutions for STP and WTP, ensuring reliable, sustainable, and efficient water treatment systems.",
         description:
-            "KES provides comprehensive STP solutions, including design, engineering, fabrication, installation, commissioning, and maintenance of sewage treatment plants. Our systems are designed to meet environmental regulations while ensuring efficient wastewater treatment, water recycling, and sustainable operations.",
+            "Demonstrating our commitment to environmental responsibility, KES offers design-to-commissioning solutions for Sewage Treatment Plants (STP) and Water Treatment Plants (WTP). These systems are deployed across industrial zones, hospitals, residential complexes, and institutions, delivering compliant, reliable, and sustainable treatment results. Our capabilities include design, supply, installation, commissioning, and O&M services for both STP and WTP systems.",
         features: [
             "Customized STP design based on wastewater characteristics",
             "Design, fabrication, installation, and commissioning services",
@@ -271,8 +271,8 @@ export const SERVICES = [
         id: "turnkey",
         icon: "Key",
         title: "Turnkey Projects",
-        shortDesc: "End-to-end project delivery from concept to commissioning under one roof.",
-        description: "Our turnkey construction service covers the complete project lifecycle — from site survey, design, engineering, fabrication, civil works, erection, MEP installation, to final commissioning and handover.",
+        shortDesc: "Integrated EPC solutions for seamless, timely, and cost-effective project execution.",
+        description: "KES offers comprehensive turnkey project solutions, covering the complete project life cycle from conceptual planning and detailed design to procurement, construction, and commissioning. Our EPC services integrate both Civil and Pre-Engineered Building (PEB) works, ensuring seamless coordination, single-point accountability, and efficient execution under one roof. Whether it's industrial sheds, warehouses, or infrastructure projects, KES delivers end-to-end execution with meticulous attention to timelines, structural integrity, and cost control. Our team also offers technical consultancy and project planning support, making us a trusted partner for clients seeking reliable and efficient infrastructure development.",
         features: [
             "Single-point responsibility for entire project",
             "Integrated civil, structural, and MEP works",
@@ -1152,11 +1152,15 @@ Safety is not just a priority at KES Engineering — it is a value that we live 
 ];
 
 export const ABOUT = {
-    story: `KES Engineering was founded in 2017 with a singular vision: to bring world-class industrial construction capabilities to India's rapidly growing manufacturing sector. What began as a small structural steel fabrication unit in Hyderabad has grown into one of India's most trusted names in Pre-Engineered Buildings and industrial construction.
+    story: `KES Group, established in 2017 and headquartered in Gandhinagar, Gujarat, is a leading solution provider in the field of Pre-Engineered Buildings (PEB) and Steel Structure Construction, with a fully equipped, state-of-the-art manufacturing facility at Mother Industrial Park–2, Kadadara Gandhinagar.
 
-Over 8 years, we have delivered 500+ projects across 18 states, serving India's most respected industrial corporations. Our journey has been defined by an unwavering commitment to engineering excellence, on-time delivery, and client satisfaction.`,
-    vision: "To be India's most trusted and innovative industrial construction partner, enabling businesses to build their operational infrastructure faster, smarter, and more sustainably.",
-    mission: "To deliver precision-engineered industrial buildings and structures that exceed client expectations in quality, speed, and value, while maintaining the highest standards of safety and sustainability.",
+            Led by a dynamic and visionary Directors with over 20+ years of hands-on industry experience, KES has quickly earned a reputation for delivering high-quality, customized, and cost-effective infrastructure solutions across industrial sectors. Backed by a skilled team of technocrats, in-house structural design capabilities, and modern fabrication system.
+
+            KES offers a comprehensive range of services including PEB systems, EPC turnkey projects, Heavy engineering fabrication and erection, Retrofitting of old sheds, Industrial shed extensions, and Sewage & Waste water treatment plants (STP/ETP).
+
+            With a strong emphasis on structural integrity, timely execution, safety compliance, and client satisfaction, KES positions itself as a one-stop solution provider and a trusted partner for industrial infrastructure development across India`,
+    vision: "To be India's leading provider of cutting-edge PreEngineered Building solutions, known for engineering excellence, client trust, and sustainable growth.",
+    mission: "Design, manufacture, and erect high-performance steel structures to the evolving needs of various industries and build lasting relationships with clients through integrity, transparency, and consistent performance with Uphold the highest standards of quality, safety, and operational efficiency in every stage of project execution.",
     values: [
         { title: "Integrity", desc: "We do what we say, and we say what we do. Transparency and honesty are non-negotiable." },
         { title: "Excellence", desc: "We pursue engineering excellence in every design, every weld, and every project we deliver." },

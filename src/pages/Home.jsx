@@ -115,7 +115,7 @@ export default function Home() {
 
   const filteredProjects =
     activeFilter === "All"
-      ? PROJECTS
+      ? PROJECTS?.slice(0, 8)
       : PROJECTS.filter((p) => p.tag === activeFilter);
 
   const homeClients = CLIENTS.filter((client) => client.isShowOnHome);
@@ -165,7 +165,7 @@ export default function Home() {
     const playVideo = () => {
       if (cancelled) return;
       video.currentTime = 0;
-      video.play().catch(() => {});
+      video.play().catch(() => { });
     };
 
     const onCanPlay = () => playVideo();
@@ -272,11 +272,10 @@ export default function Home() {
                 onClick={() => setHeroVideoIdx(videoIdx)}
                 aria-label={`Show hero background ${videoIdx + 1} of ${heroVideoAvailable.length}`}
                 aria-current={videoIdx === heroVideoIdx ? "true" : undefined}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  videoIdx === heroVideoIdx
-                    ? "w-8 bg-[#C8102E]"
-                    : "w-2 bg-white/40 hover:bg-white/70"
-                }`}
+                className={`h-2 rounded-full transition-all duration-300 ${videoIdx === heroVideoIdx
+                  ? "w-8 bg-[#C8102E]"
+                  : "w-2 bg-white/40 hover:bg-white/70"
+                  }`}
               />
             ))}
           </div>
@@ -334,18 +333,19 @@ export default function Home() {
               <span className="section-label">About KES</span>
               <div className="accent-line" />
               <h2 className="section-title">
-                15 Years of Engineering Excellence
+                9 Years of Engineering Excellence
               </h2>
               <p className="text-gray-600 text-sm leading-relaxed mb-5">
-                Founded in 2009, KES Engineering has grown from a small
-                fabrication unit to one of India's most trusted industrial
-                construction companies. With 500+ projects delivered across 18
-                states, we bring unmatched expertise to every project.
+                KES Group, established in 2017 and headquartered in Gandhinagar, Gujarat,
+                is a leading provider of Pre-Engineered Buildings (PEB) and steel structure solutions.
+                With a state-of-the-art manufacturing facility and experienced leadership,
+                KES delivers high-quality, customized, and cost-effective infrastructure solutions
               </p>
               <p className="text-gray-600 text-sm leading-relaxed mb-7">
-                Our ISO 9001:2015 certified manufacturing facility, team of 50+
-                engineers, and nationwide erection capability make us the
-                partner of choice for India's leading industrial corporations.
+                The company offers a wide range of services including PEB systems, EPC turnkey projects,
+                heavy engineering fabrication, industrial shed modifications, and STP/ETP solutions.
+                With a strong focus on quality, safety, and timely execution,
+                KES serves as a trusted partner for industrial infrastructure development.
               </p>
               <div className="grid grid-cols-2 gap-4 mb-7">
                 {[
