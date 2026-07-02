@@ -27,7 +27,7 @@ const NAV_LINKS = [
   { label: "Contact", href: "/contact" },
 ];
 
-export default function Navbar() {
+export default function Navbar({ onOpenLanding }) {
   const { COMPANY, FLOATING_ACTIONS } = useContent();
   const { whatsapp } = FLOATING_ACTIONS;
   const whatsappUrl = `https://wa.me/${whatsapp.phone}?text=${encodeURIComponent(whatsapp.message)}`;
@@ -88,6 +88,13 @@ export default function Navbar() {
 
           {/* CTA */}
           <div className="hidden lg:flex items-center gap-3">
+            {/* <button
+              type="button"
+              onClick={onOpenLanding}
+              className="inline-flex items-center justify-center text-xs font-semibold font-poppins py-2.5 px-4 rounded border border-[#C8102E] text-[#C8102E] hover:bg-red-50 transition-all duration-200 tracking-wide uppercase"
+            >
+              Show Intro
+            </button> */}
             <a
               href={whatsappUrl}
               target="_blank"
@@ -136,6 +143,13 @@ export default function Navbar() {
               </div>
             </Link>
           ))}
+          {/* <button
+            type="button"
+            onClick={onOpenLanding}
+            className="border border-[#C8102E] text-[#C8102E] hover:bg-red-50 text-xs font-semibold font-poppins py-2.5 px-6 rounded transition-all duration-200 tracking-wide uppercase w-full mt-3"
+          >
+            Show Intro
+          </button> */}
           <Link href="/contact">
             <button className="bg-[#C8102E] hover:bg-[#a50d25] text-white text-xs font-semibold font-poppins py-2.5 px-6 rounded transition-all duration-200 tracking-wide uppercase w-full mt-3">
               Request Quote

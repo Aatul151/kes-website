@@ -39,7 +39,7 @@ export default function Footer() {
               <img
                 src="/kes_logo.gif"
                 alt="KES Engineering - Your Engineering Partner"
-                className="h-14 w-auto object-contain"
+                className="h-14 w-auto object-contain kes-brand-logo"
               />
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-5">

@@ -20,7 +20,7 @@ export default function About() {
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="section-label" style={{ color: "#ff6b7a" }}>Our Story</span>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">About KES Engineering</h1>
+          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">About KES Groups</h1>
           <p className="text-gray-400 text-base max-w-2xl mx-auto leading-relaxed">
             15 years of engineering excellence, 500+ projects delivered, and an unwavering commitment to building India's industrial future.
           </p>

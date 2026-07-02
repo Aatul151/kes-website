@@ -1,5 +1,6 @@
 import React from "react";
-import { Download } from "lucide-react";
+import { Download, Images } from "lucide-react";
+import { Link } from "wouter";
 import { useContent } from "../context/ContentContext.jsx";
 
 function WhatsAppIcon({ size = 18 }) {
@@ -21,43 +22,101 @@ const POSITION_CLASS = {
   right: "floating-actions--right",
   "bottom-left": "floating-actions--bottom-left",
   "bottom-right": "floating-actions--bottom-right",
+  "top-left": "floating-actions--top-left",
+  "top-right": "floating-actions--top-right",
 };
 
-export default function FloatingActions({ position = "left" }) {
-  const { FLOATING_ACTIONS } = useContent();
-  const { brochure, whatsapp } = FLOATING_ACTIONS;
-  const positionClass = POSITION_CLASS[position] ?? POSITION_CLASS.left;
+const DEFAULT_POSITION = "bottom-left";
 
-  const whatsappUrl = `https://wa.me/${whatsapp.phone}?text=${encodeURIComponent(whatsapp.message)}`;
-  return (
-    <div
-      className={`floating-actions ${positionClass}`}
-      aria-label="Quick actions"
-    >
-      <a
-        href={brochure.url}
-        download={brochure.filename || "KES-Brochure.pdf"}
-        className="floating-actions__btn floating-actions__btn--brochure"
-        aria-label={brochure.label}
+function groupActionsByPosition(floatingActions) {
+  const groups = {};
+
+  for (const [id, action] of Object.entries(floatingActions)) {
+    const position = action.position ?? DEFAULT_POSITION;
+    if (!groups[position]) groups[position] = [];
+    groups[position].push({ id, ...action });
+  }
+
+  return groups;
+}
+
+function renderAction(action) {
+
+  if (action.id === "gallery") {
+    return (
+      <Link
+        key={action.id}
+        href={action.url}
+        className="floating-actions__btn floating-actions__btn--gallery"
+        aria-label={action.label}
       >
         <span className="floating-actions__icon">
-          <Download size={18} strokeWidth={2.25} />
+          <Images size={18} strokeWidth={2.25} />
         </span>
-        <span className="floating-actions__label">{brochure.label}</span>
-      </a>
+        <span className="floating-actions__label">{action.label}</span>
+      </Link>
+    );
+  }
 
+  if (action.id === "whatsapp") {
+    const whatsappUrl = `https://wa.me/${action.phone}?text=${encodeURIComponent(action.message)}`;
+    return (
       <a
+        key={action.id}
         href={whatsappUrl}
         className="floating-actions__btn floating-actions__btn--whatsapp"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label={whatsapp.label}
+        aria-label={action.label}
       >
         <span className="floating-actions__icon">
           <WhatsAppIcon />
         </span>
-        <span className="floating-actions__label">{whatsapp.label}</span>
+        <span className="floating-actions__label">{action.label}</span>
       </a>
-    </div>
+    );
+  }
+
+  
+  if (action.id === "brochure") {
+    return (
+      <a
+        key={action.id}
+        href={action.url}
+        download={action.filename || "KES-Brochure.pdf"}
+        className="floating-actions__btn floating-actions__btn--brochure"
+        aria-label={action.label}
+      >
+        <span className="floating-actions__icon">
+          <Download size={18} strokeWidth={2.25} />
+        </span>
+        <span className="floating-actions__label">{action.label}</span>
+      </a>
+    );
+  }
+  
+  return null;
+}
+
+export default function FloatingActions() {
+  const { FLOATING_ACTIONS } = useContent();
+  const groupedActions = groupActionsByPosition(FLOATING_ACTIONS);
+
+  return (
+    <>
+      {Object.entries(groupedActions).map(([position, actions]) => {
+        const positionClass = POSITION_CLASS[position] ?? POSITION_CLASS[DEFAULT_POSITION];
+
+        return (
+          <div
+            key={position}
+            className={`floating-actions ${positionClass}`}
+            aria-label="Quick actions"
+          >
+            {actions.map(renderAction)}
+          </div>
+        );
+      })}
+    </>
   );
 }

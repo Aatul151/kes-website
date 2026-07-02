@@ -13,7 +13,10 @@ import BlogPost from "./pages/BlogPost.jsx";
 import Contact from "./pages/Contact.jsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy.jsx";
 import Clients from "./pages/Clients.jsx";
+import Gallery from "./pages/Gallery.jsx";
 import { scrollToServiceFromHash } from "./utils/scrollToService.js";
+
+const LANDING_SCREEN_HIDDEN_KEY = "kes-landing-screen-hidden";
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -30,17 +33,37 @@ function ScrollToTop() {
 }
 
 export default function App() {
-  const [showLanding, setShowLanding] = useState(true);
+  const [location] = useLocation();
+  const [showLanding, setShowLanding] = useState(() => {
+    if (typeof window === "undefined") return true;
+    return window.localStorage.getItem(LANDING_SCREEN_HIDDEN_KEY) !== "true";
+  });
+  const isGallery = location === "/view-gallery";
+
+  const handleLandingComplete = ({ persistHide = false } = {}) => {
+    if (persistHide && typeof window !== "undefined") {
+      window.localStorage.setItem(LANDING_SCREEN_HIDDEN_KEY, "true");
+    }
+    setShowLanding(false);
+  };
+
+  const openLandingScreen = () => {
+    setShowLanding(true);
+  };
+
+  if (isGallery) {
+    return <Gallery />;
+  }
 
   return (
     <>
       {showLanding && (
-        <LandingScreen onComplete={() => setShowLanding(false)} />
+        <LandingScreen onComplete={handleLandingComplete} />
       )}
       <div className={`min-h-screen flex flex-col font-poppins transition-opacity duration-500 ${showLanding ? "invisible opacity-0" : "opacity-100"}`}>
         <ScrollToTop />
-        {!showLanding && <FloatingActions position="bottom-left" />}
-        <Navbar />
+        {!showLanding && <FloatingActions />}
+        <Navbar onOpenLanding={openLandingScreen} />
         <main className="flex-1">
           <Switch>
             <Route path="/" component={Home} />

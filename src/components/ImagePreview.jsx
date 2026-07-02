@@ -6,8 +6,8 @@ import {
     X,
 } from "lucide-react";
 
-const ImagePreview = ({ images = [], onClose }) => {
-    const [activeIdx, setActiveIdx] = useState(0);
+const ImagePreview = ({ images = [], initialIndex = 0, onClose }) => {
+    const [activeIdx, setActiveIdx] = useState(initialIndex);
     const thumbnailRefs = useRef([]);
 
     if (!images.length) return null;

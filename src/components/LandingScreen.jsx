@@ -63,6 +63,14 @@ export default function LandingScreen({ onComplete }) {
     };
   }, [timerKey, finish, LANDING_SCREEN.durationMs]);
 
+  const handleDoNotShowAgain = useCallback(
+    (e) => {
+      e.stopPropagation();
+      onComplete({ persistHide: true });
+    },
+    [onComplete]
+  );
+
   return (
     <div
       className={`landing-screen${exiting ? " landing-screen--exit" : ""}${
@@ -108,6 +116,14 @@ export default function LandingScreen({ onComplete }) {
         )}
         <div className="landing-screen__bg-overlay" aria-hidden="true" />
       </div>
+
+      <button
+        type="button"
+        onClick={handleDoNotShowAgain}
+        className="landing-screen__dismiss"
+      >
+        Do Not Show Again
+      </button>
 
       <button
         type="button"

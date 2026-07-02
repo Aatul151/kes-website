@@ -36,17 +36,25 @@ export const COMPANY = {
     ]
 };
 
+// position: "left" | "right" | "bottom-left" | "bottom-right" | "top-left" | "top-right"
 export const FLOATING_ACTIONS = {
-    brochure: {
-        label: "Download Brochure",
-        url: "/downloads/kes_broucher.pdf",
-        filename: "KES-Brochure.pdf",
+    gallery: {
+        label: "View Gallery",
+        url: "/view-gallery",
+        position: "bottom-left",
     },
     whatsapp: {
         label: "WhatsApp",
         phone: "919099910579",
         message:
-            "Hello, I would like to know more about KES Engineering services.",
+            "Hello, I would like to know more about KES Groups services.",
+        position: "bottom-left",
+    },
+    brochure: {
+        label: "Download Brochure",
+        url: "/downloads/kes_broucher.pdf",
+        filename: "KES-Brochure.pdf",
+        position: "bottom-left",
     },
 };
 
@@ -524,6 +532,16 @@ export const PROJECTS = [
         ]
     },
 ];
+
+export const PRODUCT_IMAGES = PROJECTS.flatMap((project) =>
+    project.images.map((image, index) => ({
+        id: `${project.id}-${index}`,
+        title: project.title,
+        location: project.location,
+        category: project.tag,
+        image,
+    }))
+);
 
 export const INDUSTRIES = [
     {
