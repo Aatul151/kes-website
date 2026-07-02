@@ -403,11 +403,11 @@ export const PROJECTS = [
         industry: "Textile",
         area: "75,000 sq.ft",
         scope: "PEB factory with humidity-controlled environment",
-        image: "/images/projects/maruti_suzuki-5.jpeg",
+        image: "/images/projects/maruti_suzuki.jpg",
         year: "2021",
         tag: "Textile",
         images: [
-            '/images/projects/maruti_suzuki-5.jpeg',
+            '/images/projects/maruti_suzuki.jpg',
         ]
     },
     {

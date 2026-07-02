@@ -37,7 +37,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-2.5 mb-5">
               <img
-                src="/kes_logo.png"
+                src="/kes_logo.gif"
                 alt="KES Engineering - Your Engineering Partner"
                 className="h-14 w-auto object-contain"
               />
