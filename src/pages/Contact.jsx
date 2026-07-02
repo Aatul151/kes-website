@@ -11,20 +11,20 @@ const OFFICES = [
     city: "Gandhinagar (HQ)",
     address: "KES Group, 514,Shree Ugti Corporate Park , Kudasan, Gandhinagar, Gujarat 382421, IN",
     phone: "+91 90999 10579",
-    email: "info@kesengineering.in",
+    email: "info@kesprojects.com",
     hours: "Mon-Sat: 9:00 AM - 6:00 PM",
   },
   {
     city: "Navsari",
     address: "KES Group, 314,Uma darshan arcade, Navsari, Gujarat 396424, IN",
     phone: "+91 90999 10579",
-    email: "info@kesengg.com",
+    email: "info@kesprojects.com",
     hours: "Mon-Sat: 9:00 AM - 6:00 PM",
   },
 ];
 
 export default function Contact() {
-  const { COMPANY, SOCIAL_LINKS } = useContent();
+  const { COMPANY } = useContent();
   useScrollAnimation();
 
   return (

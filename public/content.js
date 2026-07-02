@@ -13,7 +13,7 @@ export const COMPANY = {
     subTagline: "Design. Fabrication. Erection. Turnkey Delivery.",
     founded: "2009",
     phone: "+91 90999 10579",
-    email: "info@kesengg.com",
+    email: "info@kesprojects.com",
     address:
         "KES Group, 514,Shree Ugti Corporate Park , Kudasan, Gandhinagar, Gujarat 382421, IN",
     mapEmbed:
@@ -72,21 +72,21 @@ export const SOCIAL_LINKS = [
         id: "twitter",
         label: "Twitter",
         icon: "Twitter",
-        url: "https://twitter.com/kesengineering",
+        url: "",
         color: "#1DA1F2",
     },
     {
         id: "facebook",
         label: "Facebook",
         icon: "Facebook",
-        url: "https://www.facebook.com/kesengineering",
+        url: "",
         color: "#1877F2",
     },
     {
         id: "youtube",
         label: "YouTube",
         icon: "Youtube",
-        url: "https://www.youtube.com/@kesengineering",
+        url: "",
         color: "#FF0000",
     },
 ];
@@ -127,7 +127,7 @@ export const HOME_HERO = {
         "/videos/hero/home_bg_v_2.mp4",
         "/videos/hero/home_bg_v_3.mp4",
     ],
-    badge: "India's Premier Industrial Construction Partner",
+    badge: "Where trust is the foundation and steel is the frame.",
     title: "Engineering Tomorrow's",
     titleHighlight: "Industrial Landmarks",
     subtitle: "Your Engineering Partner",
@@ -218,7 +218,7 @@ export const SERVICES = [
         id: "peb",
         icon: "Building2",
         title: "Pre Engineered Buildings",
-        shortDesc: "cost-effective, durable steel structures designed for faster construction and flexible applications.",
+        shortDesc: "Cost-effective, durable steel structures designed for faster construction and flexible applications.",
         description: "Pre-engineered steel buildings (PEB) are structures manufactured off-site and assembled on-site, utilizing standardized components. They offer cost-effective, time-efficient solutions for various applications, such as warehouses, factories, and commercial spaces, due to their design flexibility and durability. PEBs are characterized by their steel framing systems, which contribute to quick construction, energy efficiency and long-term structural reliability.",
         features: [
             "Industrial: Ideal for factories, warehouses, workshops, cold storage, and industrial utility structures.",

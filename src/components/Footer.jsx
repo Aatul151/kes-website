@@ -43,7 +43,8 @@ export default function Footer() {
               />
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-5">
-              India's leading provider of Pre-Engineered Buildings, Steel Structures, and Turnkey Industrial Construction Solutions.
+              KES Group<br />
+              Where trust is the foundation <br /> and steel is the frame.
             </p>
             <div className="flex gap-3">
               {SOCIAL_LINKS.map((social) => {
@@ -117,7 +118,7 @@ export default function Footer() {
               </li>
               <li className="flex gap-3 items-center">
                 <Mail size={15} className="text-[#C8102E] shrink-0" />
-                <a href="mailto:info@kesengineering.in" className="text-gray-400 text-sm hover:text-[#C8102E] transition-colors">info@kesengineering.in</a>
+                <a href="mailto:info@kesprojects.com" className="text-gray-400 text-sm hover:text-[#C8102E] transition-colors">info@kesprojects.com</a>
               </li>
             </ul>
           </div>

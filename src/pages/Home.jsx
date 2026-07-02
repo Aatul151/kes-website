@@ -342,10 +342,11 @@ export default function Home() {
                 KES delivers high-quality, customized, and cost-effective infrastructure solutions
               </p>
               <p className="text-gray-600 text-sm leading-relaxed mb-7">
-                The company offers a wide range of services including PEB systems, EPC turnkey projects,
-                heavy engineering fabrication, industrial shed modifications, and STP/ETP solutions.
-                With a strong focus on quality, safety, and timely execution,
-                KES serves as a trusted partner for industrial infrastructure development.
+                Operates a modern, technologically advanced manufacturing facility strategically
+                located in Gandhinagar, Gujarat, with an installed production capacity exceeding 18,000 MT annually,
+                spread across 1,00,000 square feet of covered infrastructure.
+                To meet future demands and expansion plans, an additional 1,50,000 square feet of open land has been acquired ,
+                with an overall vision to scale production capacity to 30,000 MT per annum.
               </p>
               <div className="grid grid-cols-2 gap-4 mb-7">
                 {[
