@@ -503,19 +503,18 @@ export default function Home() {
             {INDUSTRIES.map((ind, i) => {
               const Icon = ICON_MAP[ind.icon] || Cog;
               return (
-                <Link key={ind.id} href="/industries">
-                  <div
-                    className="industry-tile animate-on-scroll"
-                    style={{ transitionDelay: `${i * 50}ms` }}
-                  >
-                    <div className="w-10 h-10 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-3">
-                      <Icon size={18} className="text-[#C8102E]" />
-                    </div>
-                    <p className="text-xs font-semibold text-[#1A1A1A] leading-tight">
-                      {ind.title}
-                    </p>
+                <div
+                  key={ind.id}
+                  className="industry-tile animate-on-scroll"
+                  style={{ transitionDelay: `${i * 50}ms` }}
+                >
+                  <div className="w-10 h-10 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Icon size={18} className="text-[#C8102E]" />
                   </div>
-                </Link>
+                  <p className="text-xs font-semibold text-[#1A1A1A] leading-tight">
+                    {ind.title}
+                  </p>
+                </div>
               );
             })}
           </div>
