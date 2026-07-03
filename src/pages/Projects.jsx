@@ -46,7 +46,7 @@ export default function Projects() {
       <HeroSection
         img="/images/heroes/projects.jpg"
         title="Our Projects"
-        description="500+ projects delivered across India's most demanding industrial sectors. Here are some of our landmark achievements."
+        description="250+ projects delivered across India's most demanding industrial sectors. Here are some of our landmark achievements."
       />
 
       {/* Filters */}

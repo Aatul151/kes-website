@@ -827,7 +827,7 @@ Modern PEB systems have evolved far beyond simple shed structures. Today's PEB b
 
 ## KES Engineering's Role in India's PEB Revolution
 
-At KES Engineering, we have been at the forefront of India's PEB evolution for over 15 years. Our 500+ completed projects span every major industrial sector, from automotive assembly plants to pharmaceutical clean rooms.
+At KES Engineering, we have been at the forefront of India's PEB evolution for over 15 years. Our 250+ completed projects span every major industrial sector, from automotive assembly plants to pharmaceutical clean rooms.
 
 Our engineering team continuously invests in the latest design software, fabrication technology, and erection methodologies to deliver PEB solutions that meet the most demanding project requirements.
 
@@ -1114,7 +1114,7 @@ At KES Engineering, safety is not a compliance checkbox — it is a core value t
 
 We operate on the principle that every accident is preventable. This belief drives us to invest heavily in safety training, equipment, and systems, and to hold every team member accountable for safety performance.
 
-Our safety record speaks for itself: over 15 years and 500+ projects, KES Engineering has maintained a Lost Time Injury (LTI) rate of 0.12 — significantly below the industry average of 0.8.
+Our safety record speaks for itself: over 15 years and 250+ projects, KES Engineering has maintained a Lost Time Injury (LTI) rate of 0.12 — significantly below the industry average of 0.8.
 
 ## Pre-Erection Safety Planning
 
@@ -1201,7 +1201,7 @@ export const ABOUT = {
         {
             name: "Tejas Patel",
             designation: "Director - Operations",
-            message: "Delivering 500+ projects on time and within budget requires exceptional operational discipline. Our project management systems, supply chain capabilities, and erection expertise allow us to execute complex industrial projects anywhere in India with consistent quality and reliability.",
+            message: "Delivering 250+ projects on time and within budget requires exceptional operational discipline. Our project management systems, supply chain capabilities, and erection expertise allow us to execute complex industrial projects anywhere in India with consistent quality and reliability.",
             image: "/images/team/tejas_patel.webp",
         },
     ],

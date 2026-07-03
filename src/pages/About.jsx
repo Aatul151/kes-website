@@ -18,7 +18,7 @@ export default function About() {
       <HeroSection
         img="/images/heroes/about.jpg"
         title="About KES Groups"
-        description="15 years of engineering excellence, 500+ projects delivered, and an unwavering commitment to building India' s industrial future."
+        description="15 years of engineering excellence, 250+ projects delivered, and an unwavering commitment to building India' s industrial future."
       />
 
       {/* Stats */}
@@ -122,7 +122,7 @@ export default function About() {
           <div className="text-center mb-12 animate-on-scroll">
             <span className="section-label">Our Foundation</span>
             <div className="accent-line-center" />
-            <h2 className="section-title">Vision, Mission & Values</h2>
+            <h2 className="section-title">Vision, Mission & Policy Statement</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
