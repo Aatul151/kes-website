@@ -84,7 +84,7 @@ export default function Projects() {
               <p className="text-gray-400 text-base">No projects found for this filter.</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-5">
               {filtered.map((project, i) => (
                 <div
                   key={project.id}
@@ -164,7 +164,7 @@ export default function Projects() {
                     <img
                       src={galleryImages[imageIdx]}
                       alt={`${selected.title} — image ${imageIdx + 1}`}
-                      className="w-full h-full object-cover transition-opacity duration-300"
+                      className="w-full h-full object-fill transition-opacity duration-300"
                     />
                     {galleryImages.length > 1 && (
                       <>
@@ -208,7 +208,7 @@ export default function Projects() {
                           <img
                             src={img}
                             alt=""
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-fill"
                           />
                         </button>
                       ))}

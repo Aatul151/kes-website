@@ -33,7 +33,7 @@ const ImagePreview = ({ images = [], initialIndex = 0, onClose }) => {
                 <img
                     src={currentImage.image}
                     alt={currentImage.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-fill"
                 />
                 {/* Close */}
                 <button
@@ -92,7 +92,7 @@ const ImagePreview = ({ images = [], initialIndex = 0, onClose }) => {
                             <img
                                 src={img.image}
                                 alt={img.title}
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-fill"
                             />
                         </button>
                     ))}
