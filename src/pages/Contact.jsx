@@ -41,7 +41,7 @@ export default function Contact() {
                 <div>
                   <p className="text-xs text-gray-500 mb-0.5">{item.label}</p>
                   <p className="font-semibold text-[#1A1A1A] text-sm">{item.value}</p>
-                  <p className="text-gray-400 text-[11px]">{item.sub}</p>
+                  <p className="text-gray-400 text-[11px] text-justify">{item.sub}</p>
                 </div>
               </a>
             ))}

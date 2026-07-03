@@ -305,7 +305,7 @@ export default function Home() {
                     <h3 className="font-semibold text-[#1A1A1A] text-sm mb-2">
                       {svc.title}
                     </h3>
-                    <p className="text-gray-500 text-xs leading-relaxed">
+                    <p className="text-gray-500 text-xs leading-relaxed text-justify">
                       {svc.shortDesc}
                     </p>
                     <div className="mt-4 flex items-center gap-1 text-[#C8102E] text-xs font-semibold">
@@ -329,13 +329,13 @@ export default function Home() {
               <h2 className="section-title">
                 15 Years of Engineering Excellence
               </h2>
-              <p className="text-gray-600 text-sm leading-relaxed mb-5">
+              <p className="text-gray-600 text-sm leading-relaxed mb-5 text-justify">
                 KES Group, established in 2017 and headquartered in Gandhinagar, Gujarat,
                 is a leading provider of Pre-Engineered Buildings (PEB) and steel structure solutions.
                 With a state-of-the-art manufacturing facility and experienced leadership,
                 KES delivers high-quality, customized, and cost-effective infrastructure solutions
               </p>
-              <p className="text-gray-600 text-sm leading-relaxed mb-7">
+              <p className="text-gray-600 text-sm leading-relaxed mb-7 text-justify">
                 Operates a modern, technologically advanced manufacturing facility strategically
                 located in Gandhinagar, Gujarat, with an installed production capacity exceeding 18,000 MT annually,
                 spread across 1,00,000 square feet of covered infrastructure.
@@ -411,7 +411,7 @@ export default function Home() {
                     <h3 className="font-semibold text-[#1A1A1A] text-sm mb-1.5">
                       {item.title}
                     </h3>
-                    <p className="text-gray-500 text-xs leading-relaxed">
+                    <p className="text-gray-500 text-xs leading-relaxed text-justify">
                       {item.desc}
                     </p>
                   </div>

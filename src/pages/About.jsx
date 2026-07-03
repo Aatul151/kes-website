@@ -1,16 +1,47 @@
 import React from "react";
 import { Link } from "wouter";
-import { ArrowRight, CheckCircle, Eye, Heart, Building2, ShieldCheck, Rocket } from "lucide-react";
+import {
+  ArrowRight,
+  CheckCircle,
+  Heart,
+  Building2,
+  Eye,
+  Target,
+  ScrollText,
+} from "lucide-react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation.js";
 import AnimatedCounter from "../components/AnimatedCounter.jsx";
 import { useContent } from "../context/ContentContext.jsx";
 import HeroSection from "../components/HeroSection.jsx";
 
-const ICON_MAP = { Building2 }
+const ICON_MAP = { Building2 };
+
+function FoundationCard({ number, title, text, icon: Icon, variant, delay }) {
+  return (
+    <article
+      className={`foundation-card foundation-card--${variant} animate-on-scroll`}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      <span className="foundation-card__number" aria-hidden="true">
+        {number}
+      </span>
+      <div className="foundation-card__icon-wrap">
+        <Icon size={28} strokeWidth={1.75} />
+      </div>
+      <h3 className="foundation-card__title">{title}</h3>
+      <p className="foundation-card__text  text-justify">{text}</p>
+      <div className="foundation-card__accent" aria-hidden="true" />
+    </article>
+  );
+}
 
 export default function About() {
   const { ABOUT, STATS, COMPANY } = useContent();
   useScrollAnimation();
+
+  const policyPoints = ABOUT?.policy_statement
+    ? ABOUT.policy_statement.split(/(?<=\.)\s+/).filter(Boolean)
+    : [];
 
   return (
     <div className="page-transition pt-20">
@@ -26,11 +57,17 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {STATS.map((stat, i) => (
-              <div key={i} className="text-center animate-on-scroll" style={{ transitionDelay: `${i * 80}ms` }}>
+              <div
+                key={i}
+                className="text-center animate-on-scroll"
+                style={{ transitionDelay: `${i * 80}ms` }}
+              >
                 <div className="text-4xl font-bold text-[#C8102E] mb-1">
                   <AnimatedCounter target={stat.value} suffix={stat.suffix} />
                 </div>
-                <div className="text-sm text-gray-500 font-medium">{stat.label}</div>
+                <div className="text-sm text-gray-500 font-medium">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </div>
@@ -46,7 +83,12 @@ export default function About() {
               <div className="accent-line" />
               <h2 className="section-title">The KES Story</h2>
               {ABOUT.story.split("\n\n").map((para, i) => (
-                <p key={i} className="text-gray-600 text-sm leading-relaxed mb-4">{para}</p>
+                <p
+                  key={i}
+                  className="text-gray-600 text-sm leading-relaxed mb-4 text-justify"
+                >
+                  {para}
+                </p>
               ))}
               <Link href="/contact">
                 <button className="btn-primary text-xs mt-2">
@@ -74,8 +116,9 @@ export default function About() {
             <div className="accent-line-center" />
             <h2 className="section-title">Our Subsidiary Companies</h2>
             <p className="section-subtitle mx-auto text-center">
-              Through our specialized subsidiaries, we provide end-to-end engineering,
-              construction, and infrastructure solutions across multiple industries.
+              Through our specialized subsidiaries, we provide end-to-end
+              engineering, construction, and infrastructure solutions across
+              multiple industries.
             </p>
           </div>
 
@@ -102,7 +145,7 @@ export default function About() {
                   </h3>
 
                   {/* Description */}
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-gray-600 leading-relaxed text-justify">
                     {company.description}
                   </p>
 
@@ -112,46 +155,71 @@ export default function About() {
               );
             })}
           </div>
-
         </div>
       </section>
 
       {/* Vision, Mission, Values */}
-      <section className="py-20 bg-white">
+      <section className="foundation-section">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 animate-on-scroll">
+          <div className="text-center mb-14 animate-on-scroll">
             <span className="section-label">Our Foundation</span>
             <div className="accent-line-center" />
-            <h2 className="section-title">Vision, Mission & Policy Statement</h2>
+            <h2 className="section-title">
+              Vision, Mission & Policy Statement
+            </h2>
+            <p className="section-subtitle mx-auto text-center">
+              The principles that guide every structure we design, fabricate,
+              and deliver.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-            {/* Vision */}
-            <div className="bg-white rounded-xl p-8 border border-gray-100 animate-on-scroll card-hover">
-              <div className="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center mb-5">
-                <Eye size={22} className="text-[#C8102E]" />
-              </div>
-              <h3 className="font-bold text-[#1A1A1A] text-lg mb-3">Our Vision</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">{ABOUT.vision}</p>
-            </div>
+          <div className="foundation-bento mb-10">
+            <FoundationCard
+              number="01"
+              title="Our Vision"
+              text={ABOUT.vision}
+              icon={Eye}
+              variant="vision"
+              delay={0}
+            />
+            <FoundationCard
+              number="02"
+              title="Our Mission"
+              text={ABOUT.mission}
+              icon={Target}
+              variant="mission"
+              delay={100}
+            />
 
-            {/* Mission */}
-            <div className="bg-white rounded-xl p-8 border border-gray-100 animate-on-scroll card-hover">
-              <div className="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center mb-5">
-                <Rocket size={22} className="text-[#C8102E]" />
+            <article
+              className="foundation-policy animate-on-scroll"
+              style={{ transitionDelay: "200ms" }}
+            >
+              <div className="foundation-policy__brand">
+                <span className="foundation-policy__number" aria-hidden="true">
+                  03
+                </span>
+                <div className="foundation-policy__icon-wrap">
+                  <ScrollText size={30} strokeWidth={1.75} />
+                </div>
+                <h3 className="foundation-policy__title">Policy Statement</h3>
+                <p className="foundation-policy__tagline">
+                  Quality, safety, and accountability in every operation.
+                </p>
               </div>
-              <h3 className="font-bold text-[#1A1A1A] text-lg mb-3">Our Mission</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">{ABOUT.mission}</p>
-            </div>
-
-            {/* Policy Statement */}
-            <div className="bg-white rounded-xl p-8 border border-gray-100 animate-on-scroll card-hover">
-              <div className="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center mb-5">
-                <ShieldCheck size={22} className="text-[#C8102E]" />
+              <div className="foundation-policy__body">
+                <ul className="foundation-policy__list">
+                  {policyPoints.map((point, i) => (
+                    <li key={i} className="foundation-policy__item text-justify">
+                      <span className="foundation-policy__check">
+                        <CheckCircle size={16} strokeWidth={2.25} />
+                      </span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <h3 className="font-bold text-[#1A1A1A] text-lg mb-3">Policy Statement</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">{ABOUT?.policy_statement}</p>
-            </div>
+            </article>
           </div>
 
           {/* Values */}
@@ -165,8 +233,12 @@ export default function About() {
                 <div className="w-10 h-10 bg-[#C8102E] rounded-full flex items-center justify-center mx-auto mb-4">
                   <Heart size={16} className="text-white" />
                 </div>
-                <h4 className="font-semibold text-[#1A1A1A] text-sm mb-2">{val.title}</h4>
-                <p className="text-gray-500 text-xs leading-relaxed">{val.desc}</p>
+                <h4 className="font-semibold text-[#1A1A1A] text-sm mb-2">
+                  {val.title}
+                </h4>
+                <p className="text-gray-500 text-xs leading-relaxed">
+                  {val.desc}
+                </p>
               </div>
             ))}
           </div>
@@ -174,14 +246,15 @@ export default function About() {
       </section>
 
       {/* Leadership */}
-      <section className="py-20 bg-[#F8F8F8]">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 animate-on-scroll">
             <span className="section-label">Leadership</span>
             <div className="accent-line-center" />
             <h2 className="section-title">Meet Our Leaders</h2>
             <p className="section-subtitle mx-auto text-center">
-              Experienced professionals driving KES Engineering's vision and growth.
+              Experienced professionals driving KES Engineering's vision and
+              growth.
             </p>
           </div>
 
@@ -198,9 +271,15 @@ export default function About() {
                   className="w-full h-56 object-cover object-top"
                 />
                 <div className="p-6">
-                  <h3 className="font-bold text-[#1A1A1A] text-base">{leader.name}</h3>
-                  <p className="text-[#C8102E] text-xs font-semibold mb-3">{leader.designation}</p>
-                  <p className="text-gray-600 text-xs leading-relaxed italic">"{leader.message}"</p>
+                  <h3 className="font-bold text-[#1A1A1A] text-base">
+                    {leader.name}
+                  </h3>
+                  <p className="text-[#C8102E] text-xs font-semibold mb-3 ">
+                    {leader.designation}
+                  </p>
+                  <p className="text-gray-600 text-xs leading-relaxed text-justify">
+                    {leader.message}
+                  </p>
                 </div>
               </div>
             ))}
@@ -212,9 +291,13 @@ export default function About() {
       <section className="py-20 bg-[#1A1A1A]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14 animate-on-scroll">
-            <span className="section-label" style={{ color: "#ff6b7a" }}>Our Journey </span>
+            <span className="section-label" style={{ color: "#ff6b7a" }}>
+              Our Journey{" "}
+            </span>
             <div className="accent-line-center" />
-            <h2 className="section-title" style={{ color: "#ffffff" }}>Key Milestones</h2>
+            <h2 className="section-title" style={{ color: "#ffffff" }}>
+              Key Milestones
+            </h2>
           </div>
 
           <div className="relative">
@@ -228,9 +311,13 @@ export default function About() {
                   className={`flex flex-col md:flex-row items-center gap-6 animate-on-scroll ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}
                   style={{ transitionDelay: `${i * 80}ms` }}
                 >
-                  <div className={`flex-1 ${i % 2 === 0 ? "md:text-right" : "md:text-left"}`}>
+                  <div
+                    className={`flex-1 ${i % 2 === 0 ? "md:text-right" : "md:text-left"}`}
+                  >
                     <div className="bg-white/5 border border-white/10 rounded-xl p-5 inline-block">
-                      <span className="text-[#C8102E] font-bold text-lg">{m.year}</span>
+                      <span className="text-[#C8102E] font-bold text-lg">
+                        {m.year}
+                      </span>
                       <p className="text-gray-300 text-sm mt-1">{m.event}</p>
                     </div>
                   </div>
@@ -246,8 +333,13 @@ export default function About() {
       {/* CTA */}
       <section className="py-16 bg-[#C8102E]">
         <div className="max-w-4xl mx-auto px-4 text-center animate-on-scroll">
-          <h2 className="text-3xl font-bold text-white mb-4">Ready to Build Something Great?</h2>
-          <p className="text-red-100 text-sm mb-7">Let's discuss your project and show you why 350+ clients trust KES Engineering.</p>
+          <h2 className="text-3xl font-bold text-white mb-4">
+            Ready to Build Something Great?
+          </h2>
+          <p className="text-red-100 text-sm mb-7">
+            Let's discuss your project and show you why 350+ clients trust KES
+            Engineering.
+          </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/contact">
               <button className="bg-white text-[#C8102E] font-bold px-7 py-3 rounded-lg text-sm hover:bg-gray-100 transition-all">
@@ -255,7 +347,9 @@ export default function About() {
               </button>
             </Link>
             <Link href="/projects">
-              <button className="btn-outline-white text-xs">View Our Projects</button>
+              <button className="btn-outline-white text-xs">
+                View Our Projects
+              </button>
             </Link>
           </div>
         </div>

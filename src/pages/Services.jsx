@@ -86,12 +86,12 @@ export default function Services() {
                   </div>
                   <div className="accent-line" />
                   <h2 className="section-title">{svc.title}</h2>
-                  <p className="text-gray-600 text-sm leading-relaxed mb-6">{svc.description}</p>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-6 text-justify">{svc.description}</p>
 
                   <h4 className="font-semibold text-[#1A1A1A] text-sm mb-3">Key Features</h4>
                   <ul className="space-y-2.5 mb-7">
                     {svc.features.map((feat, fi) => (
-                      <li key={fi} className="flex items-start gap-2.5">
+                      <li key={fi} className="flex items-start gap-2.5 text-justify">
                         <CheckCircle size={15} className="text-[#C8102E] mt-0.5 shrink-0" />
                         <span className="text-gray-600 text-sm">{feat}</span>
                       </li>
