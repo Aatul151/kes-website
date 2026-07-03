@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "wouter";
-import { ArrowRight, CheckCircle, Target, Eye, Heart, Building2 } from "lucide-react";
+import { ArrowRight, CheckCircle, Eye, Heart, Building2, ShieldCheck, Rocket } from "lucide-react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation.js";
 import AnimatedCounter from "../components/AnimatedCounter.jsx";
 import { useContent } from "../context/ContentContext.jsx";
@@ -138,7 +138,7 @@ export default function About() {
             {/* Mission */}
             <div className="bg-white rounded-xl p-8 border border-gray-100 animate-on-scroll card-hover">
               <div className="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center mb-5">
-                <Target size={22} className="text-[#C8102E]" />
+                <Rocket size={22} className="text-[#C8102E]" />
               </div>
               <h3 className="font-bold text-[#1A1A1A] text-lg mb-3">Our Mission</h3>
               <p className="text-gray-600 text-sm leading-relaxed">{ABOUT.mission}</p>
@@ -147,7 +147,7 @@ export default function About() {
             {/* Policy Statement */}
             <div className="bg-white rounded-xl p-8 border border-gray-100 animate-on-scroll card-hover">
               <div className="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center mb-5">
-                <Target size={22} className="text-[#C8102E]" />
+                <ShieldCheck size={22} className="text-[#C8102E]" />
               </div>
               <h3 className="font-bold text-[#1A1A1A] text-lg mb-3">Policy Statement</h3>
               <p className="text-gray-600 text-sm leading-relaxed">{ABOUT?.policy_statement}</p>
