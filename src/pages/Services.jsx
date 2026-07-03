@@ -72,7 +72,7 @@ export default function Services() {
           <section
             key={svc.id}
             id={svc.id}
-            className={`py-20 ${isEven ? "bg-[#F8F8F8]":"bg-white"}`}
+            className={`py-20 ${isEven ? "bg-[#F8F8F8]" : "bg-white"}`}
           >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className={`grid grid-cols-1 lg:grid-cols-2 gap-14 items-center ${!isEven ? "lg:flex-row-reverse" : ""}`}>
@@ -114,9 +114,6 @@ export default function Services() {
                       alt={svc.title}
                       className="rounded-xl w-full h-80 object-cover shadow-lg"
                     />
-                    <div className="absolute top-4 right-4 bg-[#C8102E] text-white text-xs font-bold px-3 py-1.5 rounded-full">
-                      {svc.title}
-                    </div>
                   </div>
                 </div>
               </div>
