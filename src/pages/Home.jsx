@@ -101,7 +101,6 @@ export default function Home() {
     HOME_HERO,
     CLIENTS,
   } = useContent();
-  const [activeFilter, setActiveFilter] = useState("All");
   const heroVideos = HOME_HERO.videos || [];
   const [heroVideoIdx, setHeroVideoIdx] = useState(0);
   const [heroVideosFailed, setHeroVideosFailed] = useState(() => new Set());
@@ -111,12 +110,7 @@ export default function Home() {
   const [formStatus, setFormStatus] = useState("");
   const sliderRef = useRef(null);
 
-  useScrollAnimation([activeFilter]);
-
-  const filteredProjects =
-    activeFilter === "All"
-      ? PROJECTS?.slice(0, 8)
-      : PROJECTS.filter((p) => p.tag === activeFilter);
+  useScrollAnimation();
 
   const homeClients = CLIENTS.filter((client) => client.isShowOnHome);
 
@@ -222,7 +216,7 @@ export default function Home() {
         {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
           <div className="max-w-3xl">
-            <span className="inline-block bg-[#C8102E]/20 border border-[#C8102E]/40 text-[#ff6b7a] text-xs font-semibold tracking-[3px] uppercase px-4 py-1.5 rounded-full mb-6">
+            <span className="inline-block bg-[#C8102E] border border-[#C8102E]/40 text-[#ffffff] text-xs font-semibold tracking-[3px] uppercase px-4 py-1.5 rounded-full mb-6">
               {HOME_HERO.badge}
             </span>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-5">
@@ -333,7 +327,7 @@ export default function Home() {
               <span className="section-label">About KES</span>
               <div className="accent-line" />
               <h2 className="section-title">
-                9 Years of Engineering Excellence
+                15 Years of Engineering Excellence
               </h2>
               <p className="text-gray-600 text-sm leading-relaxed mb-5">
                 KES Group, established in 2017 and headquartered in Gandhinagar, Gujarat,
@@ -349,10 +343,7 @@ export default function Home() {
                 with an overall vision to scale production capacity to 30,000 MT per annum.
               </p>
               <div className="grid grid-cols-2 gap-4 mb-7">
-                {[
-                  { label: "Satisfied Clients", value: "350+" },
-                  { label: "Sq.Ft Delivered", value: "50M+" },
-                  { label: "Erection Teams", value: "25+" },
+                {[{ label: "Satisfied Clients", value: "350+" },
                 ].map((item, i) => (
                   <div
                     key={i}
@@ -381,7 +372,7 @@ export default function Home() {
                   className="rounded-xl w-full h-80 object-cover shadow-lg"
                 />
                 <div className="absolute -bottom-5 -left-5 bg-[#C8102E] text-white rounded-xl p-5 shadow-xl">
-                  <div className="text-3xl font-bold">500+</div>
+                  <div className="text-3xl font-bold">250+</div>
                   <div className="text-xs opacity-80 mt-0.5">
                     Projects Delivered
                   </div>
@@ -447,22 +438,9 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Filters */}
-          <div className="flex flex-wrap gap-2 mb-8 animate-on-scroll">
-            {PROJECT_FILTERS.map((f) => (
-              <button
-                key={f}
-                className={`filter-btn ${activeFilter === f ? "active" : ""}`}
-                onClick={() => setActiveFilter(f)}
-              >
-                {f}
-              </button>
-            ))}
-          </div>
-
           {/* Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {filteredProjects.map((project, i) => (
+            {PROJECTS?.slice(0, 8).map((project, i) => (
               <div
                 key={project.id}
                 className="project-card h-64 animate-on-scroll"

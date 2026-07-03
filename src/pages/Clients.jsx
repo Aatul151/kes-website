@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { useScrollAnimation } from "../hooks/useScrollAnimation.js";
 import { useContent } from "../context/ContentContext.jsx";
 import ClientLogo from "../components/ClientLogo.jsx";
+import HeroSection from "../components/HeroSection.jsx";
 
 export default function Clients() {
   const { CLIENTS } = useContent();
@@ -11,21 +12,13 @@ export default function Clients() {
   return (
     <div className="page-transition pt-20">
       {/* Hero */}
-      <section className="relative py-20 bg-[#1A1A1A] overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <img src="/images/heroes/clients.jpg" alt="" className="w-full h-full object-cover" />
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="section-label" style={{ color: "#ff6b7a" }}>Our Trusted Partners</span>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">Our Clients</h1>
-          <p className="text-gray-400 text-base max-w-2xl mx-auto leading-relaxed">
-            We are proud to partner with leading organizations across diverse industries,
-            delivering high-quality engineering, EPC, and infrastructure solutions built
-            on trust, reliability, and long-term relationships.
-          </p>
-        </div>
-      </section>
+      <HeroSection
+        img="/images/heroes/clients.jpg"
+        title="Our Clients"
+        description="We are proud to partner with leading organizations across diverse industries,
+                      delivering high-quality engineering, EPC, and infrastructure solutions built
+                      on trust, reliability, and long-term relationships."
+      />
 
       {/* Client Grid */}
       <section className="py-16 bg-white">

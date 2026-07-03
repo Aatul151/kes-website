@@ -4,6 +4,7 @@ import { ArrowRight, CheckCircle, Target, Eye, Heart, Building2 } from "lucide-r
 import { useScrollAnimation } from "../hooks/useScrollAnimation.js";
 import AnimatedCounter from "../components/AnimatedCounter.jsx";
 import { useContent } from "../context/ContentContext.jsx";
+import HeroSection from "../components/HeroSection.jsx";
 
 const ICON_MAP = { Building2 }
 
@@ -14,18 +15,11 @@ export default function About() {
   return (
     <div className="page-transition pt-20">
       {/* Hero */}
-      <section className="relative py-20 bg-[#1A1A1A] overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <img src="/images/heroes/about.jpg" alt="" className="w-full h-full object-cover" />
-        </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="section-label" style={{ color: "#ff6b7a" }}>Our Story</span>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">About KES Groups</h1>
-          <p className="text-gray-400 text-base max-w-2xl mx-auto leading-relaxed">
-            15 years of engineering excellence, 500+ projects delivered, and an unwavering commitment to building India's industrial future.
-          </p>
-        </div>
-      </section>
+      <HeroSection
+        img="/images/heroes/about.jpg"
+        title="About KES Groups"
+        description="15 years of engineering excellence, 500+ projects delivered, and an unwavering commitment to building India' s industrial future."
+      />
 
       {/* Stats */}
       <section className="py-14 bg-white border-b border-gray-100">
@@ -148,6 +142,15 @@ export default function About() {
               </div>
               <h3 className="font-bold text-[#1A1A1A] text-lg mb-3">Our Mission</h3>
               <p className="text-gray-600 text-sm leading-relaxed">{ABOUT.mission}</p>
+            </div>
+
+            {/* Policy Statement */}
+            <div className="bg-white rounded-xl p-8 border border-gray-100 animate-on-scroll card-hover">
+              <div className="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center mb-5">
+                <Target size={22} className="text-[#C8102E]" />
+              </div>
+              <h3 className="font-bold text-[#1A1A1A] text-lg mb-3">Policy Statement</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">{ABOUT?.policy_statement}</p>
             </div>
           </div>
 

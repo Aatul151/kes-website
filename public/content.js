@@ -15,7 +15,7 @@ export const COMPANY = {
     phone: "+91 90999 10579",
     email: "info@kesprojects.com",
     address:
-        "KES Group, 514,Shree Ugti Corporate Park , Kudasan, Gandhinagar, Gujarat 382421, IN",
+        "28 29 30 31 32, MOTHER INDUSTRIAL PARK-2, DEHGAM, Kadadara Gandhinagar 382305 Gujarat",
     mapEmbed:
         "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.2!2d78.4867!3d17.3850!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDIzJzA2LjAiTiA3OMKwMjknMTIuMiJF!5e0!3m2!1sen!2sin!4v1234567890",
     corporateVideoEmbed:
@@ -23,19 +23,36 @@ export const COMPANY = {
     subCompanys: [
         {
             id: 1,
-            name: "KES Compony-1",
+            name: "KBL- KES BUILTECH LLP",
             icon: "Building2",
             description:
-                "Specialized in the design, fabrication, and installation of pre-engineered buildings and structural steel solutions for industrial and commercial projects.",
+                "Specializes in infrastructure planning and development, offering end-to-end solutions from project planning and design to execution, ensuring efficient, sustainable, and quality-driven infrastructure projects.",
         },
         {
             id: 2,
-            name: "KES Compony-2",
+            name: "KFL- KES FABTECH LLP",
             icon: "Building2",
             description:
-                "Focused on turnkey infrastructure development, including STP projects, EPC services, and complete engineering solutions from concept to commissioning.",
+                "Engaged in the fabrication of high-quality steel structures and engineered components, providing reliable and customized solutions for industrial and construction requirements.",
         },
-    ]
+    ],
+    offices: [
+        {
+            city: "Gandhinagar (HQ)",
+            address: "28 29 30 31 32, MOTHER INDUSTRIAL PARK-2, DEHGAM, Kadadara Gandhinagar 382305 Gujarat",
+            phone: "+91 90999 10579",
+            email: "info@kesprojects.com",
+            hours: "Mon-Sat: 9:00 AM - 6:00 PM",
+        },
+        {
+            city: "Navsari",
+            address: "KES Group, 314,Uma darshan arcade, Navsari, Gujarat 396424, IN",
+            phone: "+91 90999 10579",
+            email: "info@kesprojects.com",
+            hours: "Mon-Sat: 9:00 AM - 6:00 PM",
+        },
+    ],
+    key: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3670.0138924591056!2d72.7826059113538!3d23.096587279034985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e7da9ea7bd1f7%3A0x6b45fa6e719d5097!2sMother%20Industrial%20Park%20-%202!5e0!3m2!1sen!2sus!4v1783063096508!5m2!1sen!2sus"
 };
 
 // position: "left" | "right" | "bottom-left" | "bottom-right" | "top-left" | "top-right"
@@ -207,8 +224,8 @@ export const PRIVACY_POLICY = {
 };
 
 export const STATS = [
-    { value: 500, suffix: "+", label: "Projects Delivered" },
-    { value: 9, suffix: "+", label: "Years Experience" },
+    { value: 250, suffix: "+", label: "Projects Delivered" },
+    { value: 15, suffix: "+", label: "Years Experience" },
     { value: 50, suffix: "+", label: "Expert Engineers" },
     { value: 100, suffix: "%", label: "Quality Commitment" },
 ];
@@ -251,7 +268,7 @@ export const SERVICES = [
     {
         id: "stp",
         icon: "Factory",
-        title: "Stp Projects",
+        title: "Industrial Wastewater Treatment Systems",
         shortDesc:
             "End-to-end solutions for STP and WTP, ensuring reliable, sustainable, and efficient water treatment systems.",
         description:
@@ -270,7 +287,7 @@ export const SERVICES = [
     {
         id: "turnkey",
         icon: "Key",
-        title: "Turnkey Projects",
+        title: "EPC - Engineering, Procurement & Construction",
         shortDesc: "Integrated EPC solutions for seamless, timely, and cost-effective project execution.",
         description: "KES offers comprehensive turnkey project solutions, covering the complete project life cycle from conceptual planning and detailed design to procurement, construction, and commissioning. Our EPC services integrate both Civil and Pre-Engineered Building (PEB) works, ensuring seamless coordination, single-point accountability, and efficient execution under one roof. Whether it's industrial sheds, warehouses, or infrastructure projects, KES delivers end-to-end execution with meticulous attention to timelines, structural integrity, and cost control. Our team also offers technical consultancy and project planning support, making us a trusted partner for clients seeking reliable and efficient infrastructure development.",
         features: [
@@ -1161,6 +1178,7 @@ export const ABOUT = {
             With a strong emphasis on structural integrity, timely execution, safety compliance, and client satisfaction, KES positions itself as a one-stop solution provider and a trusted partner for industrial infrastructure development across India`,
     vision: "To be India's leading provider of cutting-edge PreEngineered Building solutions, known for engineering excellence, client trust, and sustainable growth.",
     mission: "Design, manufacture, and erect high-performance steel structures to the evolving needs of various industries and build lasting relationships with clients through integrity, transparency, and consistent performance with Uphold the highest standards of quality, safety, and operational efficiency in every stage of project execution.",
+    policy_statement: "Every component is engineered and inspected to ensure structural integrity and compliance with national and international standards. We enforce strict safety protocols and maintain regulatory compliance across all operations and job sites. We are dedicated to meeting our clients’ expectations through responsive service, technical support, and on-time delivery. We embrace modern engineering practices and technologies that promote resource efficiency and align with sustainable development principles. We cultivate a skilled, safety-conscious, and motivated team that drives our commitment to excellence.",
     values: [
         { title: "Integrity", desc: "We do what we say, and we say what we do. Transparency and honesty are non-negotiable." },
         { title: "Excellence", desc: "We pursue engineering excellence in every design, every weld, and every project we deliver." },
@@ -1169,22 +1187,22 @@ export const ABOUT = {
     ],
     leadership: [
         {
-            name: "K. Suresh Reddy",
-            designation: "Chairman & Managing Director",
+            name: "Jitesh Mistry",
+            designation: "Director - Operations",
             message: "When I founded KES Engineering in 2009, I had a simple belief: that India's industrial sector deserved a construction partner that combined global engineering standards with deep local expertise. Fifteen years and 500 projects later, that belief has been validated by the trust our clients place in us every day.",
-            image: "/images/team/k-suresh-reddy.jpg",
+            image: "/images/team/jitesh_mistry.webp",
         },
         {
-            name: "Er. Priya Menon",
-            designation: "Director - Engineering",
+            name: "Upesh Patel",
+            designation: "Director - Operations",
             message: "Our engineering team is the backbone of KES Engineering. We invest continuously in the latest design tools, training, and processes to ensure that every structure we design is not just code-compliant, but optimally engineered for performance, economy, and longevity.",
-            image: "/images/team/priya-menon.jpg",
+            image: "/images/team/upesh_patel.webp",
         },
         {
-            name: "Anil Kumar",
+            name: "Tejas Patel",
             designation: "Director - Operations",
             message: "Delivering 500+ projects on time and within budget requires exceptional operational discipline. Our project management systems, supply chain capabilities, and erection expertise allow us to execute complex industrial projects anywhere in India with consistent quality and reliability.",
-            image: "/images/team/anil-kumar.jpg",
+            image: "/images/team/tejas_patel.webp",
         },
     ],
     milestones: [
@@ -1289,8 +1307,7 @@ export const CLIENTS = [
     { id: 60, name: "Horizon Industrial Park", image: "/images/clients/horizon-industrial-park.jpg" },
     { id: 61, name: "Polymetrix Solutions", image: "/images/clients/polymetrix.jpg" },
     { id: 62, name: "Money Packers", image: "/images/clients/money-packers.jpg" },
-    { id: 63, name: "Suria", image: "/images/clients/suria.jpg" },
+    { id: 63, name: "Surja Extrusion", image: "/images/clients/surja.jpeg" },
     { id: 64, name: "Avail Infrastructure Solutions", image: "/images/clients/avail-infrastructure-solutions.jpg" },
     { id: 65, name: "Quality Infrastructure Pvt. Ltd.", image: "/images/clients/quality-infrastructure-pvt-ltd.jpg" },
-    { id: 66, name: "Surja Extrusion", image: "/images/clients/surja.jpeg" },
 ];

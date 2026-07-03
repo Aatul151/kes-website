@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X } from "lucide-react";
+import { CirclePlay, Menu, X } from "lucide-react";
 import { useContent } from "../context/ContentContext.jsx";
 
 function WhatsAppIcon({ size = 20 }) {
@@ -34,6 +34,7 @@ export default function Navbar({ onOpenLanding }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [location] = useLocation();
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -63,9 +64,6 @@ export default function Navbar({ onOpenLanding }) {
                 alt="KES Groups - Your Engineering Partner"
                 className="h-14 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
               />
-              <span className="text-[25px] font-semibold text-[#C8102E] transition-colors duration-200 font-poppins group-hover:text-[#a50d25]">
-                {COMPANY.name}
-              </span>
             </div>
           </Link>
 
@@ -88,23 +86,21 @@ export default function Navbar({ onOpenLanding }) {
 
           {/* CTA */}
           <div className="hidden lg:flex items-center gap-3">
-            {/* <button
-              type="button"
-              onClick={onOpenLanding}
-              className="inline-flex items-center justify-center text-xs font-semibold font-poppins py-2.5 px-4 rounded border border-[#C8102E] text-[#C8102E] hover:bg-red-50 transition-all duration-200 tracking-wide uppercase"
-            >
-              Show Intro
-            </button> */}
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={whatsapp.label}
-              title={"Chat Now"}
-              className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#25D366] text-white hover:bg-[#1da851] transition-colors duration-200 shadow-sm"
-            >
-              <WhatsAppIcon size={20} />
-            </a>
+            {COMPANY?.corporateVideoEmbed && (
+              <button
+                type="button"
+                className="gallery-immersive__video-trigger"
+                onClick={() => setIsVideoOpen(true)}
+                aria-label="Open corporate video"
+                className="inline-flex items-center justify-center text-[#C8102E]"
+              >
+                <CirclePlay
+                  size={40}
+                  fill="currentColor"
+                  stroke="white"
+                />
+              </button>
+            )}
             <Link href="/contact">
               <button className="bg-[#C8102E] hover:bg-[#a50d25] text-white text-xs font-semibold font-poppins py-2.5 px-6 rounded transition-all duration-200 tracking-wide uppercase">
                 Request Quote
@@ -157,6 +153,34 @@ export default function Navbar({ onOpenLanding }) {
           </Link>
         </div>
       </div>
+
+      {isVideoOpen && COMPANY?.corporateVideoEmbed && (
+        <div
+          className="gallery-video-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-label="KES corporate video"
+        >
+          <div className="gallery-video-modal__backdrop" onClick={() => setIsVideoOpen(false)} />
+          <div className="gallery-video-modal__dialog">
+            <button
+              type="button"
+              className="gallery-video-modal__close"
+              onClick={() => setIsVideoOpen(false)}
+              aria-label="Close corporate video"
+            >
+              <X size={20} />
+            </button>
+            <iframe
+              src={`${COMPANY?.corporateVideoEmbed}?autoplay=1`}
+              title="KES Corporate Video"
+              className="gallery-video-modal__frame"
+              allow="autoplay; fullscreen"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      )}
     </nav>
   );
 }

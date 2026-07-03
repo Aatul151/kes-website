@@ -4,6 +4,7 @@ import { MapPin, Maximize2, ArrowRight, Calendar, ArrowLeft, ChevronLeft, Chevro
 import { useScrollAnimation } from "../hooks/useScrollAnimation.js";
 import { useContent } from "../context/ContentContext.jsx";
 import ImagePreview from "../components/ImagePreview.jsx";
+import HeroSection from "../components/HeroSection.jsx";
 
 const FILTERS = ["All", "Manufacturing", "Logistics", "Warehousing", "Pharmaceutical", "Automobile", "Food Processing", "Textile", "Renewable Energy"];
 
@@ -42,18 +43,11 @@ export default function Projects() {
   return (
     <div className="page-transition pt-20">
       {/* Hero */}
-      <section className="relative py-20 bg-[#1A1A1A] overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <img src="/images/heroes/projects.jpg" alt="" className="w-full h-full object-cover" />
-        </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="section-label" style={{ color: "#ff6b7a" }}>Our Portfolio</span>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">Our Projects</h1>
-          <p className="text-gray-400 text-base max-w-2xl mx-auto leading-relaxed">
-            500+ projects delivered across India's most demanding industrial sectors. Here are some of our landmark achievements.
-          </p>
-        </div>
-      </section>
+      <HeroSection
+        img="/images/heroes/projects.jpg"
+        title="Our Projects"
+        description="500+ projects delivered across India's most demanding industrial sectors. Here are some of our landmark achievements."
+      />
 
       {/* Filters */}
       <section className="bg-white border-b border-gray-100 sticky top-[65px] z-40">
@@ -63,7 +57,7 @@ export default function Projects() {
               <button
                 key={f}
                 className={`filter-btn ${activeFilter === f ? "active" : ""}`}
-                onClick={() => setActiveFilter(f)}
+                onClick={() => { setActiveFilter(f); setSelected(null) }}
               >
                 {f}
               </button>

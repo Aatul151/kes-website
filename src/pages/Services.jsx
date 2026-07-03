@@ -7,6 +7,7 @@ import {
 import { useScrollAnimation } from "../hooks/useScrollAnimation.js";
 import { useContent } from "../context/ContentContext.jsx";
 import { scrollToServiceFromHash, scrollToServiceSection } from "../utils/scrollToService.js";
+import HeroSection from "../components/HeroSection.jsx";
 
 const ICON_MAP = {
   Building2, Layers, Warehouse, Factory, Store, Home: HomeIcon, Umbrella, Key,
@@ -39,18 +40,11 @@ export default function Services() {
   return (
     <div className="page-transition pt-20">
       {/* Hero */}
-      <section className="relative py-20 bg-[#1A1A1A] overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <img src="/images/heroes/services.jpg" alt="" className="w-full h-full object-cover" />
-        </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="section-label" style={{ color: "#ff6b7a" }}>What We Build</span>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">Our Services</h1>
-          <p className="text-gray-400 text-base max-w-2xl mx-auto leading-relaxed">
-            Comprehensive industrial construction solutions — from Pre-Engineered Buildings to complete Turnkey delivery.
-          </p>
-        </div>
-      </section>
+      <HeroSection
+        img="/images/heroes/services.jpg"
+        title="Our Services"
+        description="Comprehensive industrial construction solutions — from Pre-Engineered Buildings to complete Turnkey delivery."
+      />
 
       {/* Service Nav */}
       <section className="services-category-bar sticky top-[65px] z-40">

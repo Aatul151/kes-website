@@ -5,23 +5,7 @@ import { useScrollAnimation } from "../hooks/useScrollAnimation.js";
 import { useContent } from "../context/ContentContext.jsx";
 import { SOCIAL_ICON_MAP } from "../utils/socialIcons.js";
 import ContactForm from "../components/ContactForm.jsx";
-
-const OFFICES = [
-  {
-    city: "Gandhinagar (HQ)",
-    address: "KES Group, 514,Shree Ugti Corporate Park , Kudasan, Gandhinagar, Gujarat 382421, IN",
-    phone: "+91 90999 10579",
-    email: "info@kesprojects.com",
-    hours: "Mon-Sat: 9:00 AM - 6:00 PM",
-  },
-  {
-    city: "Navsari",
-    address: "KES Group, 314,Uma darshan arcade, Navsari, Gujarat 396424, IN",
-    phone: "+91 90999 10579",
-    email: "info@kesprojects.com",
-    hours: "Mon-Sat: 9:00 AM - 6:00 PM",
-  },
-];
+import HeroSection from "../components/HeroSection.jsx";
 
 export default function Contact() {
   const { COMPANY } = useContent();
@@ -30,18 +14,11 @@ export default function Contact() {
   return (
     <div className="page-transition pt-20">
       {/* Hero */}
-      <section className="relative py-20 bg-[#1A1A1A] overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <img src="/images/heroes/contact.jpg" alt="" className="w-full h-full object-cover" />
-        </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="section-label" style={{ color: "#ff6b7a" }}>Get In Touch</span>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">Contact KES Group</h1>
-          <p className="text-gray-400 text-base max-w-2xl mx-auto leading-relaxed">
-            Ready to start your project? Our engineering team will respond within 24 hours with a detailed proposal.
-          </p>
-        </div>
-      </section>
+      <HeroSection
+        img="/images/heroes/contact.jpg"
+        title="Contact KES Groups"
+        description="Ready to start your project? Our engineering team will respond within 24 hours with a detailed proposal."
+      />
 
       {/* Quick Contact */}
       <section className="py-10 bg-white border-b border-gray-100">
@@ -85,9 +62,9 @@ export default function Contact() {
             <div className="space-y-2 animate-on-scroll-right">
               {/* Office Locations */}
               <div className="bg-white rounded-xl p-5 border border-gray-100">
-                <h3 className="font-semibold text-[#1A1A1A] text-sm mb-4">Our Offices</h3>
+                <h3 className="font-semibold text-[#1A1A1A] text-sm mb-4">Head Offices</h3>
                 <div className="space-y-5">
-                  {OFFICES.map((office, i) => (
+                  {COMPANY?.offices?.map((office, i) => (
                     <div key={i} className={`${i > 0 ? "pt-4 border-t border-gray-100" : ""}`}>
                       <p className="font-semibold text-[#C8102E] text-xs mb-2">{office.city}</p>
                       <div className="space-y-1.5">
@@ -117,7 +94,7 @@ export default function Contact() {
               <div className="bg-white rounded-xl p-1 border border-gray-100">
                 <section id="map" className="h-80 bg-gray-200 animate-on-scroll">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.2!2d78.4867!3d17.3850!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDIzJzA2LjAiTiA3OMKwMjknMTIuMiJF!5e0!3m2!1sen!2sin!4v1234567890"
+                    src={COMPANY?.key}
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
