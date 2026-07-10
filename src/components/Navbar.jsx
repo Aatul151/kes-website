@@ -56,13 +56,13 @@ export default function Navbar({ onOpenLanding }) {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo — larger visual size, fixed slot so navbar height stays the same */}
           <Link href="/">
-            <div className="flex items-center gap-2 cursor-pointer group">
+            <div className="relative h-14 w-44 cursor-pointer group overflow-visible">
               <img
                 src="/kes_logo.gif"
                 alt="KES Groups - Your Engineering Partner"
-                className="h-14 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+                className="absolute left-0 top-1/2 -translate-y-1/2 h-20 w-auto max-w-none object-contain transition-transform duration-200 group-hover:scale-105"
               />
             </div>
           </Link>

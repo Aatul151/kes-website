@@ -9,58 +9,47 @@ const __dirname = path.dirname(__filename);
 /** Project root (one level above /services) */
 const ROOT = path.resolve(__dirname, "..");
 const PROJECTS_DIR = path.join(ROOT, "public", "images", "projects");
+const LOGO_PATH = path.join(ROOT, "public", "kes_logo-transparent.png");
 
 const IMAGE_EXTENSIONS = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif", ".tiff"]);
 
 /**
- * Build an SVG overlay with repeating diagonal "KES" watermarks.
+ * Prepare centered KES logo overlay for compositing.
  * @param {number} width
  * @param {number} height
- * @param {{ text?: string, opacity?: number }} [options]
+ * @param {{ logoPath?: string, opacity?: number, scale?: number }} [options]
  */
-function createWatermarkSvg(width, height, options = {}) {
-  const text = options.text ?? "KES";
-  const opacity = options.opacity ?? 0.12;
-  const fontSize = Math.max(22, Math.round(Math.min(width, height) * 0.055));
+async function createLogoWatermark(width, height, options = {}) {
+  const logoPath = options.logoPath ?? LOGO_PATH;
+  const opacity = options.opacity ?? 0.28;
+  const scale = options.scale ?? 0.32;
 
-  // Spacing between repeated marks (in rotated space)
-  const stepX = Math.round(fontSize * 5.5);
-  const stepY = Math.round(fontSize * 3.2);
+  const targetWidth = Math.max(120, Math.round(Math.min(width, height) * scale));
+  const alpha = Math.round(opacity * 255);
 
-  // Cover the full image after rotation — expand bounds so corners aren't empty
-  const diagonal = Math.ceil(Math.hypot(width, height));
-  const start = -diagonal;
-  const end = diagonal;
+  const logoBuffer = await sharp(logoPath)
+    .resize({ width: targetWidth, withoutEnlargement: false })
+    .ensureAlpha()
+    .composite([
+      {
+        input: Buffer.from([0, 0, 0, alpha]),
+        raw: { width: 1, height: 1, channels: 4 },
+        tile: true,
+        blend: "dest-in",
+      },
+    ])
+    .png()
+    .toBuffer();
 
-  const marks = [];
-  let row = 0;
-  for (let y = start; y <= end; y += stepY) {
-    const offsetX = row % 2 === 0 ? 0 : stepX / 2; // stagger alternate rows
-    for (let x = start + offsetX; x <= end; x += stepX) {
-      marks.push(
-        `<text class="wm" x="${x}" y="${y}" text-anchor="middle" dominant-baseline="middle">${text}</text>`
-      );
-    }
-    row += 1;
-  }
+  const logoMeta = await sharp(logoBuffer).metadata();
+  const logoWidth = logoMeta.width ?? targetWidth;
+  const logoHeight = logoMeta.height ?? targetWidth;
 
-  return Buffer.from(`
-    <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
-      <style>
-        .wm {
-          fill: #C8102E;
-          fill-opacity: ${opacity};
-          font-family: Arial, Helvetica, sans-serif;
-          font-size: ${fontSize}px;
-          font-weight: 800;
-          letter-spacing: 0.18em;
-        }
-      </style>
-      <g transform="translate(${width / 2}, ${height / 2}) rotate(-32)">
-        ${marks.join("\n        ")}
-      </g>
-    </svg>
-  `);
+  return {
+    input: logoBuffer,
+    left: Math.round((width - logoWidth) / 2),
+    top: Math.round((height - logoHeight) / 2),
+  };
 }
 
 /**
@@ -81,8 +70,9 @@ function withWmkSuffix(inputPath) {
  * @param {string} inputPath Absolute or relative path to the image
  * @param {{
  *   outputPath?: string,
- *   text?: string,
+ *   logoPath?: string,
  *   opacity?: number,
+ *   scale?: number,
  * }} [options]
  * @returns {Promise<{ input: string, output: string, width: number, height: number }>}
  */
@@ -101,16 +91,16 @@ export async function watermarkImage(inputPath, options = {}) {
     throw new Error(`Could not read dimensions for: ${resolvedInput}`);
   }
 
-  const watermark = createWatermarkSvg(width, height, {
-    text: options.text,
+  const logoOverlay = await createLogoWatermark(width, height, {
+    logoPath: options.logoPath,
     opacity: options.opacity,
+    scale: options.scale,
   });
 
   // Same resolution — only re-encode smarter (strip metadata, higher effort).
-  // Metadata is dropped by default in sharp output, which also shrinks files.
   const pipeline = sharp(resolvedInput, { failOn: "none" })
-    .rotate() // apply EXIF orientation, then strip orientation tag
-    .composite([{ input: watermark, top: 0, left: 0 }]);
+    .rotate()
+    .composite([logoOverlay]);
 
   const ext = path.extname(outputPath).toLowerCase();
   let buffer;
@@ -167,8 +157,9 @@ export async function watermarkImage(inputPath, options = {}) {
  * Watermark every image in public/images/projects.
  * @param {{
  *   dir?: string,
- *   text?: string,
+ *   logoPath?: string,
  *   opacity?: number,
+ *   scale?: number,
  * }} [options]
  */
 export async function watermarkProjectsFolder(options = {}) {
@@ -203,8 +194,9 @@ export async function watermarkProjectsFolder(options = {}) {
   for (const file of files) {
     try {
       const result = await watermarkImage(file, {
-        text: options.text ?? "KES",
-        opacity: options.opacity ?? 0.12,
+        logoPath: options.logoPath,
+        opacity: options.opacity ?? 0.28,
+        scale: options.scale,
       });
       results.push(result);
       const saved = result.inputBytes - result.outputBytes;
