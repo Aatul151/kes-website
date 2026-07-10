@@ -764,12 +764,8 @@ export const TESTIMONIALS = [
 ];
 
 export const CERTIFICATIONS = [
-    { name: "ISO 9001:2015", subtitle: "Quality Management", icon: "Shield" },
-    { name: "ISO 14001:2015", subtitle: "Environmental Management", icon: "Leaf" },
-    { name: "OHSAS 18001", subtitle: "Occupational Health & Safety", icon: "Heart" },
-    { name: "BIS Certified", subtitle: "Bureau of Indian Standards", icon: "Award" },
-    { name: "AISC Member", subtitle: "American Institute of Steel", icon: "Star" },
-    { name: "MBMA Compliant", subtitle: "Metal Building Manufacturers", icon: "CheckCircle" },
+    { name: "UDYAM REGISTRATION CERTIFICATE", subtitle: "UDYAM-GJ-09-0057072", icon: "CheckCircle",image:"/images/certificate/udyam.jpg" },
+    { name: "QUALITY MANAGEMENT SYSTEM", subtitle: "ISO 9001:2015", icon: "Star" , image:"/images/certificate/iso.jpg"},
 ];
 
 export const SERVICE_AREAS = [
