@@ -91,7 +91,8 @@ export default function Navbar({ onOpenLanding }) {
                 type="button"
                 onClick={() => setIsVideoOpen(true)}
                 aria-label="Open corporate video"
-                className="gallery-immersive__video-trigger inline-flex items-center justify-center text-[#C8102E]"
+                title="Watch our corporate video"
+                className="gallery-immersive__video-trigger"
               >
                 <CirclePlay
                   size={40}

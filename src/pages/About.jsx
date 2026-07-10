@@ -36,7 +36,7 @@ function FoundationCard({ number, title, text, icon: Icon, variant, delay }) {
 }
 
 export default function About() {
-  const { ABOUT, STATS, COMPANY } = useContent();
+  const { ABOUT, STATS, COMPANY, LEADER, MILESTONES } = useContent();
   useScrollAnimation();
 
   const policyPoints = ABOUT?.policy_statement
@@ -259,7 +259,7 @@ export default function About() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {ABOUT.leadership.map((leader, i) => (
+            {LEADER.map((leader, i) => (
               <div
                 key={i}
                 className="bg-[#F8F8F8] rounded-xl overflow-hidden border border-gray-100 animate-on-scroll card-hover"
@@ -305,7 +305,7 @@ export default function About() {
             <div className="absolute left-1/2 top-0 bottom-0 w-px bg-white/10 hidden md:block" />
 
             <div className="space-y-8">
-              {ABOUT.milestones.map((m, i) => (
+              {MILESTONES.map((m, i) => (
                 <div
                   key={i}
                   className={`flex flex-col md:flex-row items-center gap-6 animate-on-scroll ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}

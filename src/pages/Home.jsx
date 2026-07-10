@@ -682,14 +682,14 @@ export default function Home() {
               <div className="accent-line-center" />
               <h2 className="section-title">Certifications & Standards</h2>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+            <div className="flex flex-wrap justify-center gap-4">
               {CERTIFICATIONS.map((cert, i) => {
                 const Icon = ICON_MAP[cert.icon] || Shield;
                 return (
                   <div
                     key={i}
                     onClick={() => setSelectedImage(cert.image)}
-                    className="cert-badge flex-col gap-2 animate-on-scroll cursor-pointer hover:scale-105 transition"
+                    className="cert-badge flex-col gap-2 animate-on-scroll cursor-pointer hover:scale-105 transition w-full max-w-[200px]"
                     style={{ transitionDelay: `${i * 60}ms` }}
                   >
                     <div className="w-10 h-10 bg-red-50 rounded-full flex items-center justify-center">

@@ -94,14 +94,14 @@ export default function Contact() {
               <div className="bg-white rounded-xl p-1 border border-gray-100">
                 <section id="map" className="h-80 bg-gray-200 animate-on-scroll">
                   <iframe
-                    src={COMPANY?.key}
+                    src={COMPANY?.mapEmbed}
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
                     allowFullScreen=""
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title="KES Engineering Office Location"
+                    title="KES Projects Private Limited Location"
                   />
                 </section>
               </div>

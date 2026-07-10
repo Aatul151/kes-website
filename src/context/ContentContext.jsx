@@ -3,11 +3,12 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 const ContentContext = createContext(null);
 
 const CONTENT_URL = "/content.js";
+const CLIENT_CONTENT_URL = "/client_content.js";
 
-async function loadContentModule() {
-  const response = await fetch(CONTENT_URL);
+async function loadModule(url) {
+  const response = await fetch(url);
   if (!response.ok) {
-    throw new Error(`Failed to fetch content.js (${response.status})`);
+    throw new Error(`Failed to fetch ${url} (${response.status})`);
   }
   const source = await response.text();
   const blob = new Blob([source], { type: "text/javascript" });
@@ -17,6 +18,14 @@ async function loadContentModule() {
   } finally {
     URL.revokeObjectURL(blobUrl);
   }
+}
+
+async function loadContentModule() {
+  const [content, clientContent] = await Promise.all([
+    loadModule(CONTENT_URL),
+    loadModule(CLIENT_CONTENT_URL),
+  ]);
+  return { ...content, ...clientContent };
 }
 
 export function ContentProvider({ children }) {
@@ -45,7 +54,8 @@ export function ContentProvider({ children }) {
         <div className="text-center max-w-md">
           <p className="text-[#C8102E] font-semibold mb-2">Unable to load site content</p>
           <p className="text-sm text-gray-400">
-            Please check that <code className="text-gray-300">content.js</code> is available and try refreshing the page.
+            Please check that <code className="text-gray-300">content.js</code> and{" "}
+            <code className="text-gray-300">client_content.js</code> are available and try refreshing the page.
           </p>
         </div>
       </div>
