@@ -1,0 +1,14 @@
+{
+  "name": "kes-image-services",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Image utilities for KES website (watermarking, etc.)",
+  "scripts": {
+    "watermark": "node service.js",
+    "watermark:projects": "node service.js"
+  },
+  "dependencies": {
+    "sharp": "^0.33.5"
+  }
+}

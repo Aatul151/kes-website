@@ -344,11 +344,11 @@ export const PROJECTS = [
         industry: "Logistics",
         area: "85,000 sq.ft",
         scope: "PEB Warehouse with 12m clear height, 8 dock levelers",
-        image: "/images/projects/alliance_recpet.webp",
+        image: "/images/projects/alliance_recpet_wmk.webp",
         year: "2023",
         tag: "Logistics",
         images: [
-            '/images/projects/alliance_recpet.webp',
+            '/images/projects/alliance_recpet_wmk.webp',
         ]
     },
     {
@@ -358,11 +358,11 @@ export const PROJECTS = [
         industry: "Automobile",
         area: "1,20,000 sq.ft",
         scope: "Heavy steel structure with 50T overhead crane",
-        image: "/images/projects/arc7_metals.webp",
+        image: "/images/projects/arc7_metals_wmk.webp",
         year: "2023",
         tag: "Automobile",
         images: [
-            '/images/projects/arc7_metals.webp',
+            '/images/projects/arc7_metals_wmk.webp',
         ]
     },
     {
@@ -372,11 +372,11 @@ export const PROJECTS = [
         industry: "Pharmaceutical",
         area: "45,000 sq.ft",
         scope: "Clean room factory building with controlled environment",
-        image: "/images/projects/cmp_factory_shed.webp",
+        image: "/images/projects/cmp_factory_shed_wmk.webp",
         year: "2022",
         tag: "Pharmaceutical",
         images: [
-            '/images/projects/cmp_factory_shed.webp',
+            '/images/projects/cmp_factory_shed_wmk.webp',
         ]
     },
     {
@@ -386,11 +386,11 @@ export const PROJECTS = [
         industry: "Warehousing",
         area: "2,00,000 sq.ft",
         scope: "Multi-level PEB warehouse with mezzanine floors",
-        image: "/images/projects/cr3_1.webp",
+        image: "/images/projects/cr3_1_wmk.webp",
         year: "2023",
         tag: "Warehousing",
         images: [
-            '/images/projects/cr3_1.webp',
+            '/images/projects/cr3_1_wmk.webp',
         ]
     },
     {
@@ -400,12 +400,12 @@ export const PROJECTS = [
         industry: "Renewable Energy",
         area: "3,50,000 sq.ft",
         scope: "Solar panel mounting structures and control room",
-        image: "/images/projects/flair_cryosil.webp",
+        image: "/images/projects/flair_cryosil_wmk.webp",
         year: "2022",
         tag: "Renewable Energy",
         images: [
-            '/images/projects/flair_cryosil.webp',
-            '/images/projects/flair_plastics.webp'
+            '/images/projects/flair_cryosil_wmk.webp',
+            '/images/projects/flair_plastics_wmk.webp'
         ]
     },
     {
@@ -415,12 +415,12 @@ export const PROJECTS = [
         industry: "Food Processing",
         area: "60,000 sq.ft",
         scope: "Hygienic factory building with HACCP compliance",
-        image: "/images/projects/godwitt.webp",
+        image: "/images/projects/godwitt_wmk.webp",
         year: "2022",
         tag: "Food Processing",
         images: [
-            '/images/projects/godwitt.webp',
-            '/images/projects/godwitt1.webp',
+            '/images/projects/godwitt_wmk.webp',
+            '/images/projects/godwitt1_wmk.webp',
         ]
     },
     {
@@ -430,11 +430,11 @@ export const PROJECTS = [
         industry: "Textile",
         area: "75,000 sq.ft",
         scope: "PEB factory with humidity-controlled environment",
-        image: "/images/projects/maruti_suzuki.webp",
+        image: "/images/projects/maruti_suzuki_wmk.webp",
         year: "2021",
         tag: "Textile",
         images: [
-            '/images/projects/maruti_suzuki.webp',
+            '/images/projects/maruti_suzuki_wmk.webp',
         ]
     },
     {
@@ -444,11 +444,11 @@ export const PROJECTS = [
         industry: "Manufacturing",
         area: "95,000 sq.ft",
         scope: "Heavy industrial shed with 100T crane girder",
-        image: "/images/projects/mehali1.webp",
+        image: "/images/projects/mehali1_wmk.webp",
         year: "2021",
         tag: "Manufacturing",
         images: [
-            '/images/projects/mehali1.webp',
+            '/images/projects/mehali1_wmk.webp',
         ]
     },
     {
@@ -458,11 +458,11 @@ export const PROJECTS = [
         industry: "Manufacturing",
         area: "95,000 sq.ft",
         scope: "Heavy industrial shed with 100T crane girder",
-        image: "/images/projects/polymatrix.webp",
+        image: "/images/projects/polymatrix_wmk.webp",
         year: "2021",
         tag: "Manufacturing",
         images: [
-            '/images/projects/polymatrix.webp',
+            '/images/projects/polymatrix_wmk.webp',
         ]
     },
     {
@@ -472,11 +472,11 @@ export const PROJECTS = [
         industry: "Manufacturing",
         area: "95,000 sq.ft",
         scope: "Heavy industrial shed with 100T crane girder",
-        image: "/images/projects/plas_o_pack.webp",
+        image: "/images/projects/plas_o_pack_wmk.webp",
         year: "2021",
         tag: "Manufacturing",
         images: [
-            '/images/projects/plas_o_pack.webp',
+            '/images/projects/plas_o_pack_wmk.webp',
         ]
     },
     {
@@ -486,11 +486,11 @@ export const PROJECTS = [
         industry: "Manufacturing",
         area: "95,000 sq.ft",
         scope: "Heavy industrial shed with 100T crane girder",
-        image: "/images/projects/savitaoil.webp",
+        image: "/images/projects/savitaoil_wmk.webp",
         year: "2021",
         tag: "Manufacturing",
         images: [
-            '/images/projects/savitaoil.webp',
+            '/images/projects/savitaoil_wmk.webp',
         ]
     },
     {
@@ -500,12 +500,12 @@ export const PROJECTS = [
         industry: "Manufacturing",
         area: "95,000 sq.ft",
         scope: "Heavy industrial shed with 100T crane girder",
-        image: "/images/projects/sud_chemie1.webp",
+        image: "/images/projects/sud_chemie1_wmk.webp",
         year: "2021",
         tag: "Manufacturing",
         images: [
-            '/images/projects/sud_chemie1.webp',
-            '/images/projects/sud_chemie2.webp'
+            '/images/projects/sud_chemie1_wmk.webp',
+            '/images/projects/sud_chemie2_wmk.webp'
         ]
     },
     {
@@ -515,11 +515,11 @@ export const PROJECTS = [
         industry: "Manufacturing",
         area: "95,000 sq.ft",
         scope: "Heavy industrial shed with 100T crane girder",
-        image: "/images/projects/surja_extrusion.webp",
+        image: "/images/projects/surja_extrusion_wmk.webp",
         year: "2021",
         tag: "Manufacturing",
         images: [
-            '/images/projects/surja_extrusion.webp',
+            '/images/projects/surja_extrusion_wmk.webp',
         ]
     },
     {
@@ -529,11 +529,11 @@ export const PROJECTS = [
         industry: "Manufacturing",
         area: "95,000 sq.ft",
         scope: "Heavy industrial shed with 100T crane girder",
-        image: "/images/projects/surja_extrusion.webp",
+        image: "/images/projects/surja_extrusion_wmk.webp",
         year: "2021",
         tag: "Manufacturing",
         images: [
-            '/images/projects/surja_extrusion.webp',
+            '/images/projects/surja_extrusion_wmk.webp',
         ]
     },
     {
@@ -543,11 +543,11 @@ export const PROJECTS = [
         industry: "Manufacturing",
         area: "95,000 sq.ft",
         scope: "Heavy industrial shed with 100T crane girder",
-        image: "/images/projects/v_trans.webp",
+        image: "/images/projects/v_trans_wmk.webp",
         year: "2021",
         tag: "Manufacturing",
         images: [
-            '/images/projects/v_trans.webp',
+            '/images/projects/v_trans_wmk.webp',
         ]
     },
 ];

@@ -218,11 +218,7 @@ export default function Projects() {
 
                 {/* Details */}
                 <div className="lg:col-span-3 bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-                  <span className="bg-[#C8102E] text-white text-[10px] font-bold px-2.5 py-1 rounded-full">
-                    {selected.tag}
-                  </span>
-
-                  <div className="grid grid-cols-1 gap-3 mt-6">
+                  <div className="grid grid-cols-1 gap-3">
                     {[
                       { label: "Industry", value: selected.industry },
                       { label: "Area", value: selected.area },
@@ -240,15 +236,6 @@ export default function Projects() {
                         </p>
                       </div>
                     ))}
-                  </div>
-
-                  <div className="mt-6">
-                    <p className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider mb-2">
-                      Scope of Work
-                    </p>
-                    <p className="text-sm text-gray-700 leading-7">
-                      {selected.scope}
-                    </p>
                   </div>
 
                   <Link href="/contact">
