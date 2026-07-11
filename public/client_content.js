@@ -95,7 +95,10 @@ export const CLIENTS = [
     { id: 62, name: "Money Packers", image: "/images/clients/money-packers.jpg" },
     { id: 63, name: "Surja Extrusion", image: "/images/clients/surja.jpeg" },
     { id: 64, name: "Avail Infrastructure Solutions", image: "/images/clients/avail-infrastructure-solutions.jpg" },
-    { id: 65, name: "Quality Infrastructure Pvt. Ltd.", image: "/images/clients/quality-infrastructure-pvt-ltd.jpg" },
+    { id: 65, name: "Alaina Healthcare", image: "/images/clients/alaina-healthcare.png" },
+    { id: 66, name: "Akshar Group", image: "/images/clients/akshar_group.jpg" },
+    { id: 67, name: "Akshar Electric Panel Boards Pvt. Ltd.", image: "/images/clients/akshar-electric-panel-boards-pvt-ltd.jpg" },
+    { id: 68, name: "Aristoplast", image: "/images/clients/aristoplast.jpg" },
 ];
 
 export const PROJECTS = [

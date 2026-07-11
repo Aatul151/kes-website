@@ -107,12 +107,12 @@ export const SOCIAL_LINKS = [
 ];
 
 export const LANDING_SCREEN = {
-    durationMs: 10000,
+    durationMs: 8000,
     backgroundVideo: "/videos/hero/home_bg_v_3.mp4",
     backgroundImage: "/images/landing/background.jpg",
     highlights: [
         "Pre-Engineered Buildings & Steel Structures",
-        "Industrial Wastewater Treatment Systems",
+        "Industrial Waste Water Treatment Systems - STP/ WTP",
         "EPC - Engineering, Procurement & Construction",
     ],
     mission:
@@ -144,7 +144,7 @@ export const HOME_HERO = {
     badge: "Where trust is the foundation and steel is the frame.",
     title: "Engineering Tomorrow's",
     titleHighlight: "Industrial Landmarks",
-    subtitle: "Your Engineering Partner",
+    subtitle: "Where trust is the foundation and steel is the frame",
 };
 
 export const PRIVACY_POLICY = {
@@ -265,7 +265,7 @@ export const SERVICES = [
     {
         id: "stp",
         icon: "Factory",
-        title: "Industrial Wastewater Treatment Systems",
+        title: "Industrial Waste Water Treatment Systems - STP/ WTP",
         shortDesc:
             "End-to-end solutions for STP and WTP, ensuring reliable, sustainable, and efficient water treatment systems.",
         description:

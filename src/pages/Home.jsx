@@ -160,7 +160,7 @@ export default function Home() {
     const playVideo = () => {
       if (cancelled) return;
       video.currentTime = 0;
-      video.play().catch(() => { });
+      video.play().catch(() => {});
     };
 
     const onCanPlay = () => playVideo();
@@ -188,7 +188,6 @@ export default function Home() {
     }, 5000);
     return () => clearInterval(t);
   }, []);
-
 
   return (
     <>
@@ -218,17 +217,22 @@ export default function Home() {
           {/* Content */}
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
             <div className="max-w-3xl">
+              {/* <span className="inline-block bg-[#C8102E] border border-[#C8102E]/40 text-[#ffffff] text-xs font-semibold tracking-[3px] uppercase px-4 py-1.5 rounded-full mb-6">
+                {HOME_HERO.badge}
+              </span> */}
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#C8102E] leading-tight mb-5">
+                {HOME_HERO.title}
+                <br />
+                <span className="text-white">
+                  {HOME_HERO.titleHighlight}
+                </span>
+              </h1>
+              {/* <p className="text-lg sm:text-xl text-gray-300 font-light mb-8 leading-relaxed">
+                {HOME_HERO.subtitle || COMPANY.tagline}
+              </p> */}
               <span className="inline-block bg-[#C8102E] border border-[#C8102E]/40 text-[#ffffff] text-xs font-semibold tracking-[3px] uppercase px-4 py-1.5 rounded-full mb-6">
                 {HOME_HERO.badge}
               </span>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-5">
-                {HOME_HERO.title}
-                <br />
-                <span className="text-[#C8102E]">{HOME_HERO.titleHighlight}</span>
-              </h1>
-              <p className="text-lg sm:text-xl text-gray-300 font-light mb-8 leading-relaxed">
-                {HOME_HERO.subtitle || COMPANY.tagline}
-              </p>
               <div className="flex flex-wrap gap-4 mb-14">
                 <Link href="/contact">
                   <button className="btn-primary text-sm">
@@ -247,7 +251,10 @@ export default function Home() {
                 {STATS.map((stat, i) => (
                   <div key={i} className="stat-card">
                     <div className="text-2xl sm:text-3xl font-bold text-[#C8102E] mb-1">
-                      <AnimatedCounter target={stat.value} suffix={stat.suffix} />
+                      <AnimatedCounter
+                        target={stat.value}
+                        suffix={stat.suffix}
+                      />
                     </div>
                     <div className="text-xs text-gray-500 font-medium">
                       {stat.label}
@@ -268,10 +275,11 @@ export default function Home() {
                   onClick={() => setHeroVideoIdx(videoIdx)}
                   aria-label={`Show hero background ${videoIdx + 1} of ${heroVideoAvailable.length}`}
                   aria-current={videoIdx === heroVideoIdx ? "true" : undefined}
-                  className={`h-2 rounded-full transition-all duration-300 ${videoIdx === heroVideoIdx
-                    ? "w-8 bg-[#C8102E]"
-                    : "w-2 bg-white/40 hover:bg-white/70"
-                    }`}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    videoIdx === heroVideoIdx
+                      ? "w-8 bg-[#C8102E]"
+                      : "w-2 bg-white/40 hover:bg-white/70"
+                  }`}
                 />
               ))}
             </div>
@@ -332,33 +340,39 @@ export default function Home() {
                   15 Years of Engineering Excellence
                 </h2>
                 <p className="text-gray-600 text-sm leading-relaxed mb-5 text-justify">
-                  KES Group, established in 2017 and headquartered in Gandhinagar, Gujarat,
-                  is a leading provider of Pre-Engineered Buildings (PEB) and steel structure solutions.
-                  With a state-of-the-art manufacturing facility and experienced leadership,
-                  KES delivers high-quality, customized, and cost-effective infrastructure solutions
+                  KES Group, established in 2017 and headquartered in
+                  Gandhinagar, Gujarat, is a leading provider of Pre-Engineered
+                  Buildings (PEB) and steel structure solutions. With a
+                  state-of-the-art manufacturing facility and experienced
+                  leadership, KES delivers high-quality, customized, and
+                  cost-effective infrastructure solutions
                 </p>
                 <p className="text-gray-600 text-sm leading-relaxed mb-7 text-justify">
-                  Operates a modern, technologically advanced manufacturing facility strategically
-                  located in Gandhinagar, Gujarat, with an installed production capacity exceeding 18,000 MT annually,
+                  Operates a modern, technologically advanced manufacturing
+                  facility strategically located in Gandhinagar, Gujarat, with
+                  an installed production capacity exceeding 18,000 MT annually,
                   spread across 1,00,000 square feet of covered infrastructure.
-                  To meet future demands and expansion plans, an additional 1,50,000 square feet of open land has been acquired ,
-                  with an overall vision to scale production capacity to 30,000 MT per annum.
+                  To meet future demands and expansion plans, an additional
+                  1,50,000 square feet of open land has been acquired , with an
+                  overall vision to scale production capacity to 30,000 MT per
+                  annum.
                 </p>
                 <div className="grid grid-cols-2 gap-4 mb-7">
-                  {[{ label: "Satisfied Clients", value: "350+" },
-                  ].map((item, i) => (
-                    <div
-                      key={i}
-                      className="bg-white rounded-lg p-4 border border-gray-100"
-                    >
-                      <div className="text-xl font-bold text-[#C8102E]">
-                        {item.value}
+                  {[{ label: "Satisfied Clients", value: "350+" }].map(
+                    (item, i) => (
+                      <div
+                        key={i}
+                        className="bg-white rounded-lg p-4 border border-gray-100"
+                      >
+                        <div className="text-xl font-bold text-[#C8102E]">
+                          {item.value}
+                        </div>
+                        <div className="text-xs text-gray-500 mt-0.5">
+                          {item.label}
+                        </div>
                       </div>
-                      <div className="text-xs text-gray-500 mt-0.5">
-                        {item.label}
-                      </div>
-                    </div>
-                  ))}
+                    ),
+                  )}
                 </div>
                 <Link href="/about">
                   <button className="btn-primary text-xs">
@@ -512,8 +526,8 @@ export default function Home() {
               <div className="accent-line-center" />
               <h2 className="section-title text-white">Our Process</h2>
               <p className="section-subtitle mx-auto text-center text-gray-400">
-                A proven 6-step process that ensures every project is delivered on
-                time, within budget, and to the highest quality standards.
+                A proven 6-step process that ensures every project is delivered
+                on time, within budget, and to the highest quality standards.
               </p>
             </div>
 
@@ -552,10 +566,15 @@ export default function Home() {
                 <div
                   className="relative overflow-hidden border border-white-500 rounded-xl p-6 max-w-xl mx-auto text-center animate-on-scroll min-h-[220px] flex items-center justify-center bg-cover bg-center transition-[background-image] duration-500"
                   style={{
-                    backgroundImage: step.image ? `url(${step.image})` : undefined,
+                    backgroundImage: step.image
+                      ? `url(${step.image})`
+                      : undefined,
                   }}
                 >
-                  <div className="absolute inset-0 bg-black/60" aria-hidden="true" />
+                  <div
+                    className="absolute inset-0 bg-black/60"
+                    aria-hidden="true"
+                  />
                   <div className="relative z-10 px-2">
                     <div className="w-12 h-12 bg-[#C8102E] rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
                       <Icon size={20} className="text-white" />
@@ -578,15 +597,19 @@ export default function Home() {
                 return (
                   <div
                     key={step.step}
-                    className={`flex gap-4 p-4 rounded-xl border cursor-pointer transition-all ${activeStep === step.step
-                      ? "border-[#C8102E] bg-[#C8102E]/10"
-                      : "border-white/10 bg-white/5"
-                      }`}
+                    className={`flex gap-4 p-4 rounded-xl border cursor-pointer transition-all ${
+                      activeStep === step.step
+                        ? "border-[#C8102E] bg-[#C8102E]/10"
+                        : "border-white/10 bg-white/5"
+                    }`}
                     onClick={() => setActiveStep(step.step)}
                   >
                     <div
-                      className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 ${activeStep === step.step ? "bg-[#C8102E]" : "bg-white/10"
-                        }`}
+                      className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 ${
+                        activeStep === step.step
+                          ? "bg-[#C8102E]"
+                          : "bg-white/10"
+                      }`}
                     >
                       <Icon size={16} className="text-white" />
                     </div>
@@ -594,7 +617,9 @@ export default function Home() {
                       <p className="text-white text-sm font-semibold">
                         Step {step.step}: {step.title}
                       </p>
-                      <p className="text-gray-400 text-xs mt-0.5">{step.desc}</p>
+                      <p className="text-gray-400 text-xs mt-0.5">
+                        {step.desc}
+                      </p>
                     </div>
                   </div>
                 );
@@ -645,7 +670,8 @@ export default function Home() {
                 <button
                   onClick={() =>
                     setTestimonialIdx(
-                      (i) => (i - 1 + TESTIMONIALS.length) % TESTIMONIALS.length,
+                      (i) =>
+                        (i - 1 + TESTIMONIALS.length) % TESTIMONIALS.length,
                     )
                   }
                   className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center hover:border-[#C8102E] hover:text-[#C8102E] transition-all"
@@ -718,7 +744,8 @@ export default function Home() {
               <div className="accent-line-center" />
               <h2 className="section-title">Service Areas</h2>
               <p className="section-subtitle mx-auto text-center">
-                Executing projects across 4 states with dedicated regional teams.
+                Executing projects across 4 states with dedicated regional
+                teams.
               </p>
             </div>
             <div className="flex flex-wrap justify-center gap-2.5 animate-on-scroll">
@@ -771,7 +798,9 @@ export default function Home() {
                         <p className="text-white text-sm font-medium">
                           {item.label}
                         </p>
-                        <p className="text-gray-500 text-xs mt-0.5">{item.sub}</p>
+                        <p className="text-gray-500 text-xs mt-0.5">
+                          {item.sub}
+                        </p>
                       </div>
                     </div>
                   ))}
@@ -785,7 +814,10 @@ export default function Home() {
         </section>
       </div>
       {selectedImage && (
-        <div onClick={() => setSelectedImage(null)} className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4">
+        <div
+          onClick={() => setSelectedImage(null)}
+          className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4"
+        >
           <img
             src={selectedImage}
             alt="Certificate"
