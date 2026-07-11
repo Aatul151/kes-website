@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
 import { MapPin, Maximize2, ArrowRight, Calendar, ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation.js";
@@ -14,6 +14,7 @@ export default function Projects() {
   const [selected, setSelected] = useState(null);
   const [imageIdx, setImageIdx] = useState(0);
   const [allImages, setAllImages] = useState([]);
+  const resultsLabelRef = useRef(null);
   useScrollAnimation([activeFilter, selected]);
 
   useEffect(() => {
@@ -22,6 +23,24 @@ export default function Projects() {
 
   const filtered = activeFilter === "All" ? PROJECTS
     : PROJECTS.filter((p) => p.tag === activeFilter);
+
+  const scrollToResults = () => {
+    const el = resultsLabelRef.current;
+    if (!el) return;
+    // Offset for navbar + sticky filter bar
+    const offset = 130;
+    const top = el.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: "smooth" });
+  };
+
+  const handleFilterClick = (f) => {
+    setActiveFilter(f);
+    setSelected(null);
+    // Wait for grid to remount if we were on a detail view
+    requestAnimationFrame(() => {
+      requestAnimationFrame(scrollToResults);
+    });
+  };
 
   const openImagePreview = () => {
     const combineImages = PROJECTS?.flatMap(project =>
@@ -57,7 +76,7 @@ export default function Projects() {
               <button
                 key={f}
                 className={`filter-btn ${activeFilter === f ? "active" : ""}`}
-                onClick={() => { setActiveFilter(f); setSelected(null) }}
+                onClick={() => handleFilterClick(f)}
               >
                 {f}
               </button>
@@ -70,7 +89,7 @@ export default function Projects() {
       {!selected && <section className="py-14 bg-[#F8F8F8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between pb-3">
-            <p className="text-gray-500 text-sm mb-6">
+            <p ref={resultsLabelRef} className="text-gray-500 text-sm mb-6">
               Showing <span className="font-semibold text-[#1A1A1A]">{filtered.length}</span> projects
               {activeFilter !== "All" && <> in <span className="font-semibold text-[#C8102E]">{activeFilter}</span></>}
             </p>
