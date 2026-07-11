@@ -15,6 +15,7 @@ export default function Projects() {
   const [imageIdx, setImageIdx] = useState(0);
   const [allImages, setAllImages] = useState([]);
   const resultsLabelRef = useRef(null);
+  const detailRef = useRef(null);
   useScrollAnimation([activeFilter, selected]);
 
   useEffect(() => {
@@ -24,8 +25,7 @@ export default function Projects() {
   const filtered = activeFilter === "All" ? PROJECTS
     : PROJECTS.filter((p) => p.tag === activeFilter);
 
-  const scrollToResults = () => {
-    const el = resultsLabelRef.current;
+  const scrollToEl = (el) => {
     if (!el) return;
     // Offset for navbar + sticky filter bar
     const offset = 130;
@@ -33,12 +33,21 @@ export default function Projects() {
     window.scrollTo({ top, behavior: "smooth" });
   };
 
+  const scrollToResults = () => scrollToEl(resultsLabelRef.current);
+
   const handleFilterClick = (f) => {
     setActiveFilter(f);
     setSelected(null);
     // Wait for grid to remount if we were on a detail view
     requestAnimationFrame(() => {
       requestAnimationFrame(scrollToResults);
+    });
+  };
+
+  const handleProjectClick = (project) => {
+    setSelected(project);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => scrollToEl(detailRef.current));
     });
   };
 
@@ -109,7 +118,7 @@ export default function Projects() {
                   key={project.id}
                   className="project-card h-72 animate-on-scroll cursor-pointer"
                   style={{ transitionDelay: `${i * 60}ms` }}
-                  onClick={() => setSelected(project)}
+                  onClick={() => handleProjectClick(project)}
                 >
                   <img src={project.image} alt={project.title} />
                   <div className="overlay" />
@@ -154,7 +163,7 @@ export default function Projects() {
           setImageIdx((i) => (i + 1) % galleryImages.length);
 
         return (
-          <section className="py-10 bg-[#F8F8F8]">
+          <section ref={detailRef} className="py-10 bg-[#F8F8F8]">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 animate-on-scroll">
               <div className="flex items-start justify-between gap-4 mb-6">
                 <div className="min-w-0 flex-1">
