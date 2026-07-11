@@ -311,7 +311,7 @@ export const WHY_KES = [
     {
         icon: "Award",
         title: "Engineering Excellence",
-        desc: "A team of 50+ qualified structural engineers using advanced design software to deliver precision-engineered solutions for every project.",
+        desc: " A team of 50+ qualified professionals, spanning Sales, Design, Production, Quality, and Projects, leverages advanced systems to deliver precision‑engineered solutions for every project.",
     },
     {
         icon: "TrendingDown",
@@ -331,7 +331,7 @@ export const WHY_KES = [
     {
         icon: "Users",
         title: "Dedicated Project Management",
-        desc: "Every project gets a dedicated project manager providing weekly progress reports, milestone tracking, and proactive issue resolution.",
+        desc: "A dedicated PMC team oversees all project activities, ensuring milestone-based execution, structured reporting, and proactive issue resolution.",
     },
 ];
 
@@ -453,20 +453,20 @@ export const PROCESS_STEPS = [
     {
         step: 2,
         title: "Engineering Design",
-        desc: "Structural analysis, 3D modeling, and detailed engineering drawings using STAAD.Pro and AutoCAD.",
+        desc: "Structural Analysis, Modelling and Detailed Engineering Drawings using latest designing softwares.",
         icon: "PenTool",
         image: "/images/process/engineering-design.jpg",
     },
     {
         step: 3,
         title: "Manufacturing",
-        desc: "Precision fabrication in our ISO-certified factory with CNC cutting, welding, and surface treatment.",
+        desc: "Precision fabrication in our ISO‑certified factory, equipped with state‑of‑the‑art latest machineries.",
         icon: "Settings",
         image: "/images/process/manufacturing.png",
     },
     {
         step: 4,
-        title: "Fabrication",
+        title: "Blasting & Painting",
         desc: "Component assembly, quality inspection, and protective coating application before dispatch.",
         icon: "Wrench",
         image: "/images/process/fabrication.jpg",
@@ -481,7 +481,7 @@ export const PROCESS_STEPS = [
     {
         step: 6,
         title: "Project Handover",
-        desc: "Final inspection, documentation, as-built drawings, and formal handover with warranty certificate.",
+        desc: " Project handover is executed in line with customer expectations, supported by thorough final inspection and complete documentation, ensuring a smooth and transparent closure of all activities.",
         icon: "CheckCircle",
         image: "/images/process/project-handover.png",
     },
