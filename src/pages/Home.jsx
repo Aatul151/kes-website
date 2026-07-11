@@ -408,7 +408,7 @@ export default function Home() {
               <h2 className="section-title">The KES Advantage</h2>
               <p className="section-subtitle mx-auto text-center">
                 Six compelling reasons why India's leading industrial companies
-                choose KES Engineering.
+                choose KES.
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
