@@ -10,13 +10,13 @@
 export const COMPANY = {
     name: "KES Group",
     tagline: "Your Engineering Partner",
-    subTagline: "Design. Fabrication. Erection. Turnkey Delivery.",
+    subTagline: "Where trust is the foundation and steel is the frame.",
     founded: "2009",
     phone: "+91 90999 10579",
     email: "info@kesprojects.com",
     address:
         "28 29 30 31 32, MOTHER INDUSTRIAL PARK-2, DEHGAM, Kadadara Gandhinagar 382305 Gujarat",
-    mapEmbed:"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1830.3613406471843!2d72.78765121568185!3d23.096753149260312!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e7d872f055891%3A0x1942765fd8b7bd55!2sKES%20Projects%20Private%20Limited!5e1!3m2!1sen!2sus!4v1783680527890!5m2!1sen!2sus",
+    mapEmbed: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1830.3613406471843!2d72.78765121568185!3d23.096753149260312!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e7d872f055891%3A0x1942765fd8b7bd55!2sKES%20Projects%20Private%20Limited!5e1!3m2!1sen!2sus!4v1783680527890!5m2!1sen!2sus",
     corporateVideoEmbed:
         "https://drive.google.com/file/d/1ohRXlzRnvKnR0HDspUDCMSBixL3KzRWC/preview",
     subCompanys: [
@@ -107,14 +107,13 @@ export const SOCIAL_LINKS = [
 ];
 
 export const LANDING_SCREEN = {
-    durationMs: 8000,
+    durationMs: 10000,
     backgroundVideo: "/videos/hero/home_bg_v_3.mp4",
-    backgroundImage:
-        "/images/landing/background.jpg",
+    backgroundImage: "/images/landing/background.jpg",
     highlights: [
         "Pre-Engineered Buildings & Steel Structures",
-        "Turnkey Industrial Construction Solutions",
-        "STP / WTP & Specialized Engineering Services",
+        "Industrial Wastewater Treatment Systems",
+        "EPC - Engineering, Procurement & Construction",
     ],
     mission:
         "To promote excellence in industrial Engineering Solutions with Technological Innovation on the foundation of distinct quality and corporate values.",
