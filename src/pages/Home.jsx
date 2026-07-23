@@ -185,7 +185,7 @@ export default function Home() {
   useEffect(() => {
     const t = setInterval(() => {
       setTestimonialIdx((i) => (i + 1) % TESTIMONIALS.length);
-    }, 5000);
+    }, 10000);
     return () => clearInterval(t);
   }, []);
 
@@ -279,7 +279,7 @@ export default function Home() {
                     videoIdx === heroVideoIdx
                       ? "w-8 bg-[#C8102E]"
                       : "w-2 bg-white/40 hover:bg-white/70"
-                  }`}
+                    }`}
                 />
               ))}
             </div>
@@ -337,7 +337,7 @@ export default function Home() {
                 <span className="section-label">About KES</span>
                 <div className="accent-line" />
                 <h2 className="section-title">
-                  15 Years of Engineering Excellence
+                  {COMPANY.yearsExperience} Years of Engineering Excellence
                 </h2>
                 <p className="text-gray-600 text-sm leading-relaxed mb-5 text-justify">
                   KES Group, established in 2017 and headquartered in
@@ -358,7 +358,7 @@ export default function Home() {
                   annum.
                 </p>
                 <div className="grid grid-cols-2 gap-4 mb-7">
-                  {[{ label: "Satisfied Clients", value: "350+" }].map(
+                  {[{ label: "Satisfied Clients", value: `${COMPANY.satisfiedClients}+` }].map(
                     (item, i) => (
                       <div
                         key={i}
@@ -388,7 +388,7 @@ export default function Home() {
                     className="rounded-xl w-full h-80 object-cover shadow-lg"
                   />
                   <div className="absolute -bottom-5 -left-5 bg-[#C8102E] text-white rounded-xl p-5 shadow-xl">
-                    <div className="text-3xl font-bold">250+</div>
+                    <div className="text-3xl font-bold">{COMPANY.projectsDelivered}+</div>
                     <div className="text-xs opacity-80 mt-0.5">
                       Projects Delivered
                     </div>
@@ -655,10 +655,10 @@ export default function Home() {
                   <p className="font-semibold text-[#1A1A1A] text-sm">
                     {TESTIMONIALS[testimonialIdx].name}
                   </p>
-                  <p className="text-gray-500 text-xs mt-0.5">
-                    {TESTIMONIALS[testimonialIdx].designation},{" "}
-                    {TESTIMONIALS[testimonialIdx].company}
-                  </p>
+                  {(TESTIMONIALS[testimonialIdx].designation || TESTIMONIALS[testimonialIdx].company) && <p className="text-gray-500 text-xs mt-0.5">
+                    {TESTIMONIALS[testimonialIdx].designation}
+                    {TESTIMONIALS[testimonialIdx].company ? `, ${TESTIMONIALS[testimonialIdx].company}` : ""}
+                  </p>}
                   <span className="inline-block mt-2 bg-red-50 text-[#C8102E] text-[10px] font-semibold px-3 py-1 rounded-full">
                     {TESTIMONIALS[testimonialIdx].industry}
                   </span>
@@ -744,12 +744,12 @@ export default function Home() {
               <div className="accent-line-center" />
               <h2 className="section-title">Service Areas</h2>
               <p className="section-subtitle mx-auto text-center">
-                Executing projects across 4 states with dedicated regional
+                Executing projects across {SERVICE_AREAS?.length || 0} states with dedicated regional
                 teams.
               </p>
             </div>
             <div className="flex flex-wrap justify-center gap-2.5 animate-on-scroll">
-              {SERVICE_AREAS.map((area, i) => (
+              {(SERVICE_AREAS || []).map((area, i) => (
                 <span
                   key={i}
                   className="px-4 py-2 bg-[#F8F8F8] border border-gray-200 rounded-full text-xs font-medium text-gray-600 hover:border-[#C8102E] hover:text-[#C8102E] hover:bg-red-50 transition-all cursor-default"

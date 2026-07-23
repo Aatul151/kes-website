@@ -51,6 +51,11 @@ export const COMPANY = {
             hours: "Mon-Sat: 9:00 AM - 6:00 PM",
         },
     ],
+    satisfiedClients: 350,
+    projectsDelivered: 350,
+    yearsExperience: 15,
+    expertEngineers: 50,
+    qualityCommitment: 100,
 };
 
 // position: "left" | "right" | "bottom-left" | "bottom-right" | "top-left" | "top-right"
@@ -221,10 +226,10 @@ export const PRIVACY_POLICY = {
 };
 
 export const STATS = [
-    { value: 250, suffix: "+", label: "Projects Delivered" },
-    { value: 15, suffix: "+", label: "Years Experience" },
-    { value: 50, suffix: "+", label: "Expert Engineers" },
-    { value: 100, suffix: "%", label: "Quality Commitment" },
+    { value: COMPANY.projectsDelivered, suffix: "+", label: "Projects Delivered" },
+    { value: COMPANY.yearsExperience, suffix: "+", label: "Years Experience" },
+    { value: COMPANY.expertEngineers, suffix: "+", label: "Expert Engineers" },
+    { value: COMPANY.qualityCommitment, suffix: "%", label: "Quality Commitment" },
 ];
 
 export const SERVICES = [
@@ -248,16 +253,16 @@ export const SERVICES = [
     {
         id: "steel",
         icon: "Layers",
-        title: "Steel Structures",
+        title: "Industrial Steel Structures",
         shortDesc: "Heavy-duty structural steel fabrication for industrial and commercial applications.",
         description: "KES delivers precision-engineered structural steel solutions for heavy industrial plants, multi-story commercial buildings, bridges, and specialized structures requiring high load-bearing capacity.",
         features: [
             "Heavy structural steel fabrication up to 500 MT",
             "CNC plasma and laser cutting for precision",
-            "Hot-dip galvanizing and epoxy coating options",
+            "Epoxy coating options",
             "Structural analysis using STAAD.Pro and ETABS",
             "Modular construction for complex geometries",
-            "Third-party inspection and quality certification",
+            "In house inspection and quality certification",
         ],
         image: "/images/services/steel.jpg",
         color: "#1A1A1A",
@@ -273,10 +278,10 @@ export const SERVICES = [
         features: [
             "Customized STP design based on wastewater characteristics",
             "Design, fabrication, installation, and commissioning services",
-            "MBBR, SBR, and Activated Sludge Process (ASP) technologies",
+            "Lates MBR technologies",
             "Treated water recycling and reuse solutions",
             "Automation with PLC and SCADA-based control systems",
-            "Compliance with CPCB/SPCB environmental standards",
+            "Compliance with environmental standards",
         ],
         image: "/images/services/stp.jpg",
         color: "#0EA5E9",
@@ -326,7 +331,7 @@ export const WHY_KES = [
     {
         icon: "Globe",
         title: "Nationwide Execution",
-        desc: "With project experience across 18 states, our experienced erection teams can mobilize anywhere in India within 72 hours.",
+        desc: "With project experience across 18 states, our experienced erection teams can mobilize anywhere in India.",
     },
     {
         icon: "Users",
@@ -469,7 +474,7 @@ export const PROCESS_STEPS = [
         title: "Blasting & Painting",
         desc: "Component assembly, quality inspection, and protective coating application before dispatch.",
         icon: "Wrench",
-        image: "/images/process/fabrication.jpg",
+        image: "/images/process/blasting_painting.jpg",
     },
     {
         step: 5,
@@ -485,13 +490,6 @@ export const PROCESS_STEPS = [
         icon: "CheckCircle",
         image: "/images/process/project-handover.png",
     },
-];
-
-export const SERVICE_AREAS = [
-    "Maharashtra",
-    "Gujarat",
-    "Rajasthan",
-    "Madhya Pradesh",
 ];
 
 export const BLOG_POSTS = [
@@ -542,351 +540,19 @@ Modern PEB systems have evolved far beyond simple shed structures. Today's PEB b
 
 ## KES Engineering's Role in India's PEB Revolution
 
-At KES Engineering, we have been at the forefront of India's PEB evolution for over 15 years. Our 250+ completed projects span every major industrial sector, from automotive assembly plants to pharmaceutical clean rooms.
+At KES Engineering, we have been at the forefront of India's PEB evolution for over ${COMPANY.yearsExperience} years. Our ${COMPANY.projectsDelivered}+ completed projects span every major industrial sector, from automotive assembly plants to pharmaceutical clean rooms.
 
 Our engineering team continuously invests in the latest design software, fabrication technology, and erection methodologies to deliver PEB solutions that meet the most demanding project requirements.
 
 The future of industrial construction in India is pre-engineered, and KES Engineering is proud to be building that future, one project at a time.`,
         tags: ["PEB", "Industrial Construction", "Steel Buildings", "India Manufacturing"],
-    },
-    {
-        id: 2,
-        slug: "warehouse-design-best-practices",
-        title: "10 Critical Design Factors for High-Performance Warehouses",
-        category: "Warehousing",
-        date: "November 28, 2024",
-        author: "Er. Anita Krishnan",
-        authorRole: "Head of Design",
-        readTime: "8 min read",
-        excerpt: "Designing a warehouse that maximizes operational efficiency requires careful consideration of structural, operational, and future-proofing factors. Here are the 10 most critical design decisions.",
-        image: "/images/blog/warehouse-design-best-practices.jpg",
-        content: `A warehouse is not just a building — it is a critical operational asset that directly impacts your supply chain efficiency, labor productivity, and bottom line. Getting the design right from the start is essential, as structural decisions made during design are extremely costly to change post-construction.
-
-## 1. Clear Height Optimization
-
-The single most impactful design decision for a warehouse is the clear height — the usable vertical space from floor to the lowest obstruction. Modern logistics operations increasingly require 12-15 meter clear heights to accommodate high-bay racking systems.
-
-Every additional meter of clear height dramatically increases your storage capacity without increasing your land footprint. A 15m clear height warehouse can store 40% more inventory than a 10m clear height building of the same floor area.
-
-## 2. Column Grid and Clear Span
-
-The column grid determines your operational flexibility. For most warehousing applications, a 12m x 24m or 12m x 30m column grid provides the optimal balance between structural efficiency and operational flexibility.
-
-For automated warehouses with AS/RS systems, clear spans of 40-60 meters may be required to accommodate the racking and aisle configurations.
-
-## 3. Floor Load Capacity
-
-Warehouse floors must be designed for the specific loading conditions of your operation. Key considerations include:
-- Point loads from racking uprights (typically 8-15 tonnes per upright)
-- Uniformly distributed loads from stored goods
-- Dynamic loads from forklift and MHE operations
-- Future load increases as operations scale
-
-## 4. Dock Configuration
-
-Loading dock design is critical for throughput efficiency. Key parameters include:
-- Number of docks based on truck volume and dwell time
-- Dock height (typically 1.2m for standard trucks)
-- Dock leveler type (mechanical, hydraulic, or air-powered)
-- Truck court depth (minimum 35m for articulated trucks)
-
-## 5. Natural Lighting and Ventilation
-
-Incorporating translucent roofing panels (typically 10-15% of roof area) and ridge ventilators significantly reduces energy costs and improves working conditions. Properly designed natural ventilation can eliminate the need for mechanical ventilation in many warehouse applications.
-
-## 6. Fire Safety Integration
-
-Modern warehouses must integrate fire suppression systems from the design stage. This includes:
-- ESFR (Early Suppression Fast Response) sprinkler systems
-- Smoke detection and alarm systems
-- Fire compartmentalization through fire walls
-- Emergency egress planning
-
-## 7. Expansion Capability
-
-Design your warehouse with future expansion in mind. PEB structures can be easily extended by adding bays to the length of the building. Ensure end walls are designed as non-load-bearing to facilitate future expansion.
-
-## 8. Sustainability Features
-
-Green warehouse design is increasingly important for corporate sustainability goals and regulatory compliance:
-- Solar-ready roofing with adequate structural capacity
-- Rainwater harvesting systems
-- LED lighting with motion sensors
-- Insulated roofing panels for thermal efficiency
-
-## 9. Security and Access Control
-
-Perimeter security, CCTV integration, and access control systems should be planned from the design stage to ensure proper infrastructure is in place.
-
-## 10. Technology Infrastructure
-
-Modern warehouses require robust technology infrastructure:
-- Fiber optic and wireless network coverage
-- Charging infrastructure for electric MHE
-- WMS server room and control center
-- CCTV and security system infrastructure
-
-At KES Engineering, our warehouse design team considers all these factors holistically to deliver warehouses that perform optimally from day one and continue to serve your operations efficiently for decades.`,
-        tags: ["Warehouse Design", "Logistics", "Industrial Construction", "PEB"],
-    },
-    {
-        id: 3,
-        slug: "steel-structure-vs-rcc",
-        title: "Steel Structure vs RCC: Making the Right Choice for Your Industrial Project",
-        category: "Steel Structures",
-        date: "November 10, 2024",
-        author: "Er. Suresh Babu",
-        authorRole: "Senior Structural Engineer",
-        readTime: "7 min read",
-        excerpt: "The choice between steel and RCC construction is one of the most consequential decisions in industrial project planning. This comprehensive comparison will help you make the right choice.",
-        image: "/images/blog/steel-structure-vs-rcc.jpg",
-        content: `When planning an industrial facility, one of the most fundamental decisions is the choice of structural system: steel or reinforced concrete (RCC). Both have their merits, and the right choice depends on your specific project requirements, timeline, budget, and long-term operational needs.
-
-## Construction Speed
-
-**Steel wins decisively.** A steel structure can be erected 3-4 times faster than an equivalent RCC structure. For a 50,000 sq.ft industrial building:
-- Steel structure: 8-14 weeks for erection
-- RCC structure: 6-12 months for construction
-
-This speed advantage translates directly to faster revenue generation and reduced financing costs.
-
-## Cost Comparison
-
-The cost comparison is nuanced and depends on the specific application:
-
-**For large-span industrial buildings (>15m span):** Steel is typically 15-25% more economical than RCC due to the structural efficiency of steel in long-span applications.
-
-**For multi-story commercial buildings (<12m span):** RCC may be more economical for the structural frame, though steel still offers advantages in speed and flexibility.
-
-## Flexibility and Modification
-
-**Steel is far superior for future modifications.** Industrial operations evolve, and the ability to modify your building is invaluable:
-- Adding crane systems to an existing steel building is straightforward
-- Extending a steel building by adding bays is simple and cost-effective
-- Modifying RCC structures is expensive, disruptive, and sometimes structurally compromising
-
-## Seismic Performance
-
-Modern steel structures with proper connection design perform excellently in seismic zones. Steel's high ductility allows it to absorb seismic energy without catastrophic failure. RCC structures can also be designed for seismic resistance, but require more material and careful detailing.
-
-## Maintenance Requirements
-
-**RCC requires less maintenance** over the long term. Steel structures require periodic inspection and repainting (typically every 10-15 years) to prevent corrosion. However, modern coating systems (hot-dip galvanizing, epoxy coatings) have significantly extended maintenance intervals.
-
-## When to Choose Steel
-
-- Large-span industrial buildings (>15m span)
-- Projects with tight construction timelines
-- Buildings requiring future expansion or modification
-- Facilities requiring overhead crane systems
-- Projects in remote locations where skilled RCC labor is scarce
-
-## When to Choose RCC
-
-- Multi-story buildings with heavy floor loads
-- Buildings in highly corrosive environments
-- Projects where long-term maintenance minimization is the priority
-- Structures requiring high thermal mass
-
-## The Hybrid Approach
-
-Many modern industrial facilities use a hybrid approach: steel superstructure for the main building frame (for speed and span efficiency) with RCC foundations, mezzanine floors, and ancillary structures. This approach captures the best of both systems.
-
-At KES Engineering, our structural engineers analyze each project's specific requirements to recommend the optimal structural system — or hybrid approach — that delivers the best value for your investment.`,
-        tags: ["Steel Structures", "RCC", "Industrial Construction", "Structural Engineering"],
-    },
-    {
-        id: 4,
-        slug: "turnkey-construction-benefits",
-        title: "Why Turnkey Construction is the Smart Choice for Industrial Projects",
-        category: "Project Management",
-        date: "October 22, 2024",
-        author: "Ramesh Iyer",
-        authorRole: "Director - Projects",
-        readTime: "5 min read",
-        excerpt: "Managing multiple contractors for a single industrial project is a recipe for delays, disputes, and cost overruns. Discover why turnkey construction delivers better outcomes.",
-        image: "/images/blog/turnkey-construction-benefits.jpg",
-        content: `Industrial construction projects are complex undertakings involving dozens of specialized contractors, thousands of design decisions, and millions of rupees in investment. The traditional multi-contractor approach — where the client manages separate contracts for civil, structural, MEP, and finishing works — creates significant coordination challenges that often result in delays, disputes, and cost overruns.
-
-Turnkey construction offers a fundamentally different approach: a single contractor takes complete responsibility for delivering the finished facility, from initial design through final commissioning.
-
-## The Single-Point Responsibility Advantage
-
-The most significant benefit of turnkey construction is the elimination of the "blame game" that plagues multi-contractor projects. When something goes wrong in a traditional project, contractors point fingers at each other, leaving the client to arbitrate disputes while the project stalls.
-
-In a turnkey arrangement, there is only one party responsible for the outcome: the turnkey contractor. This creates powerful incentives for proactive problem-solving and coordination.
-
-## Faster Project Delivery
-
-Turnkey contractors can overlap design, procurement, and construction activities in ways that are impossible in sequential multi-contractor projects. While the structural design is being finalized, the turnkey contractor can simultaneously:
-- Procure long-lead items (structural steel, roofing materials)
-- Mobilize civil works teams for foundation construction
-- Coordinate MEP design with structural design
-
-This parallel processing typically reduces total project duration by 20-30%.
-
-## Cost Certainty
-
-Turnkey contracts are typically executed on a fixed-price basis, providing clients with cost certainty from project inception. The turnkey contractor absorbs the risk of cost overruns due to coordination failures, design conflicts, or procurement delays.
-
-## Quality Integration
-
-When a single contractor is responsible for all aspects of construction, quality integration is seamless. There are no interface disputes between contractors, no gaps in responsibility, and no finger-pointing when quality issues arise.
-
-## KES Engineering's Turnkey Capability
-
-KES Engineering has delivered over 150 turnkey industrial projects across India, ranging from 10,000 sq.ft industrial sheds to 2,00,000 sq.ft integrated manufacturing complexes.
-
-Our turnkey capability encompasses:
-- Architectural and structural design
-- Civil and foundation works
-- Structural steel fabrication and erection
-- Roofing and cladding systems
-- MEP coordination and installation
-- Interior finishing and fit-out
-- Commissioning and handover
-
-Contact our projects team to discuss how KES Engineering can deliver your next industrial facility on a turnkey basis.`,
-        tags: ["Turnkey Construction", "Project Management", "Industrial Projects"],
-    },
-    {
-        id: 5,
-        slug: "green-industrial-buildings",
-        title: "Building Green: Sustainable Industrial Construction Practices",
-        category: "Industry News",
-        date: "October 5, 2024",
-        author: "Er. Meera Pillai",
-        authorRole: "Sustainability Lead",
-        readTime: "6 min read",
-        excerpt: "Sustainability is no longer optional in industrial construction. Learn how green building practices are being integrated into modern industrial facilities and the business case for going green.",
-        image: "/images/blog/green-industrial-buildings.jpg",
-        content: `The industrial construction sector is undergoing a green revolution. Driven by corporate sustainability commitments, regulatory requirements, and the compelling economics of energy efficiency, green industrial buildings are rapidly becoming the new standard rather than the exception.
-
-## The Business Case for Green Industrial Buildings
-
-The business case for sustainable industrial construction has never been stronger:
-
-**Energy Cost Savings**: A well-designed green industrial building can reduce energy consumption by 30-50% compared to a conventional building. For a large manufacturing facility consuming 500,000 kWh per month, this translates to annual savings of Rs. 60-100 lakhs.
-
-**Water Conservation**: Rainwater harvesting and water recycling systems can reduce municipal water consumption by 40-60%, delivering significant cost savings and reducing dependence on increasingly scarce water resources.
-
-**Carbon Credits**: Industrial facilities that reduce their carbon footprint can generate carbon credits under India's Carbon Credit Trading Scheme (CCTS), creating an additional revenue stream.
-
-**Regulatory Compliance**: India's Energy Conservation Building Code (ECBC) for industrial buildings is becoming increasingly stringent. Building green now ensures compliance with current and future regulations.
-
-## Key Green Building Features for Industrial Facilities
-
-### Solar-Ready Roofing Systems
-
-Modern PEB roofing systems can be designed with the structural capacity to support solar panels from day one, even if solar installation is planned for a later phase. This forward-thinking approach avoids costly structural reinforcement later.
-
-### Insulated Roofing Panels
-
-Insulated sandwich panels (50-150mm thickness) dramatically reduce heat gain through the roof, reducing cooling loads and improving working conditions. The payback period for insulated roofing is typically 3-5 years through energy savings.
-
-### Natural Lighting Integration
-
-Translucent roofing panels and clerestory windows can provide adequate natural lighting for most industrial operations during daylight hours, eliminating the need for artificial lighting and reducing energy consumption.
-
-### Rainwater Harvesting
-
-Industrial roofs are ideal for rainwater harvesting due to their large surface area. A 10,000 sq.m roof can harvest 6-8 million liters of rainwater annually in most Indian locations, sufficient for significant industrial water needs.
-
-### LED Lighting with Smart Controls
-
-LED lighting with occupancy sensors and daylight harvesting controls can reduce lighting energy consumption by 60-70% compared to conventional fluorescent lighting.
-
-## KES Engineering's Green Building Commitment
-
-At KES Engineering, sustainability is integrated into every project from the design stage. Our green building services include:
-
-- LEED and IGBC certification support
-- Energy modeling and simulation
-- Solar mounting structure design and installation
-- Rainwater harvesting system design
-- Green roof and wall systems
-- Sustainable material specification
-
-We believe that the most sustainable building is one that is built right the first time — with quality materials, precise engineering, and a long-term perspective on operational performance.`,
-        tags: ["Green Buildings", "Sustainability", "Industrial Construction", "Solar"],
-    },
-    {
-        id: 6,
-        slug: "peb-erection-safety",
-        title: "Safety First: Best Practices in PEB Erection and Site Safety",
-        category: "PEB",
-        date: "September 18, 2024",
-        author: "Er. Kiran Rao",
-        authorRole: "Head of HSE",
-        readTime: "5 min read",
-        excerpt: "Steel structure erection is one of the most hazardous activities in construction. Discover the safety protocols and best practices that KES Engineering follows to ensure zero-accident project delivery.",
-        image: "/images/blog/peb-erection-safety.jpg",
-        content: `Steel structure erection is inherently one of the most hazardous activities in the construction industry. Working at heights with heavy steel components, operating cranes and lifting equipment, and coordinating multiple trades simultaneously creates a complex safety environment that demands rigorous protocols and constant vigilance.
-
-At KES Engineering, safety is not a compliance checkbox — it is a core value that is embedded in every aspect of our operations, from project planning through final handover.
-
-## Our Safety Philosophy
-
-We operate on the principle that every accident is preventable. This belief drives us to invest heavily in safety training, equipment, and systems, and to hold every team member accountable for safety performance.
-
-Our safety record speaks for itself: over 15 years and 250+ projects, KES Engineering has maintained a Lost Time Injury (LTI) rate of 0.12 — significantly below the industry average of 0.8.
-
-## Pre-Erection Safety Planning
-
-Safety planning begins before a single steel member is lifted. Our pre-erection safety process includes:
-
-**Site Hazard Assessment**: A comprehensive assessment of site-specific hazards including underground utilities, overhead power lines, soil conditions, and access constraints.
-
-**Erection Sequence Planning**: Detailed planning of the erection sequence to ensure structural stability at every stage of construction, with temporary bracing and guying requirements clearly specified.
-
-**Crane Selection and Planning**: Careful selection of crane type and capacity based on the heaviest lift, reach requirements, and ground bearing capacity. All crane lifts are planned using lift study software.
-
-**Emergency Response Planning**: Site-specific emergency response plans covering medical emergencies, fire, structural collapse, and severe weather events.
-
-## Personal Protective Equipment
-
-All KES Engineering erection personnel are required to wear:
-- Safety helmets (IS 2925 compliant)
-- Full-body safety harnesses (EN 361 compliant)
-- Safety footwear with steel toe caps
-- High-visibility vests
-- Safety glasses and gloves
-
-## Working at Heights
-
-Working at heights is the highest-risk activity in steel erection. Our protocols include:
-
-- 100% tie-off requirement at all heights above 1.8 meters
-- Use of self-retracting lifelines (SRLs) for mobility at height
-- Installation of safety nets below erection areas
-- Prohibition of work at heights during adverse weather conditions
-
-## Lifting Operations Safety
-
-All lifting operations are conducted under the supervision of a certified Lifting Supervisor. Key protocols include:
-
-- Pre-lift inspection of all lifting equipment and rigging
-- Exclusion zones below all lifts
-- Tag line use for all lifts to control load movement
-- Communication protocols between crane operator and riggers
-
-## Continuous Safety Training
-
-All KES Engineering erection personnel undergo:
-- Induction training before site mobilization
-- Monthly safety toolbox talks
-- Annual refresher training on working at heights and lifting operations
-- First aid training for all supervisors
-
-Safety is not just a priority at KES Engineering — it is a value that we live every day on every project. Our clients can be confident that their projects will be delivered not just on time and within budget, but safely.`,
-        tags: ["Safety", "PEB Erection", "Construction Safety", "HSE"],
-    },
+    }
 ];
 
 export const ABOUT = {
     story: `KES Group, established in 2017 and headquartered in Gandhinagar, Gujarat, is a leading solution provider in the field of Pre-Engineered Buildings (PEB) and Steel Structure Construction, with a fully equipped, state-of-the-art manufacturing facility at Mother Industrial Park–2, Kadadara Gandhinagar.
 
-            Led by a dynamic and visionary Directors with over 20+ years of hands-on industry experience, KES has quickly earned a reputation for delivering high-quality, customized, and cost-effective infrastructure solutions across industrial sectors. Backed by a skilled team of technocrats, in-house structural design capabilities, and modern fabrication system.
+            Led by a dynamic and visionary Directors with over ${COMPANY.yearsExperience}+ years of hands-on industry experience, KES has quickly earned a reputation for delivering high-quality, customized, and cost-effective infrastructure solutions across industrial sectors. Backed by a skilled team of technocrats, in-house structural design capabilities, and modern fabrication system.
 
             KES offers a comprehensive range of services including PEB systems, EPC turnkey projects, Heavy engineering fabrication and erection, Retrofitting of old sheds, Industrial shed extensions, and Sewage & Waste water treatment plants (STP/ETP).
 

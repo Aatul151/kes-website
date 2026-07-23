@@ -49,7 +49,7 @@ export default function About() {
       <HeroSection
         img="/images/heroes/about.jpg"
         title="About KES Groups"
-        description="15 years of engineering excellence, 250+ projects delivered, and an unwavering commitment to building India' s industrial future."
+        description={`${COMPANY.yearsExperience} years of engineering excellence, ${COMPANY.projectsDelivered}+ projects delivered, and an unwavering commitment to building India's industrial future.`}
       />
 
       {/* Stats */}
@@ -337,7 +337,7 @@ export default function About() {
             Ready to Build Something Great?
           </h2>
           <p className="text-red-100 text-sm mb-7">
-            Let's discuss your project and show you why 350+ clients trust KES
+            Let's discuss your project and show you why {COMPANY.satisfiedClients}+ clients trust KES
             Engineering.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
