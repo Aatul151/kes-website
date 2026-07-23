@@ -8,17 +8,33 @@
   box-sizing: border-box;
 }
 
+:root {
+  color-scheme: light only;
+  supported-color-schemes: light;
+}
+
 html {
   scroll-behavior: smooth;
+  color-scheme: light only;
+  background-color: #FFFFFF;
 }
 
 body {
   font-family: 'Poppins', sans-serif;
   background-color: #FFFFFF;
   color: #1A1A1A;
+  color-scheme: light only;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Never follow device dark theme for form controls / UA widgets */
+input,
+textarea,
+select,
+button {
+  color-scheme: light only;
 }
 
 .kes-brand-logo {

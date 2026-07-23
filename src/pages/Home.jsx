@@ -182,12 +182,14 @@ export default function Home() {
   }, [heroVideoIdx, heroVideosFailed, allHeroVideosFailed, heroVideos]);
 
   // Auto-advance testimonials
+  let t;
   useEffect(() => {
-    const t = setInterval(() => {
+    if (t) clearInterval(t);
+    t = setInterval(() => {
       setTestimonialIdx((i) => (i + 1) % TESTIMONIALS.length);
-    }, 10000);
+    }, 30 * 1000); // 30 seconds
     return () => clearInterval(t);
-  }, []);
+  }, [testimonialIdx]);
 
   return (
     <>
@@ -223,9 +225,7 @@ export default function Home() {
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#C8102E] leading-tight mb-5">
                 {HOME_HERO.title}
                 <br />
-                <span className="text-white">
-                  {HOME_HERO.titleHighlight}
-                </span>
+                <span className="text-white">{HOME_HERO.titleHighlight}</span>
               </h1>
               {/* <p className="text-lg sm:text-xl text-gray-300 font-light mb-8 leading-relaxed">
                 {HOME_HERO.subtitle || COMPANY.tagline}
@@ -279,7 +279,7 @@ export default function Home() {
                     videoIdx === heroVideoIdx
                       ? "w-8 bg-[#C8102E]"
                       : "w-2 bg-white/40 hover:bg-white/70"
-                    }`}
+                  }`}
                 />
               ))}
             </div>
@@ -358,21 +358,24 @@ export default function Home() {
                   annum.
                 </p>
                 <div className="grid grid-cols-2 gap-4 mb-7">
-                  {[{ label: "Satisfied Clients", value: `${COMPANY.satisfiedClients}+` }].map(
-                    (item, i) => (
-                      <div
-                        key={i}
-                        className="bg-white rounded-lg p-4 border border-gray-100"
-                      >
-                        <div className="text-xl font-bold text-[#C8102E]">
-                          {item.value}
-                        </div>
-                        <div className="text-xs text-gray-500 mt-0.5">
-                          {item.label}
-                        </div>
+                  {[
+                    {
+                      label: "Satisfied Clients",
+                      value: `${COMPANY.satisfiedClients}+`,
+                    },
+                  ].map((item, i) => (
+                    <div
+                      key={i}
+                      className="bg-white rounded-lg p-4 border border-gray-100"
+                    >
+                      <div className="text-xl font-bold text-[#C8102E]">
+                        {item.value}
                       </div>
-                    ),
-                  )}
+                      <div className="text-xs text-gray-500 mt-0.5">
+                        {item.label}
+                      </div>
+                    </div>
+                  ))}
                 </div>
                 <Link href="/about">
                   <button className="btn-primary text-xs">
@@ -388,7 +391,9 @@ export default function Home() {
                     className="rounded-xl w-full h-80 object-cover shadow-lg"
                   />
                   <div className="absolute -bottom-5 -left-5 bg-[#C8102E] text-white rounded-xl p-5 shadow-xl">
-                    <div className="text-3xl font-bold">{COMPANY.projectsDelivered}+</div>
+                    <div className="text-3xl font-bold">
+                      {COMPANY.projectsDelivered}+
+                    </div>
                     <div className="text-xs opacity-80 mt-0.5">
                       Projects Delivered
                     </div>
@@ -655,10 +660,15 @@ export default function Home() {
                   <p className="font-semibold text-[#1A1A1A] text-sm">
                     {TESTIMONIALS[testimonialIdx].name}
                   </p>
-                  {(TESTIMONIALS[testimonialIdx].designation || TESTIMONIALS[testimonialIdx].company) && <p className="text-gray-500 text-xs mt-0.5">
-                    {TESTIMONIALS[testimonialIdx].designation}
-                    {TESTIMONIALS[testimonialIdx].company ? `, ${TESTIMONIALS[testimonialIdx].company}` : ""}
-                  </p>}
+                  {(TESTIMONIALS[testimonialIdx].designation ||
+                    TESTIMONIALS[testimonialIdx].company) && (
+                    <p className="text-gray-500 text-xs mt-0.5">
+                      {TESTIMONIALS[testimonialIdx].designation}
+                      {TESTIMONIALS[testimonialIdx].company
+                        ? `, ${TESTIMONIALS[testimonialIdx].company}`
+                        : ""}
+                    </p>
+                  )}
                   <span className="inline-block mt-2 bg-red-50 text-[#C8102E] text-[10px] font-semibold px-3 py-1 rounded-full">
                     {TESTIMONIALS[testimonialIdx].industry}
                   </span>
@@ -744,8 +754,8 @@ export default function Home() {
               <div className="accent-line-center" />
               <h2 className="section-title">Service Areas</h2>
               <p className="section-subtitle mx-auto text-center">
-                Executing projects across {SERVICE_AREAS?.length || 0} states with dedicated regional
-                teams.
+                Executing projects across {SERVICE_AREAS?.length || 0} states
+                with dedicated regional teams.
               </p>
             </div>
             <div className="flex flex-wrap justify-center gap-2.5 animate-on-scroll">
