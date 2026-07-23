@@ -230,7 +230,7 @@ input, textarea, select {
 .services-category-bar__track {
   display: flex;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   gap: 10px;
   overflow-x: auto;
   padding: 14px 0;

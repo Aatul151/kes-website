@@ -301,21 +301,21 @@ export default function Projects() {
                   <div className="lg:col-span-3 bg-white rounded-xl p-6 shadow-sm border border-gray-100">
                     <div className="grid grid-cols-1 gap-3">
                       {[
-                        { label: "Industry", value: selected.industry },
-                        { label: "Area", value: selected.area },
-                        { label: "Year", value: selected.year },
-                      ].map((item, i) => (
-                        <div
+                        { label: "Industry", value: selected?.industry },
+                        { label: "Detail", value: selected?.detail },
+                      ].map((item, i) => (<>
+                        {item?.value && <div
                           key={i}
                           className="rounded-lg p-4 border border-gray-100 bg-[#F8F8F8]"
                         >
                           <p className="text-[10px] text-gray-500 uppercase mb-1">
-                            {item.label}
+                            {item?.label}
                           </p>
                           <p className="text-sm font-semibold text-[#1A1A1A]">
-                            {item.value}
+                            {item?.value}
                           </p>
                         </div>
+                        }</>
                       ))}
                     </div>
 
