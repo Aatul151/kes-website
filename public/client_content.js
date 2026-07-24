@@ -300,11 +300,13 @@ export const PROJECTS = [
         industry: "Pharma",
         area: null,
         scope: "Heavy industrial shed with 100T crane girder",
-        image: "/images/projects/surja_extrusion_wmk.webp",
+        image: "/images/projects/troikaa_1_wmk.webp",
         year: null,
         tag: "Pharma",
         images: [
-            '/images/projects/surja_extrusion_wmk.webp',
+            '/images/projects/troikaa_1_wmk.webp',
+            '/images/projects/troikaa_2_wmk.webp',
+            '/images/projects/troikaa_3_wmk.webp',
         ]
     },
     {
