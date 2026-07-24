@@ -113,7 +113,7 @@ export const SOCIAL_LINKS = [
 
 export const LANDING_SCREEN = {
     durationMs: 8000,
-    backgroundVideo: "/videos/hero/home_bg_v_3.mp4",
+    backgroundVideo: "/videos/hero/home_bg_v_4.mp4",
     backgroundImage: "/images/landing/background.jpg",
     highlights: [
         "Pre-Engineered Buildings & Steel Structures",
