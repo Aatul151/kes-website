@@ -14,18 +14,6 @@ import { useContent } from "../context/ContentContext.jsx";
 import ImagePreview from "../components/ImagePreview.jsx";
 import HeroSection from "../components/HeroSection.jsx";
 
-const FILTERS = [
-  "All",
-  "Manufacturing",
-  "Logistics",
-  "Warehousing",
-  "Pharmaceutical",
-  "Automobile",
-  "Food Processing",
-  "Textile",
-  "Renewable Energy",
-];
-
 export default function Projects() {
   const { PROJECTS, COMPANY } = useContent();
   const [activeFilter, setActiveFilter] = useState("All");
@@ -43,8 +31,13 @@ export default function Projects() {
   const filtered =
     activeFilter === "All"
       ? PROJECTS
-      : PROJECTS.filter((p) => p.tag === activeFilter);
+      : PROJECTS.filter(project => project.tag?.split(",").map(tag => tag.trim()).includes(activeFilter));
 
+  const filterTagTab = [
+    "All",
+    ...new Set(PROJECTS?.flatMap(project => project.tag?.split(",")?.map(tag => tag.trim())?.filter(Boolean))),
+  ];
+  
   const scrollToEl = (el) => {
     if (!el) return;
     // Offset for navbar + sticky filter bar
@@ -102,7 +95,7 @@ export default function Projects() {
       <section className="bg-white border-b border-gray-100 sticky top-[65px] z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex flex-wrap justify-center gap-2">
-            {FILTERS.map((f) => (
+            {filterTagTab?.map((f) => (
               <button
                 key={f}
                 className={`filter-btn ${activeFilter === f ? "active" : ""}`}
@@ -301,7 +294,7 @@ export default function Projects() {
                   <div className="lg:col-span-3 bg-white rounded-xl p-6 shadow-sm border border-gray-100">
                     <div className="grid grid-cols-1 gap-3">
                       {[
-                        { label: "Industry", value: selected?.industry },
+                        { label: "Industry", value: selected?.tag },
                         { label: "Detail", value: selected?.detail },
                       ].map((item, i) => (<>
                         {item?.value && <div
