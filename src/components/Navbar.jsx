@@ -52,7 +52,7 @@ export default function Navbar({ onOpenLanding }) {
         scrolled
           ? "bg-white shadow-md border-b border-gray-200 py-3"
           : "bg-white shadow-sm border-b border-gray-200 py-3"
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
@@ -76,7 +76,7 @@ export default function Navbar({ onOpenLanding }) {
                     location === link.href
                       ? "text-[#C8102E] border-b-2 border-[#C8102E] pb-0.5"
                       : "text-[#333] hover:text-[#C8102E]"
-                  }`}
+                    }`}
                 >
                   {link.label}
                 </span>
@@ -85,7 +85,7 @@ export default function Navbar({ onOpenLanding }) {
           </div>
 
           {/* CTA */}
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="flex items-center gap-3">
             {COMPANY?.corporateVideoEmbed && (
               <button
                 type="button"
@@ -101,21 +101,21 @@ export default function Navbar({ onOpenLanding }) {
                 />
               </button>
             )}
-            <Link href="/contact">
+            <Link href="/contact" className="hidden lg:block">
               <button className="bg-[#C8102E] hover:bg-[#a50d25] text-white text-xs font-semibold font-poppins py-2.5 px-6 rounded transition-all duration-200 tracking-wide uppercase">
                 Request Quote
               </button>
             </Link>
-          </div>
 
-          {/* Mobile Toggle */}
-          <button
-            className="lg:hidden text-[#1A1A1A] p-2"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
-          >
-            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
+            {/* Mobile Toggle */}
+            <button
+              className="lg:hidden text-[#1A1A1A] p-2"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="Toggle menu"
+            >
+              {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -123,7 +123,7 @@ export default function Navbar({ onOpenLanding }) {
       <div
         className={`lg:hidden transition-all duration-300 overflow-hidden ${
           mobileOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
-        }`}
+          }`}
       >
         <div className="bg-white border-t border-gray-200 px-4 py-4 space-y-1 shadow-lg">
           {NAV_LINKS.map((link) => (
@@ -133,7 +133,7 @@ export default function Navbar({ onOpenLanding }) {
                   location === link.href
                     ? "bg-red-50 text-[#C8102E]"
                     : "text-[#444] hover:bg-gray-50 hover:text-[#C8102E]"
-                }`}
+                  }`}
               >
                 {link.label}
               </div>
