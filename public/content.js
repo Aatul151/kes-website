@@ -586,9 +586,15 @@ export const TIMELINES = [
 ];
 
 export const EMAIL_SERVICES = {
-    PUBLIC_KEY: "IHQvOnAup4ofVt6xA",
-    SERVICE_ID: "service_vj8lvqg",
-    TEMPLATE_ID: "template_b6prpox",
-    TO_EMAIL: "nikhilmprajapti1999@gmail.com",
-    // TO_EMAIL : "aatul.work@gmail.com"
+    // TESTING ACCOUNT
+    // PUBLIC_KEY: "IHQvOnAup4ofVt6xA",
+    // SERVICE_ID: "service_vj8lvqg",
+    // TEMPLATE_ID: "template_b6prpox",
+    // TO_EMAIL: "nikhilmprajapati1999@gmail.com"
+
+    // PRODUCTION ACCOUNT
+    PUBLIC_KEY: "6Y8vVC-13hp_-PUF_",
+    SERVICE_ID: "service_obmxk4m",
+    TEMPLATE_ID: "template_fyh5jyk",
+    TO_EMAIL: "Jitesh@kesprojects.com"
 };
