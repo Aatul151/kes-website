@@ -3,14 +3,12 @@ import { Link } from "wouter";
 import {
   ArrowLeft,
   ArrowRight,
-  ChevronLeft,
-  ChevronRight,
   MapPin,
   Pause,
   Play,
-  X,
 } from "lucide-react";
 import { useContent } from "../context/ContentContext.jsx";
+import CommonLightbox from "../components/CommonLightbox.jsx";
 
 const GALLERY_AUDIO_SRC = "/downloads/bg-gallery.mp3";
 
@@ -99,30 +97,6 @@ export default function Gallery() {
 
   const closeLightbox = useCallback(() => setActiveIdx(null), []);
 
-  const goPrev = useCallback(() => {
-    setActiveIdx((idx) =>
-      idx === null ? null : (idx - 1 + PRODUCT_IMAGES.length) % PRODUCT_IMAGES.length
-    );
-  }, [PRODUCT_IMAGES.length]);
-
-  const goNext = useCallback(() => {
-    setActiveIdx((idx) =>
-      idx === null ? null : (idx + 1) % PRODUCT_IMAGES.length
-    );
-  }, [PRODUCT_IMAGES.length]);
-
-  useEffect(() => {
-    if (!isOpen) return undefined;
-
-    const onKeyDown = (e) => {
-      if (e.key === "Escape") closeLightbox();
-      if (e.key === "ArrowLeft") goPrev();
-      if (e.key === "ArrowRight") goNext();
-    };
-
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [isOpen, closeLightbox, goPrev, goNext]);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -240,55 +214,12 @@ export default function Gallery() {
         )}
       </main>
 
-      {isOpen && current && (
-        <div
-          className="gallery-lightbox"
-          role="dialog"
-          aria-modal="true"
-          aria-label={`${current.title} preview`}
-        >
-          <div className="gallery-lightbox__backdrop" onClick={closeLightbox} />
-
-          <button
-            type="button"
-            className="gallery-lightbox__close"
-            onClick={closeLightbox}
-            aria-label="Close preview"
-          >
-            <X size={22} />
-          </button>
-
-          {PRODUCT_IMAGES.length > 1 && (
-            <>
-              <button
-                type="button"
-                className="gallery-lightbox__nav gallery-lightbox__nav--prev"
-                onClick={goPrev}
-                aria-label="Previous image"
-              >
-                <ChevronLeft size={26} />
-              </button>
-              <button
-                type="button"
-                className="gallery-lightbox__nav gallery-lightbox__nav--next"
-                onClick={goNext}
-                aria-label="Next image"
-              >
-                <ChevronRight size={26} />
-              </button>
-            </>
-          )}
-
-          <div className="gallery-lightbox__stage">
-            <img
-              src={current.image}
-              alt={current.title}
-              className="gallery-lightbox__image"
-            />
-          </div>
-
-          <p className="gallery-lightbox__title">{current.title}</p>
-        </div>
+      {isOpen && (
+        <CommonLightbox
+          isOpen={isOpen}
+          currentIndex={activeIdx}
+          onClose={closeLightbox}
+        />
       )}
     </div>
   );
