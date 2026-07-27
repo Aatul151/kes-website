@@ -9,6 +9,7 @@ export default function ClientLogo({ client, className = "w-full h-full object-c
       alt={client.name}
       title={client.name}
       loading="lazy"
+      decoding="async"
       className={className}
       onError={(e) => {
         e.currentTarget.onerror = null;

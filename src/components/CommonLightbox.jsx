@@ -1,6 +1,7 @@
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useState } from "react";
 import { useContent } from "../context/ContentContext";
+import LazyImage from "./LazyImage.jsx";
 
 const CommonLightbox = ({
   isOpen,
@@ -70,10 +71,11 @@ const CommonLightbox = ({
       )}
 
       <div className="gallery-lightbox__stage">
-        <img
+        <LazyImage
           src={current.image}
           alt={current.title}
           className="gallery-lightbox__image"
+          loading="eager"
         />
       </div>
 

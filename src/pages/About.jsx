@@ -13,6 +13,7 @@ import { useScrollAnimation } from "../hooks/useScrollAnimation.js";
 import AnimatedCounter from "../components/AnimatedCounter.jsx";
 import { useContent } from "../context/ContentContext.jsx";
 import HeroSection from "../components/HeroSection.jsx";
+import LazyImage from "../components/LazyImage.jsx";
 
 const ICON_MAP = { Building2 };
 
@@ -97,7 +98,7 @@ export default function About() {
               </Link>
             </div>
             <div className="animate-on-scroll-right">
-              <img
+              <LazyImage
                 src="/images/heroes/about-story.jpg"
                 alt="KES Engineering facility"
                 className="rounded-xl w-full h-96 object-cover shadow-lg"
@@ -265,7 +266,7 @@ export default function About() {
                 className="bg-[#F8F8F8] rounded-xl overflow-hidden border border-gray-100 animate-on-scroll card-hover"
                 style={{ transitionDelay: `${i * 100}ms` }}
               >
-                <img
+                <LazyImage
                   src={leader.image}
                   alt={leader.name}
                   className="w-full h-56 object-cover object-top"

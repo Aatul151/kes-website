@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { Calendar, Clock, ArrowRight, Search, Tag } from "lucide-react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation.js";
 import { useContent } from "../context/ContentContext.jsx";
+import LazyImage from "../components/LazyImage.jsx";
 
 const CATEGORIES = ["All", "PEB", "Warehousing", "Steel Structures", "Project Management", "Industry News"];
 
@@ -28,7 +29,7 @@ export default function Blog() {
       {/* Hero */}
       <section className="relative py-20 bg-[#1A1A1A] overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-          <img src="/images/heroes/blog.jpg" alt="" className="w-full h-full object-cover" />
+          <LazyImage src="/images/heroes/blog.jpg" alt="" className="w-full h-full object-cover" loading="eager" fetchPriority="high" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="section-label" style={{ color: "#ff6b7a" }}>Knowledge Hub</span>
@@ -45,7 +46,7 @@ export default function Blog() {
           <span className="section-label">Featured Article</span>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center animate-on-scroll">
             <div className="relative rounded-xl overflow-hidden h-72">
-              <img src={featured.image} alt={featured.title} className="w-full h-full object-cover" />
+              <LazyImage src={featured.image} alt={featured.title} className="w-full h-full object-cover" />
               <div className="absolute top-4 left-4 bg-[#C8102E] text-white text-[10px] font-bold px-3 py-1 rounded-full">
                 {featured.category}
               </div>
@@ -121,7 +122,7 @@ export default function Blog() {
                     style={{ transitionDelay: `${i * 60}ms` }}
                   >
                     <div className="relative h-44 overflow-hidden">
-                      <img
+                      <LazyImage
                         src={post.image}
                         alt={post.title}
                         className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"

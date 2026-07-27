@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { ArrowRight, Shield } from "lucide-react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation.js";
 import { useContent } from "../context/ContentContext.jsx";
+import LazyImage from "../components/LazyImage.jsx";
 
 export default function PrivacyPolicy() {
   const { PRIVACY_POLICY } = useContent();
@@ -12,10 +13,12 @@ export default function PrivacyPolicy() {
     <div className="page-transition pt-20">
       <section className="relative py-20 bg-[#1A1A1A] overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-          <img
+          <LazyImage
             src="/images/heroes/privacy.jpg"
             alt=""
             className="w-full h-full object-cover"
+            loading="eager"
+            fetchPriority="high"
           />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

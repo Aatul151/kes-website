@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { useContent } from "../context/ContentContext.jsx";
+import LazyImage from "./LazyImage.jsx";
 
 
 export default function LandingScreen({ onComplete }) {
@@ -140,10 +141,12 @@ export default function LandingScreen({ onComplete }) {
             <source src={LANDING_SCREEN.backgroundVideo} type="video/mp4" />
           </video>
         ) : (
-          <img
+          <LazyImage
             src={LANDING_SCREEN.backgroundImage}
             alt=""
             className="landing-screen__bg-img"
+            loading="eager"
+            fetchPriority="high"
           />
         )}
         <div className="landing-screen__bg-overlay" aria-hidden="true" />
@@ -333,10 +336,11 @@ export default function LandingScreen({ onComplete }) {
         {showContent && (
           <div className="landing-screen__copy">
             <div className="landing-screen__logo-box">
-              <img
+              <LazyImage
                 src="/kes_logo.gif"
                 alt={COMPANY.name}
                 className="landing-screen__logo"
+                loading="eager"
               />
             </div>
             <p className="landing-screen__eyebrow">{COMPANY.tagline}</p>

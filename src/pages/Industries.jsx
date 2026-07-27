@@ -6,6 +6,7 @@ import {
 } from "lucide-react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation.js";
 import { useContent } from "../context/ContentContext.jsx";
+import LazyImage from "../components/LazyImage.jsx";
 
 const ICON_MAP = { Cog, Truck, Package, Pill, Car, UtensilsCrossed, Scissors, Sun };
 
@@ -18,7 +19,7 @@ export default function Industries() {
       {/* Hero */}
       <section className="relative py-20 bg-[#1A1A1A] overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-          <img src="/images/heroes/industries.jpg" alt="" className="w-full h-full object-cover" />
+          <LazyImage src="/images/heroes/industries.jpg" alt="" className="w-full h-full object-cover" loading="eager" fetchPriority="high" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="section-label" style={{ color: "#ff6b7a" }}>Sectors We Serve</span>
@@ -68,7 +69,7 @@ export default function Industries() {
                 {/* Image */}
                 <div className={`${!isEven ? "lg:order-2" : ""} animate-on-scroll-left`}>
                   <div className="relative">
-                    <img
+                    <LazyImage
                       src={ind.image}
                       alt={ind.title}
                       className="rounded-xl w-full h-80 object-cover shadow-lg"

@@ -39,6 +39,7 @@ import {
 import { useScrollAnimation } from "../hooks/useScrollAnimation.js";
 import AnimatedCounter from "../components/AnimatedCounter.jsx";
 import { useContent } from "../context/ContentContext.jsx";
+import LazyImage from "../components/LazyImage.jsx";
 import ContactForm from "../components/ContactForm.jsx";
 import ClientsCarousel from "../components/ClientsCarousel.jsx";
 
@@ -385,7 +386,7 @@ export default function Home() {
               </div>
               <div className="animate-on-scroll-right">
                 <div className="relative">
-                  <img
+                  <LazyImage
                     src="/images/heroes/home-about.jpg"
                     alt="KES Engineering facility"
                     className="rounded-xl w-full h-80 object-cover shadow-lg"
@@ -467,7 +468,7 @@ export default function Home() {
                   className="project-card h-64 animate-on-scroll"
                   style={{ transitionDelay: `${i * 60}ms` }}
                 >
-                  <img src={project.image} alt={project.title} />
+                  <LazyImage src={project.image} alt={project.title} />
                   <div className="overlay" />
                   <div className="absolute inset-0 p-5 flex flex-col justify-end">
                     <span className="text-[10px] font-semibold text-[#ff8a9a] uppercase tracking-widest mb-1">
@@ -828,10 +829,11 @@ export default function Home() {
           onClick={() => setSelectedImage(null)}
           className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4"
         >
-          <img
+          <LazyImage
             src={selectedImage}
             alt="Certificate"
             className="max-h-[90vh] max-w-[90vw] rounded-lg shadow-2xl"
+            loading="eager"
             onClick={(e) => e.stopPropagation()}
           />
         </div>

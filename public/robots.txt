@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Gallery is an immersive viewer — optional to crawl
+Disallow: /view-gallery
+
+Sitemap: https://kesprojects.com/sitemap.xml

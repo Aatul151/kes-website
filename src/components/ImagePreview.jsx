@@ -5,6 +5,7 @@ import {
     MapPin,
     X,
 } from "lucide-react";
+import LazyImage from "./LazyImage.jsx";
 
 const ImagePreview = ({ images = [], initialIndex = 0, onClose }) => {
     const [activeIdx, setActiveIdx] = useState(initialIndex);
@@ -30,10 +31,11 @@ const ImagePreview = ({ images = [], initialIndex = 0, onClose }) => {
         <>
             {/* Main Image */}
             <div className="relative h-[70vh] w-full rounded-xl overflow-hidden bg-black">
-                <img
+                <LazyImage
                     src={currentImage.image}
                     alt={currentImage.title}
                     className="w-full h-full object-fill"
+                    loading="eager"
                 />
                 {/* Close */}
                 <button
@@ -89,7 +91,7 @@ const ImagePreview = ({ images = [], initialIndex = 0, onClose }) => {
                                 : "border-transparent"
                                 }`}
                         >
-                            <img
+                            <LazyImage
                                 src={img.image}
                                 alt={img.title}
                                 className="w-full h-full object-fill"

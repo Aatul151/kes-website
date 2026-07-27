@@ -8,6 +8,7 @@ import {
   Play,
 } from "lucide-react";
 import { useContent } from "../context/ContentContext.jsx";
+import LazyImage from "../components/LazyImage.jsx";
 import CommonLightbox from "../components/CommonLightbox.jsx";
 
 const GALLERY_AUDIO_SRC = "/downloads/bg-gallery.mp3";
@@ -49,7 +50,7 @@ function GalleryCard({ item, index, onOpen }) {
       onClick={() => onOpen(index)}
       aria-label={`View ${item.title}`}
     >
-      <img src={item.image} alt={item.title} loading="lazy" />
+      <LazyImage src={item.image} alt={item.title} />
       <div className="gallery-card__noise" aria-hidden="true" />
       <div className="gallery-card__shine" aria-hidden="true" />
       <div className="gallery-card__overlay">
@@ -160,7 +161,7 @@ export default function Gallery() {
         </Link>
 
         <Link href="/" className="gallery-immersive__logo">
-          <img src="/kes_logo.gif" alt="KES Group" className="kes-brand-logo" />
+          <LazyImage src="/kes_logo.gif" alt="KES Group" className="kes-brand-logo" loading="eager" />
         </Link>
 
         <div className="gallery-immersive__actions">

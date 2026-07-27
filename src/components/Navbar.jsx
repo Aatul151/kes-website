@@ -63,6 +63,8 @@ export default function Navbar({ onOpenLanding }) {
                 src="/kes_logo.gif"
                 alt="KES Groups - Your Engineering Partner"
                 className="absolute left-0 top-1/2 -translate-y-1/2 h-20 w-auto max-w-none object-contain transition-transform duration-200 group-hover:scale-95"
+                loading="eager"
+                decoding="async"
               />
             </div>
           </Link>

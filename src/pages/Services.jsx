@@ -8,6 +8,7 @@ import { useScrollAnimation } from "../hooks/useScrollAnimation.js";
 import { useContent } from "../context/ContentContext.jsx";
 import { scrollToServiceFromHash, scrollToServiceSection } from "../utils/scrollToService.js";
 import HeroSection from "../components/HeroSection.jsx";
+import LazyImage from "../components/LazyImage.jsx";
 
 const ICON_MAP = {
   Building2, Layers, Warehouse, Factory, Store, Home: HomeIcon, Umbrella, Key,
@@ -109,7 +110,7 @@ export default function Services() {
                 {/* Image */}
                 <div className={`${!isEven ? "lg:order-1" : ""} animate-on-scroll-right`}>
                   <div className="relative">
-                    <img
+                    <LazyImage
                       src={svc.image}
                       alt={svc.title}
                       className="rounded-xl w-full h-80 object-cover shadow-lg"

@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation.js";
 import { useContent } from "../context/ContentContext.jsx";
+import LazyImage from "../components/LazyImage.jsx";
 import HeroSection from "../components/HeroSection.jsx";
 import Gallery from "./Gallery.jsx";
 import CommonLightbox from "../components/CommonLightbox.jsx";
@@ -138,7 +139,7 @@ export default function Projects() {
                       style={{ transitionDelay: `${i * 60}ms` }}
                       onClick={() => handleProjectClick(project)}
                     >
-                      <img src={project.image} alt={project.title} />
+                      <LazyImage src={project.image} alt={project.title} />
                       <div className="overlay" />
                       <div className="absolute inset-0 p-5 flex flex-col justify-between">
                         <div className="flex justify-between items-start">
@@ -220,10 +221,11 @@ export default function Projects() {
                     {/* Gallery */}
                     <div className="lg:col-span-9">
                       <div className="relative rounded-xl overflow-hidden bg-[#1A1A1A]/5 aspect-[16/10]">
-                        <img
+                        <LazyImage
                           src={galleryImages[imageIdx]}
                           alt={`${selected.title} — image ${imageIdx + 1}`}
                           className="w-full h-full object-fill transition-opacity duration-300"
+                          loading="eager"
                         />
                         {galleryImages.length > 1 && (
                           <>
@@ -264,7 +266,7 @@ export default function Projects() {
                               aria-label={`View image ${i + 1}`}
                               aria-current={i === imageIdx ? "true" : undefined}
                             >
-                              <img
+                              <LazyImage
                                 src={img}
                                 alt=""
                                 className="w-full h-full object-fill"

@@ -3,6 +3,7 @@ import { Link, useParams } from "wouter";
 import { Calendar, Clock, ArrowLeft, ArrowRight, Tag, Share2, Linkedin, Twitter, Facebook } from "lucide-react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation.js";
 import { useContent } from "../context/ContentContext.jsx";
+import LazyImage from "../components/LazyImage.jsx";
 
 function renderContent(content) {
   const lines = content.split("\n");
@@ -82,7 +83,7 @@ export default function BlogPost() {
       {/* Hero */}
       <section className="relative py-20 bg-[#1A1A1A] overflow-hidden">
         <div className="absolute inset-0 opacity-25">
-          <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+          <LazyImage src={post.image} alt={post.title} className="w-full h-full object-cover" loading="eager" fetchPriority="high" />
         </div>
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link href="/blog">
@@ -116,7 +117,7 @@ export default function BlogPost() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Article */}
             <div className="lg:col-span-2">
-              <img
+              <LazyImage
                 src={post.image}
                 alt={post.title}
                 className="w-full h-64 object-cover rounded-xl mb-8 shadow-md"
@@ -201,7 +202,7 @@ export default function BlogPost() {
                     {otherRelated.map((rp) => (
                       <Link key={rp.id} href={`/blog/${rp.slug}`}>
                         <div className="flex gap-3 group cursor-pointer">
-                          <img
+                          <LazyImage
                             src={rp.image}
                             alt={rp.title}
                             className="w-16 h-14 object-cover rounded-lg shrink-0"
@@ -236,7 +237,7 @@ export default function BlogPost() {
             {otherRelated.map((rp) => (
               <Link key={rp.id} href={`/blog/${rp.slug}`}>
                 <div className="bg-white rounded-xl overflow-hidden border border-gray-100 card-hover cursor-pointer">
-                  <img src={rp.image} alt={rp.title} className="w-full h-36 object-cover" />
+                  <LazyImage src={rp.image} alt={rp.title} className="w-full h-36 object-cover" />
                   <div className="p-4">
                     <span className="text-[10px] font-bold text-[#C8102E] uppercase tracking-wider">{rp.category}</span>
                     <h4 className="font-semibold text-[#1A1A1A] text-sm mt-1 leading-snug line-clamp-2">{rp.title}</h4>
