@@ -110,6 +110,7 @@ export default function Home() {
   const [testimonialIdx, setTestimonialIdx] = useState(0);
   const [formStatus, setFormStatus] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
+  const [videoLoading, setVideoLoading] = useState(true);
   const sliderRef = useRef(null);
 
   useScrollAnimation();
@@ -200,17 +201,42 @@ export default function Home() {
           {/* Background */}
           <div className="absolute inset-0 z-0">
             {!allHeroVideosFailed && heroVideos.length > 0 ? (
-              <video
-                ref={heroVideoRef}
-                muted
-                loop={false}
-                playsInline
-                preload="auto"
-                onError={() => handleHeroVideoError(heroVideoIdx)}
-                onEnded={advanceHeroVideo}
-                className="w-full h-full object-cover"
-                aria-hidden="true"
-              />
+              <div className="relative w-full h-full">
+                {videoLoading && (
+                  <div className="absolute inset-0 z-10">
+                    {/* Full-size loading image */}
+                    <img
+                      src="/images/landing/hero_banner.webp"
+                      alt=""
+                      className="absolute inset-0 w-full h-full object-cover"
+                      aria-hidden="true"
+                    />
+
+                    {/* Dark overlay */}
+                    <div className="absolute inset-0 bg-black/60" />
+
+                    {/* Loader */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="h-10 w-10 rounded-full border-4 border-white/20 border-t-white animate-spin" />
+                    </div>
+                  </div>
+                )}
+                <video
+                  ref={heroVideoRef}
+                  muted
+                  loop={false}
+                  playsInline
+                  preload="metadata" // metadata
+                  onLoadStart={() => setVideoLoading(true)}
+                  onCanPlay={() => setVideoLoading(false)}
+                  onPlaying={() => setVideoLoading(false)}
+                  onWaiting={() => setVideoLoading(true)}
+                  onError={() => { setVideoLoading(false); handleHeroVideoError(heroVideoIdx) }}
+                  onEnded={advanceHeroVideo}
+                  className="w-full h-full object-cover"
+                  aria-hidden="true"
+                />
+              </div>
             ) : (
               <div className="w-full h-full bg-[#1A1A1A]" aria-hidden="true" />
             )}
@@ -278,9 +304,9 @@ export default function Home() {
                   aria-current={videoIdx === heroVideoIdx ? "true" : undefined}
                   className={`h-2 rounded-full transition-all duration-300 ${
                     videoIdx === heroVideoIdx
-                      ? "w-8 bg-[#C8102E]"
-                      : "w-2 bg-white/40 hover:bg-white/70"
-                  }`}
+                    ? "w-8 bg-[#C8102E]"
+                    : "w-2 bg-white/40 hover:bg-white/70"
+                    }`}
                 />
               ))}
             </div>
@@ -605,17 +631,17 @@ export default function Home() {
                     key={step.step}
                     className={`flex gap-4 p-4 rounded-xl border cursor-pointer transition-all ${
                       activeStep === step.step
-                        ? "border-[#C8102E] bg-[#C8102E]/10"
-                        : "border-white/10 bg-white/5"
-                    }`}
+                      ? "border-[#C8102E] bg-[#C8102E]/10"
+                      : "border-white/10 bg-white/5"
+                      }`}
                     onClick={() => setActiveStep(step.step)}
                   >
                     <div
                       className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 ${
                         activeStep === step.step
-                          ? "bg-[#C8102E]"
-                          : "bg-white/10"
-                      }`}
+                        ? "bg-[#C8102E]"
+                        : "bg-white/10"
+                        }`}
                     >
                       <Icon size={16} className="text-white" />
                     </div>
@@ -663,13 +689,13 @@ export default function Home() {
                   </p>
                   {(TESTIMONIALS[testimonialIdx].designation ||
                     TESTIMONIALS[testimonialIdx].company) && (
-                    <p className="text-gray-500 text-xs mt-0.5">
-                      {TESTIMONIALS[testimonialIdx].designation}
-                      {TESTIMONIALS[testimonialIdx].company
-                        ? `, ${TESTIMONIALS[testimonialIdx].company}`
-                        : ""}
-                    </p>
-                  )}
+                      <p className="text-gray-500 text-xs mt-0.5">
+                        {TESTIMONIALS[testimonialIdx].designation}
+                        {TESTIMONIALS[testimonialIdx].company
+                          ? `, ${TESTIMONIALS[testimonialIdx].company}`
+                          : ""}
+                      </p>
+                    )}
                   <span className="inline-block mt-2 bg-red-50 text-[#C8102E] text-[10px] font-semibold px-3 py-1 rounded-full">
                     {TESTIMONIALS[testimonialIdx].industry}
                   </span>

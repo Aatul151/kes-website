@@ -16,6 +16,7 @@ export default function LandingScreen({ onComplete }) {
   const bgVideoRef = useRef(null);
   const [bgVideoFailed, setBgVideoFailed] = useState(false);
   const [showContent, setShowContent] = useState(false);
+  const [videoLoading, setVideoLoading] = useState(true);
 
   // Change only these two to control factory animation
   const FACTORY_BUILD_MS = 5000; // total duration of one build (ms)
@@ -126,20 +127,45 @@ export default function LandingScreen({ onComplete }) {
           }`}
       >
         {!bgVideoFailed && LANDING_SCREEN.backgroundVideo ? (
-          <video
-            ref={bgVideoRef}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            onError={() => setBgVideoFailed(true)}
-            className="landing-screen__bg-img"
-            onTimeUpdate={handleTimeUpdate}
-            aria-hidden="true"
-          >
-            <source src={LANDING_SCREEN.backgroundVideo} type="video/mp4" />
-          </video>
+          <div className="relative w-full h-full">
+            {videoLoading && (
+              <div className="absolute inset-0 z-10">
+                {/* Full-size loading image */}
+                <img
+                  src="/images/landing/landing_page.webp"
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover"
+                  aria-hidden="true"
+                />
+
+                {/* Dark overlay */}
+                <div className="absolute inset-0 bg-black/60" />
+
+                {/* Loader */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="h-10 w-10 rounded-full border-4 border-white/20 border-t-white animate-spin" />
+                </div>
+              </div>
+            )}
+            <video
+              ref={bgVideoRef}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              onLoadStart={() => setVideoLoading(true)}
+              onCanPlay={() => setVideoLoading(false)}
+              onPlaying={() => setVideoLoading(false)}
+              onWaiting={() => setVideoLoading(true)}
+              onError={() => { setVideoLoading(false); setBgVideoFailed(true) }}
+              className="landing-screen__bg-img"
+              onTimeUpdate={handleTimeUpdate}
+              aria-hidden="true"
+            >
+              <source src={LANDING_SCREEN.backgroundVideo} type="video/mp4" />
+            </video>
+          </div>
         ) : (
           <LazyImage
             src={LANDING_SCREEN.backgroundImage}
