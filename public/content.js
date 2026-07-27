@@ -115,6 +115,7 @@ export const LANDING_SCREEN = {
     durationMs: 8000,
     backgroundVideo: "/videos/hero/home_bg_v_4.mp4",
     backgroundImage: "/images/landing/background.jpg",
+    loadingBanner: "/images/landing/banner_2.webp",
     highlights: [
         "Pre-Engineered Buildings & Steel Structures",
         "Industrial Waste Water Treatment Systems - STP/ WTP",
@@ -142,9 +143,9 @@ export const LANDING_SCREEN = {
 
 export const HOME_HERO = {
     videos: [
-        "/videos/hero/home_bg_v_1.mp4",
-        "/videos/hero/home_bg_v_2.mp4",
-        "/videos/hero/home_bg_v_3.mp4",
+        { video: "/videos/hero/home_bg_v_1.mp4", banner: "/images/landing/banner_1.webp" },
+        { video: "/videos/hero/home_bg_v_2.mp4", banner: "/images/landing/banner_2.webp" },
+        { video: "/videos/hero/home_bg_v_3.mp4", banner: "/images/landing/banner_3.webp" },
     ],
     badge: "Where trust is the foundation and steel is the frame.",
     title: "Engineering Tomorrow's",

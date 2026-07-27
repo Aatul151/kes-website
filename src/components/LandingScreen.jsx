@@ -130,18 +130,7 @@ export default function LandingScreen({ onComplete }) {
           <div className="relative w-full h-full">
             {videoLoading && (
               <div className="absolute inset-0 z-10">
-                {/* Full-size loading image */}
-                <img
-                  src="/images/landing/landing_page.webp"
-                  alt=""
-                  className="absolute inset-0 w-full h-full object-cover"
-                  aria-hidden="true"
-                />
-
-                {/* Dark overlay */}
-                <div className="absolute inset-0 bg-black/60" />
-
-                {/* Loader */}
+                <div className="absolute inset-0 bg-black/50" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="h-10 w-10 rounded-full border-4 border-white/20 border-t-white animate-spin" />
                 </div>
@@ -154,6 +143,7 @@ export default function LandingScreen({ onComplete }) {
               loop
               playsInline
               preload="metadata"
+              poster={LANDING_SCREEN?.loadingBanner}
               onLoadStart={() => setVideoLoading(true)}
               onCanPlay={() => setVideoLoading(false)}
               onPlaying={() => setVideoLoading(false)}

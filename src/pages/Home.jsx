@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { Link } from "wouter";
 import {
   ArrowRight,
@@ -102,7 +102,7 @@ export default function Home() {
     HOME_HERO,
     CLIENTS,
   } = useContent();
-  const heroVideos = HOME_HERO.videos || [];
+  const heroVideos = HOME_HERO?.videos || [];
   const [heroVideoIdx, setHeroVideoIdx] = useState(0);
   const [heroVideosFailed, setHeroVideosFailed] = useState(() => new Set());
   const heroVideoRef = useRef(null);
@@ -119,7 +119,7 @@ export default function Home() {
 
   const heroVideoAvailable = heroVideos
     .map((_, i) => i)
-    .filter((i) => !heroVideosFailed.has(i));
+    .filter((i) => !heroVideosFailed.has(i?.video));
   const allHeroVideosFailed =
     heroVideos.length > 0 && heroVideoAvailable.length === 0;
 
@@ -127,7 +127,7 @@ export default function Home() {
     setHeroVideoIdx((current) => {
       const available = heroVideos
         .map((_, i) => i)
-        .filter((i) => !heroVideosFailed.has(i));
+        .filter((i) => !heroVideosFailed.has(i?.video));
       if (available.length <= 1) return current;
       const pos = available.indexOf(current);
       const nextPos = pos === -1 ? 0 : (pos + 1) % available.length;
@@ -142,7 +142,7 @@ export default function Home() {
         if (current !== index) return current;
         const remaining = heroVideos
           .map((_, i) => i)
-          .filter((i) => !next.has(i));
+          .filter((i) => !next.has(i?.video));
         return remaining[0] ?? current;
       });
       return next;
@@ -154,7 +154,7 @@ export default function Home() {
     if (!video || allHeroVideosFailed || heroVideosFailed.has(heroVideoIdx))
       return;
 
-    const src = heroVideos[heroVideoIdx];
+    const src = heroVideos[heroVideoIdx]?.video;
     if (!src) return;
 
     let cancelled = false;
@@ -204,18 +204,7 @@ export default function Home() {
               <div className="relative w-full h-full">
                 {videoLoading && (
                   <div className="absolute inset-0 z-10">
-                    {/* Full-size loading image */}
-                    <img
-                      src="/images/landing/hero_banner.webp"
-                      alt=""
-                      className="absolute inset-0 w-full h-full object-cover"
-                      aria-hidden="true"
-                    />
-
-                    {/* Dark overlay */}
-                    <div className="absolute inset-0 bg-black/60" />
-
-                    {/* Loader */}
+                    <div className="absolute inset-0 bg-black/50" />
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="h-10 w-10 rounded-full border-4 border-white/20 border-t-white animate-spin" />
                     </div>
@@ -227,6 +216,7 @@ export default function Home() {
                   loop={false}
                   playsInline
                   preload="metadata" // metadata
+                  poster={heroVideos?.[heroVideoIdx]?.banner}
                   onLoadStart={() => setVideoLoading(true)}
                   onCanPlay={() => setVideoLoading(false)}
                   onPlaying={() => setVideoLoading(false)}

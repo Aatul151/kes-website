@@ -7,7 +7,7 @@ export default function HeroSection({ img = '', title = '', description = '' }) 
                     alt="Our Banner"
                     className="w-full h-full object-cover object-center scale-100 mix-blend-normal"
                     loading="eager"
-                    fetchPriority="high"
+                    fetchpriority="high"
                     decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/30 to-black/50" />

@@ -8,7 +8,7 @@ export default function LazyImage({
     <img
       loading={loading}
       decoding={decoding}
-      fetchPriority={fetchPriority}
+      fetchpriority={fetchPriority}
       {...props}
     />
   );
