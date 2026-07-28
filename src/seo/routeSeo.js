@@ -3,6 +3,12 @@ export const SITE_URL = "https://kesprojects.com";
 export const DEFAULT_DESCRIPTION =
   "KES Group is India's leading provider of Pre-Engineered Buildings, Steel Structures, Warehouses, Factory Buildings, and Turnkey Industrial Construction Solutions.";
 
+function normalizePath(pathname = "/") {
+  const [pathOnly] = pathname.split("?");
+  if (!pathOnly || pathOnly === "/") return "/";
+  return pathOnly.endsWith("/") ? pathOnly.replace(/\/+$/, "") || "/" : pathOnly;
+}
+
 const STATIC_ROUTE_SEO = {
   "/": {
     title: "KES Group - Your Engineering Partner",
@@ -52,7 +58,7 @@ const STATIC_ROUTE_SEO = {
 };
 
 export function getSeoForPath(pathname = "/", blogPosts = []) {
-  const cleanPath = pathname.split("?")[0] || "/";
+  const cleanPath = normalizePath(pathname);
 
   if (cleanPath.startsWith("/blog/")) {
     const slug = cleanPath.replace("/blog/", "");
