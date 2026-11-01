@@ -1,0 +1,353 @@
+﻿/* ---- DIWALI CELEBRATION PAGE (KES black / red) ---- */
+.celebration-page {
+  --celebration-red: #c8102e;
+  --celebration-red-bright: #ff1e3c;
+  --celebration-black: #0a0a0a;
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 85% 55% at 50% 100%, rgba(200, 16, 46, 0.38) 0%, transparent 58%),
+    radial-gradient(ellipse 50% 40% at 15% 20%, rgba(200, 16, 46, 0.14) 0%, transparent 50%),
+    radial-gradient(ellipse 45% 35% at 85% 18%, rgba(165, 13, 37, 0.18) 0%, transparent 48%),
+    linear-gradient(180deg, #050505 0%, #0f0f0f 42%, #1a0a0e 100%);
+  color: #f5f5f5;
+  font-family: "Poppins", sans-serif;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.celebration-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  cursor: crosshair;
+}
+
+.celebration-stars {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.celebration-star {
+  position: absolute;
+  border-radius: 50%;
+  background: #ffffff;
+  opacity: 0.35;
+  animation: celebration-twinkle 2.8s ease-in-out infinite;
+}
+
+@keyframes celebration-twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.4);
+  }
+}
+
+.celebration-back {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid rgba(200, 16, 46, 0.45);
+  background: rgba(10, 10, 10, 0.55);
+  color: #f5f5f5;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.celebration-back:hover {
+  background: rgba(200, 16, 46, 0.2);
+  border-color: rgba(200, 16, 46, 0.85);
+  transform: translateY(-1px);
+}
+
+.celebration-content {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 5rem 1.5rem 8rem;
+  pointer-events: none;
+}
+
+.celebration-logo {
+  width: clamp(9rem, 28vw, 15rem);
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 1.25rem;
+  border-radius: 12px;
+  filter: drop-shadow(0 0 18px rgba(200, 16, 46, 0.35));
+  animation: celebration-rise 0.9s ease-out both, celebration-logo-glow 3s ease-in-out 0.9s infinite;
+}
+
+.celebration-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255, 77, 109, 0.9);
+  margin-bottom: 0.85rem;
+  animation: celebration-rise 1s ease-out 0.08s both;
+}
+
+.celebration-title {
+  font-family: "Cinzel", "Poppins", serif;
+  font-size: clamp(2.75rem, 9vw, 5.5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  text-shadow:
+    0 0 24px rgba(200, 16, 46, 0.45),
+    0 0 60px rgba(165, 13, 37, 0.3);
+  margin-bottom: 1rem;
+  animation: celebration-rise 1.15s ease-out 0.12s both;
+}
+
+.celebration-title span {
+  display: inline-block;
+  background: linear-gradient(120deg, #ffffff 0%, #ff4d6d 40%, #c8102e 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: celebration-glow-pulse 2.8s ease-in-out infinite;
+}
+
+.celebration-subtitle {
+  max-width: 28rem;
+  font-size: clamp(0.9rem, 2.2vw, 1.05rem);
+  line-height: 1.7;
+  color: rgba(245, 245, 245, 0.72);
+  margin-bottom: 1.5rem;
+  animation: celebration-rise 1.25s ease-out 0.22s both;
+}
+
+.celebration-hint {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(200, 16, 46, 0.65);
+  animation: celebration-rise 1.35s ease-out 0.35s both, celebration-hint-fade 2.4s ease-in-out 1.5s infinite;
+}
+
+@keyframes celebration-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes celebration-logo-glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 12px rgba(200, 16, 46, 0.28));
+  }
+  50% {
+    filter: drop-shadow(0 0 28px rgba(200, 16, 46, 0.55));
+  }
+}
+
+@keyframes celebration-glow-pulse {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 8px rgba(200, 16, 46, 0.35));
+  }
+  50% {
+    filter: drop-shadow(0 0 22px rgba(255, 30, 60, 0.65));
+  }
+}
+
+@keyframes celebration-hint-fade {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+.celebration-glow {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  z-index: 2;
+  width: min(90vw, 720px);
+  height: 180px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(200, 16, 46, 0.45) 0%, transparent 70%);
+  pointer-events: none;
+  animation: celebration-glow-pulse 3.2s ease-in-out infinite;
+}
+
+.celebration-diyas {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1.75rem;
+  z-index: 4;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(0.75rem, 3vw, 1.75rem);
+  pointer-events: none;
+  padding: 0 1rem;
+}
+
+.celebration-diya {
+  --diya-scale: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: celebration-diya-bob 2.6s ease-in-out infinite;
+  transform-origin: center bottom;
+  transform: scale(var(--diya-scale));
+}
+
+.celebration-diya-flame {
+  position: relative;
+  width: 14px;
+  height: 28px;
+  margin-bottom: -4px;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  background: radial-gradient(circle at 50% 70%, #fff8dc 0%, #ffb347 35%, #ff6b35 70%, transparent 100%);
+  box-shadow:
+    0 0 12px rgba(255, 180, 60, 0.85),
+    0 0 28px rgba(255, 120, 40, 0.55);
+  animation: celebration-flame-flicker 0.9s ease-in-out infinite;
+}
+
+.celebration-diya-flame-inner {
+  position: absolute;
+  left: 50%;
+  bottom: 6px;
+  width: 6px;
+  height: 12px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: #fffef5;
+  opacity: 0.9;
+}
+
+.celebration-diya-bowl {
+  position: relative;
+  width: 42px;
+  height: 16px;
+  border-radius: 0 0 22px 22px;
+  background: linear-gradient(180deg, #e8b84a 0%, #c47a1a 55%, #8a4a0c 100%);
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.35),
+    inset 0 2px 0 rgba(255, 230, 160, 0.45);
+}
+
+.celebration-diya-bowl::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -3px;
+  right: -3px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #f0c85a 0%, #d4922a 100%);
+  box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+.celebration-diya-wick {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 2px;
+  height: 8px;
+  transform: translateX(-50%);
+  background: #3a2410;
+  border-radius: 1px;
+  z-index: 1;
+}
+
+@keyframes celebration-flame-flicker {
+  0%,
+  100% {
+    transform: scaleY(1) scaleX(1) rotate(-2deg);
+    opacity: 1;
+  }
+  40% {
+    transform: scaleY(1.12) scaleX(0.9) rotate(2deg);
+    opacity: 0.92;
+  }
+  70% {
+    transform: scaleY(0.95) scaleX(1.05) rotate(-1deg);
+    opacity: 1;
+  }
+}
+
+@keyframes celebration-diya-bob {
+  0%,
+  100% {
+    transform: translateY(0) scale(var(--diya-scale, 1));
+  }
+  50% {
+    transform: translateY(-3px) scale(var(--diya-scale, 1));
+  }
+}
+
+@media (max-width: 640px) {
+  .celebration-diyas .celebration-diya:nth-child(1),
+  .celebration-diyas .celebration-diya:nth-child(7) {
+    display: none;
+  }
+
+  .celebration-content {
+    padding-bottom: 7rem;
+  }
+
+  .celebration-logo {
+    width: clamp(7.5rem, 42vw, 11rem);
+  }
+
+  .celebration-back span {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .celebration-star,
+  .celebration-logo,
+  .celebration-eyebrow,
+  .celebration-title,
+  .celebration-title span,
+  .celebration-subtitle,
+  .celebration-hint,
+  .celebration-glow,
+  .celebration-diya,
+  .celebration-diya-flame {
+    animation: none;
+  }
+}

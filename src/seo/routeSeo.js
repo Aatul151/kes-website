@@ -55,6 +55,11 @@ const STATIC_ROUTE_SEO = {
     description:
       "Browse the KES Group project gallery featuring industrial buildings, steel structures, warehouses, and completed engineering works.",
   },
+  "/celebration": {
+    title: "Happy Diwali | KES Group",
+    description:
+      "KES Group wishes you a bright and prosperous Diwali. Celebrate the festival of lights with us.",
+  },
 };
 
 export function getSeoForPath(pathname = "/", blogPosts = []) {
@@ -100,6 +105,7 @@ export function getPrerenderRoutes(blogPosts = []) {
     "/blog",
     "/contact",
     "/privacy-policy",
+    "/celebration",
     ...blogPosts.map((post) => `/blog/${post.slug}`),
   ];
 }

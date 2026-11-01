@@ -1,4 +1,4 @@
-@tailwind base;
+﻿@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -1354,6 +1354,17 @@ input, textarea, select {
   }
 }
 
+@keyframes floatingActionGlowCelebration {
+  0%, 100% {
+    filter: brightness(1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  }
+  50% {
+    filter: brightness(1.18);
+    box-shadow: 0 4px 24px rgba(200, 16, 46, 0.55), 0 0 18px rgba(255, 180, 60, 0.4);
+  }
+}
+
 .floating-actions__btn--brochure,
 .floating-actions__btn--gallery {
   background: linear-gradient(135deg, #C8102E 0%, #a50d25 100%);
@@ -1363,6 +1374,16 @@ input, textarea, select {
 .floating-actions__btn--brochure:hover,
 .floating-actions__btn--gallery:hover {
   background: linear-gradient(135deg, #d91232 0%, #C8102E 100%);
+}
+
+.floating-actions__btn--celebration {
+  background: linear-gradient(135deg, #1a1a1a 0%, #C8102E 100%);
+  animation-name: floatingActionGlowCelebration;
+  animation-delay: 0.6s;
+}
+
+.floating-actions__btn--celebration:hover {
+  background: linear-gradient(135deg, #C8102E 0%, #1a1a1a 100%);
 }
 
 .floating-actions__btn--whatsapp {

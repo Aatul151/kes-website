@@ -14,6 +14,7 @@ import Contact from "./pages/Contact.jsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy.jsx";
 import Clients from "./pages/Clients.jsx";
 import Gallery from "./pages/Gallery.jsx";
+import Celebration from "./pages/Celebration.jsx";
 import { useContent } from "./context/ContentContext.jsx";
 import { DEFAULT_DESCRIPTION, SITE_NAME, SITE_URL, getSeoForPath } from "./seo/routeSeo.js";
 import { scrollToServiceFromHash } from "./utils/scrollToService.js";
@@ -119,6 +120,7 @@ export default function App() {
     return window.localStorage.getItem(LANDING_SCREEN_HIDDEN_KEY) !== "true";
   });
   const isGallery = location === "/view-gallery";
+  const isCelebration = location === "/celebration";
 
   const handleLandingComplete = ({ persistHide = false } = {}) => {
     if (persistHide && typeof window !== "undefined") {
@@ -133,6 +135,15 @@ export default function App() {
 
   if (isGallery) {
     return <Gallery />;
+  }
+
+  if (isCelebration) {
+    return (
+      <>
+        <SeoManager location={location} />
+        <Celebration />
+      </>
+    );
   }
 
   return (

@@ -1,6 +1,6 @@
 import React from "react";
-import { Download, Images } from "lucide-react";
-import { Link } from "wouter";
+import { Download, Images, PartyPopper } from "lucide-react";
+import { Link, useLocation } from "wouter";
 import { useContent } from "../context/ContentContext.jsx";
 
 function WhatsAppIcon({ size = 18 }) {
@@ -41,6 +41,21 @@ function groupActionsByPosition(floatingActions) {
 }
 
 function renderAction(action) {
+  if (action.id === "celebration") {
+    return (
+      <Link
+        key={action.id}
+        href={action.url}
+        className="floating-actions__btn floating-actions__btn--celebration"
+        aria-label={action.label}
+      >
+        <span className="floating-actions__icon">
+          <PartyPopper size={18} strokeWidth={2.25} />
+        </span>
+        <span className="floating-actions__label">{action.label}</span>
+      </Link>
+    );
+  }
 
   if (action.id === "gallery") {
     return (

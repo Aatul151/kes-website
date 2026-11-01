@@ -78,6 +78,12 @@ export const FLOATING_ACTIONS = {
         filename: "KES-Brochure.pdf",
         position: "bottom-left",
     },
+    celebration: {
+        label: "Happy Diwali",
+        url: "/celebration",
+        position: "bottom-right",
+        homeOnly: true,
+    },
 };
 
 export const SOCIAL_LINKS = [
