@@ -113,14 +113,32 @@ function ScrollToTop() {
   return null;
 }
 
+function normalizeAppPath(pathname = "/") {
+  const [pathOnly] = pathname.split("?");
+  if (!pathOnly || pathOnly === "/") return "/";
+  return pathOnly.endsWith("/") ? pathOnly.replace(/\/+$/, "") || "/" : pathOnly;
+}
+
 export default function App() {
   const [location] = useLocation();
+  const cleanPath = normalizeAppPath(location);
+  const isGallery = cleanPath === "/view-gallery";
+  const isCelebration = cleanPath === "/celebration";
   const [showLanding, setShowLanding] = useState(() => {
-    if (typeof window === "undefined") return true;
+    if (typeof window === "undefined") return false;
+    const initialPath = normalizeAppPath(window.location.pathname);
+    // Skip intro on immersive pages opened directly
+    if (initialPath === "/celebration" || initialPath === "/view-gallery") {
+      return false;
+    }
     return window.localStorage.getItem(LANDING_SCREEN_HIDDEN_KEY) !== "true";
   });
-  const isGallery = location === "/view-gallery";
-  const isCelebration = location === "/celebration";
+
+  useEffect(() => {
+    if (isCelebration || isGallery) {
+      setShowLanding(false);
+    }
+  }, [isCelebration, isGallery]);
 
   const handleLandingComplete = ({ persistHide = false } = {}) => {
     if (persistHide && typeof window !== "undefined") {
@@ -140,7 +158,7 @@ export default function App() {
   if (isCelebration) {
     return (
       <>
-        <SeoManager location={location} />
+        <SeoManager location={cleanPath} />
         <Celebration />
       </>
     );
@@ -148,7 +166,7 @@ export default function App() {
 
   return (
     <>
-      <SeoManager location={location} />
+      <SeoManager location={cleanPath} />
       {showLanding && <LandingScreen onComplete={handleLandingComplete} />}
       <div className={`min-h-screen flex flex-col font-poppins transition-opacity duration-500 ${showLanding ? "invisible opacity-0" : "opacity-100"}`}>
         <ScrollToTop />
