@@ -155,7 +155,7 @@ export default function App() {
     return <Gallery />;
   }
 
-  if (isCelebration) {
+  if (isCelebration && false) {
     return (
       <>
         <SeoManager location={cleanPath} />
